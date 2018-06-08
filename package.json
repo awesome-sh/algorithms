@@ -1,0 +1,36 @@
+{
+  "name": "algorithms",
+  "version": "0.0.1",
+  "description": "",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "jest && eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lquixada/algorithms.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lquixada/algorithms/issues"
+  },
+  "homepage": "https://github.com/lquixada/algorithms#readme",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "jest": "23.1.0",
+    "string-hash": "1.1.3"
+  },
+  "devDependencies": {
+    "eslint": "4.19.1",
+    "eslint-config-google": "0.9.1",
+    "husky": "0.14.3",
+    "lint-staged": "7.2.0"
+  }
+}
