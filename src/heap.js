@@ -1,4 +1,4 @@
-const swap = require('./snippets/array-swap');
+const {swap} = require('./snippets/array');
 
 class MinHeap {
   constructor() {

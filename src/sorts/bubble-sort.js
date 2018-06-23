@@ -1,5 +1,5 @@
 // Ativar Quokka
-const swap = require('../snippets/swap');
+const {swap} = require('../snippets/array');
 let result;
 
 function bubbleSort(A) {
