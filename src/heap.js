@@ -1,8 +1,10 @@
-const {swap} = require('./snippets/array');
+const Comparator = require('./comparator');
+const {swap} = require('./array');
 
-class MinHeap {
+class Heap {
   constructor() {
     this._container = [];
+    this.compare = new Comparator();
   }
 
   add(item) {
@@ -55,12 +57,12 @@ class MinHeap {
   }
 
   isEmpty() {
-    return this.size() > 0;
+    return this.size() === 0;
   }
 
   poll() {
     const item = this.peek();
-    this._container[0] = this.last();
+    this._container[0] = this._container.pop();
     this.heapifyDown();
     return item;
   }
@@ -68,7 +70,7 @@ class MinHeap {
   heapifyUp() {
     let index = this.lastIndex();
 
-    while (this.parentOf(index) && this.parentOf(index) > this.elementOf(index)) {
+    while (this.parentOf(index) && this.compare.greaterThen(this.parentOf(index), this.elementOf(index))) {
       swap(this._container, this.parentIndexOf(index), index);
 
       // Move up
@@ -82,12 +84,12 @@ class MinHeap {
 
     while (childIndex) {
       // Compare the values of the two childs
-      if (this.rightOf(index) < this.leftOf(index)) {
+      if (this.compare.lessThen(this.rightOf(index), this.leftOf(index))) {
         childIndex = this.rightIndexOf(index);
       }
 
       // Compare the values of the smaller child with the current element
-      if (this.elementOf(childIndex) < this.elementOf(index)) {
+      if (this.compare.lessThen(this.elementOf(childIndex), this.elementOf(index))) {
         swap(this._container, childIndex, index);
       } else {
         // There's no more swap to do.
@@ -98,6 +100,28 @@ class MinHeap {
       childIndex = this.leftIndexOf(index);
     }
   }
+
+  toString() {
+    return this._container.toString();
+  }
 }
 
-module.exports = MinHeap;
+class MinHeap extends Heap {
+  constructor() {
+    super();
+    this.compare = new Comparator((a, b) => a-b);
+  }
+}
+
+
+class MaxHeap extends Heap {
+  constructor() {
+    super();
+    this.compare = new Comparator((a, b) => b-a);
+  }
+}
+
+module.exports = {
+  MinHeap,
+  MaxHeap,
+};
