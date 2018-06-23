@@ -1,21 +1,19 @@
-// Ativar Quokka
-const {swap} = require('../snippets/array');
-let result;
+const {swap} = require('../array');
 
-function bubbleSort(A) {
-  for (let i = 0; i < A.length; i++) {
-    for (let j = 0; j < A.length - i - 1; j++) {
-      if (A[j] > A[j + 1]) {
-        swap(A, j, j + 1);
+function bubbleSort(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        swap(array, j, j + 1);
       }
     }
   }
 
-  return A;
+  return array;
 }
 
-result = bubbleSort([5, 4, 3, 2, 1]);
-console.log(result);
+// result = bubbleSort([5, 4, 3, 2, 1]);
+// console.log(result);
 
 function betterBubbleSort(array) {
   let swapped = false;
@@ -30,5 +28,10 @@ function betterBubbleSort(array) {
   } while (swapped);
 }
 
-result = betterBubbleSort([5, 4, 3, 2, 1]);
-console.log(result);
+// result = betterBubbleSort([5, 4, 3, 2, 1]);
+// console.log(result);
+
+module.exports = {
+  bubbleSort,
+  betterBubbleSort
+};

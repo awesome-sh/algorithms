@@ -1,15 +1,13 @@
-// Ativar Quokka
-
-function mergeSort(A) {
-  if (A.length === 1) {
-    return A;
+function mergeSort(array) {
+  if (array.length === 1) {
+    return array;
   }
 
-  let mid = Math.floor(A.length / 2);
-  let L = A.slice(0, mid);
-  let R = A.slice(mid, A.length);
+  let mid = Math.floor(array.length / 2);
+  let left = array.slice(0, mid);
+  let right = array.slice(mid, array.length);
 
-  return merge(mergeSort(L), mergeSort(R));
+  return merge(mergeSort(left), mergeSort(right));
 }
 
 function merge(L, R) {
@@ -40,16 +38,16 @@ let result = mergeSort([5, 4, 3, 2, 1]);
 console.log(result);
 
 
-function mergeSort2(A) {
-  if (A.length === 1) {
-    return A;
+function mergeSort2(array) {
+  if (array.length === 1) {
+    return array;
   }
 
-  let mid = Math.floor(A.length / 2);
-  let L = A.slice(0, mid);
-  let R = A.slice(mid, A.length);
+  let mid = Math.floor(array.length / 2);
+  let left = array.slice(0, mid);
+  let right = array.slice(mid, array.length);
 
-  return merge2(mergeSort2(L), mergeSort2(R));
+  return merge2(mergeSort2(left), mergeSort2(right));
 }
 
 function merge2(L, R) {
