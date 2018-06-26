@@ -24,20 +24,21 @@ class HashMap {
   }
 
   get(key) {
+    let found;
+
     if (!key) {
       return;
     }
 
     let list = this._getAdjacencies(key);
-    let node = list.getHead();
 
-    while (node) {
-      if (node.data.key === key) {
-        return node.data.value;
+    list.iterate(function(item) {
+      if (item.key === key) {
+        found = item.value;
       }
+    });
 
-      node = node.next;
-    }
+    return found;
   }
 
   has(key) {
@@ -46,22 +47,24 @@ class HashMap {
   }
 
   remove(key) {
+    let found = null;
     let list = this._getAdjacencies(key);
-    let node = list.getHead();
 
-    while (node) {
-      if (node.data.key === key) {
-        list.remove(node.data);
-        this._count--;
+    list.iterate(function(item) {
+      if (item.key === key) {
+        found = item;
+      }
+    });
 
-        if (list.isEmpty()) {
-          delete this._table[this._hash(key)];
-        }
+    if (found) {
+      list.remove(found);
+      this._count--;
 
-        return true;
+      if (list.isEmpty()) {
+        delete this._table[this._hash(key)];
       }
 
-      node = node.next;
+      return true;
     }
 
     return false;
@@ -81,12 +84,9 @@ class HashMap {
         continue;
       }
 
-      let node = list.getHead();
-
-      while (node) {
-        keys.push(node.data.key);
-        node = node.next;
-      }
+      list.iterate(function(item) {
+        keys.push(item.key);
+      });
     }
 
     return keys;
@@ -102,12 +102,9 @@ class HashMap {
         continue;
       }
 
-      let node = list.getHead();
-
-      while (node) {
-        values.push(node.data.value);
-        node = node.next;
-      }
+      list.iterate(function(item) {
+        values.push(item.value);
+      });
     }
 
     return values;

@@ -92,22 +92,20 @@ function breadthFirstSearch(graph, start, callback = noop) {
 
   while (!queue.isEmpty()) {
     let node = queue.remove();
-    let edge = graph.getEdges(node).getHead();
+    let edges = graph.getEdges(node);
 
-    while (edge) {
-      let neighbor = edge.data.node;
+    edges.iterate(function(edge) {
+      let neighbor = edge.node;
 
       if (!visited[neighbor.key]) {
-        dist[neighbor.key] = dist[node.key] + 1;
+        dist[neighbor.key] = dist[node.key] + edge.weight; // weight should be 1 on unweighted graphs
         prev[neighbor.key] = node.key;
         visited[neighbor.key] = true;
         callback(neighbor);
 
         queue.add(neighbor);
       }
-
-      edge = edge.next;
-    }
+    });
   }
 
   return {
@@ -128,20 +126,18 @@ function depthFirstSearch(graph, start, callback = noop) {
   }
 
   function visit(node) {
-    let edge = graph.getEdges(node).getHead();
+    let edges = graph.getEdges(node);
 
     visited[node.key] = true;
     callback(node);
 
-    while (edge) {
-      let neighbor = edge.data.node;
+    edges.iterate(function(edge) {
+      let neighbor = edge.node;
 
       if (!visited[neighbor.key]) {
         visit(neighbor);
       }
-
-      edge = edge.next;
-    }
+    });
   }
 
   visit(start);
@@ -162,10 +158,10 @@ function depthFirstSearchIter(graph, start, callback = noop) {
 
   while (!stack.isEmpty()) {
     let node = stack.pop();
-    let edge = graph.getEdges(node).getHead();
+    let edges = graph.getEdges(node);
 
-    while (edge) {
-      let neighbor = edge.data.node;
+    edges.iterate(function(edge) {
+      let neighbor = edge.node;
 
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true;
@@ -173,9 +169,7 @@ function depthFirstSearchIter(graph, start, callback = noop) {
 
         stack.push(neighbor);
       }
-
-      edge = edge.next;
-    }
+    });
   }
 }
 
@@ -196,19 +190,17 @@ function dijkstra(graph, start) {
   let node = graph.getNode(key);
 
   while (node) {
-    let edge = graph.getEdges(node).getHead();
+    let edges = graph.getEdges(node);
 
-    while (edge) {
-      let neighbor = edge.data.node;
-      let newCost = dist[node.key] + edge.data.weight;
+    edges.iterate(function(edge) {
+      let neighbor = edge.node;
+      let newCost = dist[node.key] + edge.weight;
 
       if (newCost < dist[neighbor.key]) {
         dist[neighbor.key] = newCost;
         prev[neighbor.key] = node.key;
       }
-
-      edge = edge.next;
-    }
+    });
 
     visited[node.key] = true;
 

@@ -1,11 +1,16 @@
 class LinkedList {
   constructor() {
-    this._length = 0;
     this._head = null;
+    this._tail = null;
+    this._length = 0;
   }
 
   getHead() {
     return this._head;
+  }
+
+  getTail() {
+    return this._tail;
   }
 
   size() {
@@ -21,34 +26,58 @@ class LinkedList {
 
     if (!this._head) {
       this._head = node;
+      this._tail = node;
       this._length++;
       return;
     }
 
-    let current = this._head;
-
-    while (current.next) {
-      current = current.next;
-    }
-
-    current.next = node;
+    this._tail.next = node;
+    this._tail = node;
     this._length++;
+
+    return node;
   }
 
-  values() {
+  prepend(data) {
+    const node = new Node(data);
+
+    if (!this._head) {
+      this._head = node;
+      this._tail = node;
+      this._length++;
+      return;
+    }
+
+    node.next = this._head;
+    this._head = node;
+    this._length++;
+
+    return node;
+  }
+
+  addFirst(data) {
+    this.prepend(data);
+  }
+
+  addLast(data) {
+    this.append(data);
+  }
+
+  iterate(callback) {
     let node = this._head;
-    let list = [];
 
     while (node) {
-      list.push(node.data);
+      callback(node.data);
       node = node.next;
     }
-
-    return list;
   }
 
-  toString() {
-    return this.values().join(', ');
+  removeFirst() {
+    return this.removeAt(0);
+  }
+
+  removeLast() {
+    return this.removeAt(this._length-1);
   }
 
   remove(data) {
@@ -57,19 +86,24 @@ class LinkedList {
 
     while (current) {
       if (current.data === data) {
-        if (this._head === current) {
+        if (current === this._head) {
           this._head = this._head.next;
+        } else if (current === this._tail) {
+          this._tail = prev;
         } else {
           prev.next = current.next;
         }
 
-        this._length--;
         break;
       }
 
       prev = current;
       current = current.next;
     }
+
+    this._length--;
+
+    return current;
   }
 
   removeAt(index) {
@@ -122,6 +156,18 @@ class LinkedList {
     }
 
     this._length++;
+  }
+
+  values() {
+    let list = [];
+
+    this.iterate((data) => list.push(data));
+
+    return list;
+  }
+
+  toString() {
+    return this.values().join(', ');
   }
 }
 
