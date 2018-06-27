@@ -3,23 +3,18 @@ const LinkedList = require('./linked-list');
 
 class HashMap {
   constructor(size = 100) {
-    this._table = new Array(size);
+    this._bucket = this._createBucket(size);
     this._count = 0;
   }
 
   set(key, value) {
-    if (this._count >= this._table.length) {
-      this._table = this._doubleTable();
+    // TODO: needs a fill factor
+    if (this._count >= this._bucket.length) {
+      this._bucket = this._doubleBucket();
     }
 
     const hash = this._hash(key);
-
-    // lazy init
-    if (!this.has(key)) {
-      this._table[hash] = new LinkedList();
-    }
-
-    this._table[hash].append({key, value});
+    this._bucket[hash].append({key, value});
     this._count++;
   }
 
@@ -30,7 +25,7 @@ class HashMap {
       return;
     }
 
-    let list = this._getAdjacencies(key);
+    let list = this._getList(key);
 
     list.iterate(function(item) {
       if (item.key === key) {
@@ -42,13 +37,13 @@ class HashMap {
   }
 
   has(key) {
-    const list = this._getAdjacencies(key);
+    const list = this._getList(key);
     return !list.isEmpty();
   }
 
   remove(key) {
     let found = null;
-    let list = this._getAdjacencies(key);
+    let list = this._getList(key);
 
     list.iterate(function(item) {
       if (item.key === key) {
@@ -59,10 +54,6 @@ class HashMap {
     if (found) {
       list.remove(found);
       this._count--;
-
-      if (list.isEmpty()) {
-        delete this._table[this._hash(key)];
-      }
 
       return true;
     }
@@ -77,8 +68,8 @@ class HashMap {
   keys() {
     const keys = [];
 
-    for (let i=0; i<this._table.length; i++) {
-      let list = this._table[i];
+    for (let i=0; i<this._bucket.length; i++) {
+      let list = this._bucket[i];
 
       if (!list) {
         continue;
@@ -95,8 +86,8 @@ class HashMap {
   values() {
     const values = [];
 
-    for (let i=0; i<this._table.length; i++) {
-      let list = this._table[i];
+    for (let i=0; i<this._bucket.length; i++) {
+      let list = this._bucket[i];
 
       if (!list) {
         continue;
@@ -112,24 +103,26 @@ class HashMap {
 
   // private
 
-  _doubleTable() {
-    const newSize = this._table.length * 2;
-    const newTable = new Array(newSize);
-
-    for (let i=0; i<this._table.length; i++) {
-      newTable[i] = this._table[i];
-    }
-
-    return newTable;
+  _createBucket(size) {
+    return Array(size).fill(null).map(() => new LinkedList());
   }
 
-  _getAdjacencies(key) {
-    const hash = this._hash(key);
-    return this._table[hash] || new LinkedList();
+  _doubleBucket() {
+    const bucket = this._createBucket(this._bucket.length * 2);
+
+    for (let i=0; i<this._bucket.length; i++) {
+      bucket[i] = this._bucket[i];
+    }
+
+    return bucket;
+  }
+
+  _getList(key) {
+    return this._bucket[this._hash(key)];
   }
 
   _hash(key) {
-    return hash(key) % this._table.length;
+    return hash(key) % this._bucket.length;
   }
 }
 
