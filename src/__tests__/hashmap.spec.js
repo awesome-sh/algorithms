@@ -4,7 +4,8 @@ describe('dict', () => {
   let dict;
 
   beforeEach(() => {
-    dict = new HashMap();
+    // Set size to 2 to test doubleCapacity internally
+    dict = new HashMap(2);
   });
 
   it('starts empty', () => {
@@ -54,17 +55,5 @@ describe('dict', () => {
     dict.set('key1', true);
 
     expect(dict.remove('key2')).toBe(false);
-  });
-
-  it('expands when bucket is full', () => {
-    dict = new HashMap(2);
-
-    expect(dict.getBucketSize()).toBe(2);
-
-    dict.set('key1', 1);
-    dict.set('key2', 2);
-    dict.set('key3', 3);
-
-    expect(dict.getBucketSize()).toBe(4);
   });
 });

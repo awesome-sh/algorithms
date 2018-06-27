@@ -10,7 +10,7 @@ class HashMap {
   set(key, value) {
     // TODO: needs a fill factor
     if (this._count >= this._bucket.length) {
-      this._bucket = this._doubleBucket();
+      this._doubleBucket();
     }
 
     const hash = this._hash(key);
@@ -52,16 +52,10 @@ class HashMap {
     return false;
   }
 
-  size() {
-    return this._count;
-  }
-
   keys() {
     const keys = [];
 
-    for (let i=0; i<this._bucket.length; i++) {
-      let list = this._bucket[i];
-
+    for (let list of this._bucket) {
       for (let item of list) {
         keys.push(item.key);
       }
@@ -73,9 +67,7 @@ class HashMap {
   values() {
     const values = [];
 
-    for (let i=0; i<this._bucket.length; i++) {
-      let list = this._bucket[i];
-
+    for (let list of this._bucket) {
       for (let item of list) {
         values.push(item.value);
       }
@@ -84,8 +76,18 @@ class HashMap {
     return values;
   }
 
-  getBucketSize() {
-    return this._bucket.length;
+  size() {
+    return this._count;
+  }
+
+  toString() {
+    let str = '';
+
+    for (let i=0; i<this._bucket.length; i++) {
+      str += `[${i}] -> ${this._bucket[i].toString()}\n`;
+    }
+
+    return str;
   }
 
   // private
@@ -95,13 +97,12 @@ class HashMap {
   }
 
   _doubleBucket() {
-    const bucket = this._createBucket(this._bucket.length * 2);
+    const nodes = this._nodes();
+    this._bucket = this._createBucket(this._bucket.length * 2);
 
-    for (let i=0; i<this._bucket.length; i++) {
-      bucket[i] = this._bucket[i];
+    for (let node of nodes) {
+      this.set(node.key, node.value);
     }
-
-    return bucket;
   }
 
   _getList(key) {
@@ -110,6 +111,18 @@ class HashMap {
 
   _hash(key) {
     return hash(key) % this._bucket.length;
+  }
+
+  _nodes() {
+    const nodes = [];
+
+    for (let list of this._bucket) {
+      for (let node of list) {
+        nodes.push(node);
+      }
+    }
+
+    return nodes;
   }
 }
 

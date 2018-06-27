@@ -161,6 +161,7 @@ class LinkedList {
     let list = [];
 
     for (let item of this) {
+      item = item instanceof Object? JSON.stringify(item) : item;
       list.push(item);
     }
 
