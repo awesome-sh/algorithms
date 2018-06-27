@@ -4,6 +4,7 @@
   "description": "",
   "main": "jest.config.js",
   "scripts": {
+    "precommit": "lint-staged",
     "test": "jest && eslint src"
   },
   "repository": {
