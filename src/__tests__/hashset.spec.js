@@ -2,64 +2,64 @@ const HashSet = require('../hashset');
 
 describe('HashSet', () => {
   it('starts empty', () => {
-    const hashSet = new HashSet();
-    expect(hashSet.size()).toEqual(0);
+    const set = new HashSet();
+    expect(set.size()).toEqual(0);
   });
 
   it('initializes with values', () => {
-    const hashSet = new HashSet(['a', 'b', 'c']);
+    const set = new HashSet(['a', 'b', 'c']);
 
-    expect(hashSet.values().sort()).toEqual(['a', 'b', 'c']);
+    expect(set.values().sort()).toEqual(['a', 'b', 'c']);
   });
 
   it('adds elements', () => {
-    const hashSet = new HashSet();
+    const set = new HashSet();
 
-    expect(hashSet.add('a')).toBe(true);
-    expect(hashSet.values()).toEqual(['a']);
+    expect(set.add('a')).toBe(true);
+    expect(set.values()).toEqual(['a']);
   });
 
   it('doesnt add duplicates', () => {
-    const hashSet = new HashSet();
-    hashSet.add('a');
+    const set = new HashSet();
+    set.add('a');
 
-    expect(hashSet.add('a')).toBe(false);
-    expect(hashSet.values()).toEqual(['a']);
+    expect(set.add('a')).toBe(false);
+    expect(set.values()).toEqual(['a']);
   });
 
   it('has element', () => {
-    const hashSet = new HashSet(['a']);
+    const set = new HashSet(['a']);
 
-    expect(hashSet.has('a')).toBe(true);
+    expect(set.has('a')).toBe(true);
   });
 
   it('lists elements', () => {
-    const hashSet = new HashSet(['a', 'b', 'c']);
+    const set = new HashSet(['a', 'b', 'c']);
 
-    expect(hashSet.values().sort()).toEqual(['a', 'b', 'c']);
+    expect(set.values().sort()).toEqual(['a', 'b', 'c']);
   });
 
   it('remove element', () => {
-    const hashSet = new HashSet(['a']);
-    hashSet.remove('a');
+    const set = new HashSet(['a']);
+    set.remove('a');
 
-    expect(hashSet.has('a')).toBe(false);
+    expect(set.has('a')).toBe(false);
 
-    expect(hashSet.size()).toEqual(0);
+    expect(set.size()).toEqual(0);
   });
 
   it('doesnt remove unknown element', () => {
-    const hashSet = new HashSet(['a']);
-    hashSet.remove('a');
+    const set = new HashSet(['a']);
+    set.remove('a');
 
-    expect(hashSet.remove('a')).toBe(false);
-    expect(hashSet.size()).toEqual(0);
+    expect(set.remove('a')).toBe(false);
+    expect(set.size()).toEqual(0);
   });
 
   it('clears out', () => {
-    const hashSet = new HashSet(['a']);
-    hashSet.clear();
+    const set = new HashSet(['a']);
+    set.clear();
 
-    expect(hashSet.size()).toBe(0);
+    expect(set.size()).toBe(0);
   });
 });
