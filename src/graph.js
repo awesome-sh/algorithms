@@ -94,7 +94,7 @@ function breadthFirstSearch(graph, start, callback = noop) {
     let node = queue.remove();
     let edges = graph.getEdges(node);
 
-    edges.iterate(function(edge) {
+    for (let edge of edges) {
       let neighbor = edge.node;
 
       if (!visited[neighbor.key]) {
@@ -105,7 +105,7 @@ function breadthFirstSearch(graph, start, callback = noop) {
 
         queue.add(neighbor);
       }
-    });
+    }
   }
 
   return {
@@ -131,13 +131,13 @@ function depthFirstSearch(graph, start, callback = noop) {
     visited[node.key] = true;
     callback(node);
 
-    edges.iterate(function(edge) {
+    for (let edge of edges) {
       let neighbor = edge.node;
 
       if (!visited[neighbor.key]) {
         visit(neighbor);
       }
-    });
+    }
   }
 
   visit(start);
@@ -160,7 +160,7 @@ function depthFirstSearchIter(graph, start, callback = noop) {
     let node = stack.pop();
     let edges = graph.getEdges(node);
 
-    edges.iterate(function(edge) {
+    for (let edge of edges) {
       let neighbor = edge.node;
 
       if (!visited[neighbor.key]) {
@@ -169,7 +169,7 @@ function depthFirstSearchIter(graph, start, callback = noop) {
 
         stack.push(neighbor);
       }
-    });
+    }
   }
 }
 
@@ -192,7 +192,7 @@ function dijkstra(graph, start) {
   while (node) {
     let edges = graph.getEdges(node);
 
-    edges.iterate(function(edge) {
+    for (let edge of edges) {
       let neighbor = edge.node;
       let newCost = dist[node.key] + edge.weight;
 
@@ -200,7 +200,7 @@ function dijkstra(graph, start) {
         dist[neighbor.key] = newCost;
         prev[neighbor.key] = node.key;
       }
-    });
+    }
 
     visited[node.key] = true;
 

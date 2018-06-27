@@ -63,31 +63,6 @@ class LinkedList {
     this.append(data);
   }
 
-  iterate(callback) {
-    let node = this._head;
-
-    while (node) {
-      callback(node.data);
-      node = node.next;
-    }
-  }
-
-  [Symbol.iterator]() {
-    return {
-      node: this._head,
-      next() {
-        let result = {value: undefined, done: true};
-
-        if (this.node) {
-          result = {value: this.node.data, done: false};
-          this.node = this.node.next;
-        }
-
-        return result;
-      }
-    };
-  }
-
   removeFirst() {
     return this.removeAt(0);
   }
@@ -177,13 +152,31 @@ class LinkedList {
   values() {
     let list = [];
 
-    this.iterate((data) => list.push(data));
+    for (let item of this) {
+      list.push(item);
+    }
 
     return list;
   }
 
   toString() {
     return this.values().join(', ');
+  }
+
+  [Symbol.iterator]() {
+    return {
+      node: this._head,
+      next() {
+        let result = {value: undefined, done: true};
+
+        if (this.node) {
+          result = {value: this.node.data, done: false};
+          this.node = this.node.next;
+        }
+
+        return result;
+      }
+    };
   }
 }
 

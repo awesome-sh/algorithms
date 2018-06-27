@@ -19,21 +19,17 @@ class HashMap {
   }
 
   get(key) {
-    let found;
-
     if (!key) {
       return;
     }
 
     let list = this._getList(key);
 
-    list.iterate(function(item) {
+    for (let item of list) {
       if (item.key === key) {
-        found = item.value;
+        return item.value;
       }
-    });
-
-    return found;
+    }
   }
 
   has(key) {
@@ -42,20 +38,15 @@ class HashMap {
   }
 
   remove(key) {
-    let found = null;
     let list = this._getList(key);
 
-    list.iterate(function(item) {
+    for (let item of list) {
       if (item.key === key) {
-        found = item;
+        list.remove(item);
+        this._count--;
+
+        return true;
       }
-    });
-
-    if (found) {
-      list.remove(found);
-      this._count--;
-
-      return true;
     }
 
     return false;
@@ -75,9 +66,9 @@ class HashMap {
         continue;
       }
 
-      list.iterate(function(item) {
+      for (let item of list) {
         keys.push(item.key);
-      });
+      }
     }
 
     return keys;
@@ -93,9 +84,9 @@ class HashMap {
         continue;
       }
 
-      list.iterate(function(item) {
+      for (let item of list) {
         values.push(item.value);
-      });
+      }
     }
 
     return values;
