@@ -1,8 +1,12 @@
 const HashMap = require('./hashmap');
 
 class HashSet {
-  constructor() {
+  constructor(array = []) {
     this._items = new HashMap();
+
+    for (let item of array) {
+      this.add(item);
+    }
   }
 
   add(value) {

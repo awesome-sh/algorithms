@@ -1,38 +1,46 @@
 const HashSet = require('../hashset');
 
 describe('HashSet', () => {
-  let hashSet;
-
-  beforeEach(() => {
-    hashSet = new HashSet();
-  });
-
   it('starts empty', () => {
+    const hashSet = new HashSet();
     expect(hashSet.size()).toEqual(0);
   });
 
+  it('initializes with values', () => {
+    const hashSet = new HashSet(['a', 'b', 'c']);
+
+    expect(hashSet.values().sort()).toEqual(['a', 'b', 'c']);
+  });
+
   it('adds elements', () => {
+    const hashSet = new HashSet();
+
+    expect(hashSet.add('a')).toBe(true);
+    expect(hashSet.values()).toEqual(['a']);
+  });
+
+  it('doesnt add duplicates', () => {
+    const hashSet = new HashSet();
     hashSet.add('a');
-    hashSet.add('b');
-    hashSet.add('c');
+
+    expect(hashSet.add('a')).toBe(false);
+    expect(hashSet.values()).toEqual(['a']);
+  });
+
+  it('has element', () => {
+    const hashSet = new HashSet(['a']);
 
     expect(hashSet.has('a')).toBe(true);
-    expect(hashSet.has('b')).toBe(true);
-    expect(hashSet.has('c')).toBe(true);
-
-    expect(hashSet.size()).toEqual(3);
   });
 
   it('lists elements', () => {
-    hashSet.add('a');
-    hashSet.add('b');
-    hashSet.add('c');
+    const hashSet = new HashSet(['a', 'b', 'c']);
 
     expect(hashSet.values().sort()).toEqual(['a', 'b', 'c']);
   });
 
   it('remove element', () => {
-    hashSet.add('a');
+    const hashSet = new HashSet(['a']);
     hashSet.remove('a');
 
     expect(hashSet.has('a')).toBe(false);
@@ -40,14 +48,16 @@ describe('HashSet', () => {
     expect(hashSet.size()).toEqual(0);
   });
 
-  it('has element', () => {
-    hashSet.add('a');
+  it('doesnt remove unknown element', () => {
+    const hashSet = new HashSet(['a']);
+    hashSet.remove('a');
 
-    expect(hashSet.has('a')).toBe(true);
+    expect(hashSet.remove('a')).toBe(false);
+    expect(hashSet.size()).toEqual(0);
   });
 
   it('clears out', () => {
-    hashSet.add('a');
+    const hashSet = new HashSet(['a']);
     hashSet.clear();
 
     expect(hashSet.size()).toBe(0);
