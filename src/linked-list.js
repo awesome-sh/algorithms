@@ -89,16 +89,16 @@ class LinkedList {
           prev.next = current.next;
         }
 
-        break;
+        this._length--;
+        return true;
       }
 
       prev = current;
       current = current.next;
     }
 
-    this._length--;
 
-    return current;
+    return false;
   }
 
   removeAt(index) {

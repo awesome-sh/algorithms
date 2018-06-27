@@ -19,12 +19,12 @@ class Comparator {
     return this.compare(a, b) < 0;
   }
 
-  greaterThen(a, b) {
-    return this.compare(a, b) > 0;
-  }
-
   lessThenOrEqual(a, b) {
     return this.lessThen(a, b) || this.equal(a, b);
+  }
+
+  greaterThen(a, b) {
+    return this.compare(a, b) > 0;
   }
 
   greaterThenOrEqual(a, b) {
