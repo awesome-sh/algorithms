@@ -40,4 +40,14 @@ describe('Stack', () => {
     expect(stack.pop()).toBe('elem2');
     expect(stack.pop()).toBe('elem1');
   });
+
+  it('converts to string', () => {
+    const stack = new Stack();
+
+    stack.push('elem1');
+    stack.push('elem2');
+    stack.push('elem3');
+
+    expect(stack.toString()).toBe('elem3, elem2, elem1');
+  });
 });

@@ -20,6 +20,10 @@ class Stack {
   size() {
     return this._data.size();
   }
+
+  toString() {
+    return this._data.toString();
+  }
 }
 
 module.exports = Stack;
