@@ -1,22 +1,24 @@
+const LinkedList = require('./linked-list');
+
 class Stack {
   constructor(array = []) {
-    this._data = array.slice(0);
+    this._data = new LinkedList(array);
   }
 
   pop() {
-    return this._data.pop();
+    return this._data.removeFirst();
   }
 
   push(item) {
-    return this._data.push(item);
+    return this._data.addFirst(item);
   }
 
   isEmpty() {
-    return this._data.length === 0;
+    return this._data.isEmpty();
   }
 
   size() {
-    return this._data.length;
+    return this._data.size();
   }
 }
 
