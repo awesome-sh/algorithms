@@ -11,36 +11,38 @@ describe('HashSet', () => {
     expect(hashSet.size()).toEqual(0);
   });
 
-  it('add values', () => {
-    hashSet.add('value1');
-    hashSet.add('value2');
-    hashSet.add('value3');
+  it('adds elements', () => {
+    hashSet.add('a');
+    hashSet.add('b');
+    hashSet.add('c');
 
-    expect(hashSet.has('value1')).toBe(true);
-    expect(hashSet.has('value2')).toBe(true);
-    expect(hashSet.has('value3')).toBe(true);
+    expect(hashSet.has('a')).toBe(true);
+    expect(hashSet.has('b')).toBe(true);
+    expect(hashSet.has('c')).toBe(true);
+
     expect(hashSet.size()).toEqual(3);
   });
 
-  it('lists values', () => {
-    hashSet.add('value1');
-    hashSet.add('value2');
-    hashSet.add('value3');
+  it('lists elements', () => {
+    hashSet.add('a');
+    hashSet.add('b');
+    hashSet.add('c');
 
-    expect(hashSet.values().sort()).toEqual(['value1', 'value2', 'value3']);
+    expect(hashSet.values().sort()).toEqual(['a', 'b', 'c']);
   });
 
-  it('remove key', () => {
-    hashSet.add('key1');
-    hashSet.remove('key1');
+  it('remove element', () => {
+    hashSet.add('a');
+    hashSet.remove('a');
 
-    expect(hashSet.has('key1')).toBe(false);
+    expect(hashSet.has('a')).toBe(false);
+
     expect(hashSet.size()).toEqual(0);
   });
 
-  it('has key', () => {
-    hashSet.add('key1');
+  it('has element', () => {
+    hashSet.add('a');
 
-    expect(hashSet.has('key1')).toBe(true);
+    expect(hashSet.has('a')).toBe(true);
   });
 });

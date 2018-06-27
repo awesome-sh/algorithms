@@ -40,34 +40,34 @@ class HashSet {
 
   // Operations
 
-  union(otherSet) {
-    const union = new HashSet();
+  // union(otherSet) {
+  //   const union = new HashSet();
 
-    this.values().forEach((value) => union.add(value));
-    otherSet.values().forEach((value) => union.add(value));
+  //   this.values().forEach((value) => union.add(value));
+  //   otherSet.values().forEach((value) => union.add(value));
 
-    return union;
-  }
+  //   return union;
+  // }
 
-  intersect(otherSet) {
-    const intersect = new HashSet();
+  // intersect(otherSet) {
+  //   const intersect = new HashSet();
 
-    this.values()
-      .filter((value) => otherSet.has(value))
-      .forEach((value) => intersect.add(value));
+  //   this.values()
+  //     .filter((value) => otherSet.has(value))
+  //     .forEach((value) => intersect.add(value));
 
-    return intersect;
-  }
+  //   return intersect;
+  // }
 
-  diff(otherSet) {
-    const diff = new HashSet();
+  // diff(otherSet) {
+  //   const diff = new HashSet();
 
-    this.values()
-      .filter((value) => !otherSet.has(value))
-      .forEach((value) => diff.add(value));
+  //   this.values()
+  //     .filter((value) => !otherSet.has(value))
+  //     .forEach((value) => diff.add(value));
 
-    return diff;
-  }
+  //   return diff;
+  // }
 }
 
 // let setA = new HashSet();
