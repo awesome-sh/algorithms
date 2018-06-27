@@ -1,8 +1,12 @@
 class LinkedList {
-  constructor() {
+  constructor(array = []) {
     this._head = null;
     this._tail = null;
     this._length = 0;
+
+    for (let item of array) {
+      this.append(item);
+    }
   }
 
   getHead() {
@@ -28,14 +32,14 @@ class LinkedList {
       this._head = node;
       this._tail = node;
       this._length++;
-      return;
+      return this;
     }
 
     this._tail.next = node;
     this._tail = node;
     this._length++;
 
-    return node;
+    return this;
   }
 
   prepend(data) {
@@ -45,22 +49,22 @@ class LinkedList {
       this._head = node;
       this._tail = node;
       this._length++;
-      return;
+      return this;
     }
 
     node.next = this._head;
     this._head = node;
     this._length++;
 
-    return node;
+    return this;
   }
 
   addFirst(data) {
-    this.prepend(data);
+    return this.prepend(data);
   }
 
   addLast(data) {
-    this.append(data);
+    return this.append(data);
   }
 
   removeFirst() {
@@ -121,6 +125,8 @@ class LinkedList {
     }
 
     this._length--;
+
+    return current.data;
   }
 
   insertAt(index, data) {

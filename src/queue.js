@@ -1,22 +1,28 @@
+const LinkedList = require('./linked-list');
+
 class Queue {
   constructor(array = []) {
-    this._data = array.slice(0);
+    this._data = new LinkedList(array);
   }
 
   remove() {
-    return this._data.shift();
+    return this._data.removeFirst();
   }
 
   add(item) {
-    return this._data.push(item);
+    return this._data.addLast(item);
   }
 
   isEmpty() {
-    return this._data.length === 0;
+    return this._data.isEmpty();
   }
 
   size() {
-    return this._data.length;
+    return this._data.size();
+  }
+
+  toString() {
+    return this._data.toString();
   }
 }
 

@@ -11,6 +11,11 @@ describe('LinkedList', () => {
     expect(list.values()).toEqual([]);
   });
 
+  it('initializes with values', () => {
+    list = new LinkedList(['a', 'b', 'c']);
+    expect(list.values()).toEqual(['a', 'b', 'c']);
+  });
+
   it('adds an element at the end', () => {
     list.append('a');
     list.append('b');
