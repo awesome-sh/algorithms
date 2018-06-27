@@ -70,7 +70,7 @@ class Heap {
   heapifyUp() {
     let index = this.lastIndex();
 
-    while (this.parentOf(index) && this.compare.greaterThen(this.parentOf(index), this.elementOf(index))) {
+    while (this.parentOf(index) && this.compare.greaterThan(this.parentOf(index), this.elementOf(index))) {
       swap(this._container, this.parentIndexOf(index), index);
 
       // Move up
@@ -84,12 +84,12 @@ class Heap {
 
     while (childIndex) {
       // Compare the values of the two childs
-      if (this.compare.lessThen(this.rightOf(index), this.leftOf(index))) {
+      if (this.compare.lessThan(this.rightOf(index), this.leftOf(index))) {
         childIndex = this.rightIndexOf(index);
       }
 
       // Compare the values of the smaller child with the current element
-      if (this.compare.lessThen(this.elementOf(childIndex), this.elementOf(index))) {
+      if (this.compare.lessThan(this.elementOf(childIndex), this.elementOf(index))) {
         swap(this._container, childIndex, index);
       } else {
         // There's no more swap to do.
