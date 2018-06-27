@@ -72,6 +72,22 @@ class LinkedList {
     }
   }
 
+  [Symbol.iterator]() {
+    return {
+      node: this._head,
+      next() {
+        let result = {value: undefined, done: true};
+
+        if (this.node) {
+          result = {value: this.node.data, done: false};
+          this.node = this.node.next;
+        }
+
+        return result;
+      }
+    };
+  }
+
   removeFirst() {
     return this.removeAt(0);
   }
