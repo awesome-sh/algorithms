@@ -67,6 +67,34 @@ class LinkedList {
     return this.append(data);
   }
 
+  addAt(index, data) {
+    const node = new Node(data);
+
+    if (index < 0 || index > this._length) {
+      return;
+    }
+
+    let prev = null;
+    let current = this._head;
+
+    for (let i = 0; i < index; i++) {
+      prev = current;
+      current = current.next;
+    }
+
+    if (current === this._head) {
+      node.next = current;
+      this._head = node;
+    } else {
+      node.next = current;
+      prev.next = node;
+    }
+
+    this._length++;
+
+    return this;
+  }
+
   removeFirst() {
     return this.removeAt(0);
   }
@@ -127,32 +155,6 @@ class LinkedList {
     this._length--;
 
     return current.data;
-  }
-
-  insertAt(index, data) {
-    const node = new Node(data);
-
-    if (index < 0 || index > this._length) {
-      return;
-    }
-
-    let prev = null;
-    let current = this._head;
-
-    for (let i = 0; i < index; i++) {
-      prev = current;
-      current = current.next;
-    }
-
-    if (current === this._head) {
-      node.next = current;
-      this._head = node;
-    } else {
-      node.next = current;
-      prev.next = node;
-    }
-
-    this._length++;
   }
 
   values() {
