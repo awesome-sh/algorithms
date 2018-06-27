@@ -56,4 +56,13 @@ describe('dict', () => {
 
     expect(dict.remove('key2')).toBe(false);
   });
+
+  it('converts to string', () => {
+    dict.set('key1', true);
+
+    expect(dict.toString()).toBe([
+      '[0] -> \n',
+      '[1] -> {"key":"key1","value":true}\n'
+    ].join(''));
+  });
 });
