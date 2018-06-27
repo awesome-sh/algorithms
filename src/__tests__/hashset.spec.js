@@ -45,4 +45,11 @@ describe('HashSet', () => {
 
     expect(hashSet.has('a')).toBe(true);
   });
+
+  it('clears out', () => {
+    hashSet.add('a');
+    hashSet.clear();
+
+    expect(hashSet.size()).toBe(0);
+  });
 });
