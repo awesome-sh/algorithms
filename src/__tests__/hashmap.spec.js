@@ -1,52 +1,70 @@
 const HashMap = require('../hashmap');
 
-describe('HashMap', () => {
-  let hashMap;
+describe('dict', () => {
+  let dict;
 
   beforeEach(() => {
-    hashMap = new HashMap();
+    dict = new HashMap();
   });
 
   it('starts empty', () => {
-    expect(hashMap.size()).toEqual(0);
+    expect(dict.size()).toEqual(0);
   });
 
   it('add key-values', () => {
-    hashMap.set('key1', true);
-    hashMap.set('key2', 2);
-    hashMap.set('key3', 'value3');
+    dict.set('key1', true);
+    dict.set('key2', 2);
+    dict.set('key3', 'value3');
 
-    expect(hashMap.get('key1')).toBe(true);
-    expect(hashMap.get('key2')).toBe(2);
-    expect(hashMap.get('key3')).toBe('value3');
+    expect(dict.get('key1')).toBe(true);
+    expect(dict.get('key2')).toBe(2);
+    expect(dict.get('key3')).toBe('value3');
+  });
+
+  it('returns undefined on invalid keys', () => {
+    dict.set('key1', true);
+
+    expect(dict.get(null)).toBeUndefined();
   });
 
   it('lists key names', () => {
-    hashMap.set('key1', 1);
-    hashMap.set('key2', 2);
-    hashMap.set('key3', 3);
+    dict.set('key1', 1);
+    dict.set('key2', 2);
+    dict.set('key3', 3);
 
-    expect(hashMap.keys().sort()).toEqual(['key1', 'key2', 'key3']);
+    expect(dict.keys().sort()).toEqual(['key1', 'key2', 'key3']);
   });
 
   it('lists values', () => {
-    hashMap.set('key1', 1);
-    hashMap.set('key2', 2);
-    hashMap.set('key3', 3);
+    dict.set('key1', 1);
+    dict.set('key2', 2);
+    dict.set('key3', 3);
 
-    expect(hashMap.values().sort()).toEqual([1, 2, 3]);
+    expect(dict.values().sort()).toEqual([1, 2, 3]);
   });
 
   it('remove key', () => {
-    hashMap.set('key1', true);
-    hashMap.remove('key1');
+    dict.set('key1', true);
 
-    expect(hashMap.get('key1')).toBeUndefined();
+    expect(dict.remove('key1')).toBe(true);
+    expect(dict.get('key1')).toBeUndefined();
   });
 
-  it('has key', () => {
-    hashMap.set('key1', true);
+  it('doesnt remove unknown key', () => {
+    dict.set('key1', true);
 
-    expect(hashMap.has('key1')).toBe(true);
+    expect(dict.remove('key2')).toBe(false);
+  });
+
+  it('expands when bucket is full', () => {
+    dict = new HashMap(2);
+
+    expect(dict.getBucketSize()).toBe(2);
+
+    dict.set('key1', 1);
+    dict.set('key2', 2);
+    dict.set('key3', 3);
+
+    expect(dict.getBucketSize()).toBe(4);
   });
 });

@@ -62,10 +62,6 @@ class HashMap {
     for (let i=0; i<this._bucket.length; i++) {
       let list = this._bucket[i];
 
-      if (!list) {
-        continue;
-      }
-
       for (let item of list) {
         keys.push(item.key);
       }
@@ -80,16 +76,16 @@ class HashMap {
     for (let i=0; i<this._bucket.length; i++) {
       let list = this._bucket[i];
 
-      if (!list) {
-        continue;
-      }
-
       for (let item of list) {
         values.push(item.value);
       }
     }
 
     return values;
+  }
+
+  getBucketSize() {
+    return this._bucket.length;
   }
 
   // private
