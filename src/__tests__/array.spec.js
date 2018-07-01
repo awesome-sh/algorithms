@@ -1,4 +1,4 @@
-const {clone, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap} = require('../array');
+const {clone, equilibriumIndex, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap} = require('../array');
 
 describe('Array', () => {
   it('clones an array', () => {
@@ -6,6 +6,10 @@ describe('Array', () => {
     const cloned = clone(array);
 
     expect(cloned).not.toBe(array);
+  });
+
+  it('calculates equilibrium index', function() {
+    expect(equilibriumIndex([-7, 1, 5, 2, -4, 3, 0])).toBe(3);
   });
 
   it('created a filled array', () => {

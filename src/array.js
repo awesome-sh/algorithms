@@ -6,6 +6,28 @@ function clone(array) {
   return array.slice();
 }
 
+function equilibriumIndex(array) {
+  let sum = 0;
+  let leftsum = 0;
+
+  for (let i = 0; i < array.length; ++i) {
+    sum += array[i];
+  }
+
+  for (let i = 0; i < array.length; ++i) {
+    sum -= array[i];
+
+    if (leftsum === sum) {
+      return i;
+    }
+
+    leftsum += array[i];
+  }
+
+  /* If no equilibrium index found, then return 0 */
+  return -1;
+}
+
 function leftRotation(array, n) {
   // Prevent unnecessary rotations
   n = n % array.length;
@@ -18,6 +40,7 @@ function swap(array, i, j) {
   array[j] = tmp;
 }
 
+// Good for reversing a string
 function reverse(array) {
   for (let i=0, j=array.length-1; i<j; i++, j--) {
     swap(array, i, j);
@@ -77,6 +100,7 @@ function flattenIter(stack) {
 
 module.exports = {
   clone,
+  equilibriumIndex,
   fill,
   flatten,
   flattenIter,
