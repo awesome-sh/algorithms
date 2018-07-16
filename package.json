@@ -5,7 +5,7 @@
   "main": "jest.config.js",
   "scripts": {
     "precommit": "lint-staged",
-    "test": "jest && eslint src"
+    "test": "jest --coverage && eslint src"
   },
   "repository": {
     "type": "git",

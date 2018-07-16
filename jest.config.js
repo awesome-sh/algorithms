@@ -1,6 +1,6 @@
 module.exports = {
   verbose: true,
-  collectCoverage: true,
+  collectCoverage: false,
   coverageDirectory: '<rootDir>/.coverage',
   coverageThreshold: {
     global: {
