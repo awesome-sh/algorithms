@@ -1,29 +1,29 @@
-const LinkedList = require('./linked-list');
+const LinkedList = require('./linked-list')
 
 class Queue {
-  constructor(array = []) {
-    this._data = new LinkedList(array);
+  constructor (array = []) {
+    this._data = new LinkedList(array)
   }
 
-  remove() {
-    return this._data.removeFirst();
+  remove () {
+    return this._data.removeFirst()
   }
 
-  add(item) {
-    return this._data.addLast(item);
+  add (item) {
+    return this._data.addLast(item)
   }
 
-  isEmpty() {
-    return this._data.isEmpty();
+  isEmpty () {
+    return this._data.isEmpty()
   }
 
-  size() {
-    return this._data.size();
+  size () {
+    return this._data.size()
   }
 
-  toString() {
-    return this._data.toString();
+  toString () {
+    return this._data.toString()
   }
 }
 
-module.exports = Queue;
+module.exports = Queue

@@ -1,29 +1,29 @@
-const LinkedList = require('./linked-list');
+const LinkedList = require('./linked-list')
 
 class Stack {
-  constructor(array = []) {
-    this._data = new LinkedList(array);
+  constructor (array = []) {
+    this._data = new LinkedList(array)
   }
 
-  pop() {
-    return this._data.removeFirst();
+  pop () {
+    return this._data.removeFirst()
   }
 
-  push(item) {
-    return this._data.addFirst(item);
+  push (item) {
+    return this._data.addFirst(item)
   }
 
-  isEmpty() {
-    return this._data.isEmpty();
+  isEmpty () {
+    return this._data.isEmpty()
   }
 
-  size() {
-    return this._data.size();
+  size () {
+    return this._data.size()
   }
 
-  toString() {
-    return this._data.toString();
+  toString () {
+    return this._data.toString()
   }
 }
 
-module.exports = Stack;
+module.exports = Stack

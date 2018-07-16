@@ -1,45 +1,45 @@
-const HashMap = require('./hashmap');
+const HashMap = require('./hashmap')
 
 class HashSet {
-  constructor(array = []) {
-    this._items = new HashMap();
+  constructor (array = []) {
+    this._items = new HashMap()
 
     for (let item of array) {
-      this.add(item);
+      this.add(item)
     }
   }
 
-  add(value) {
+  add (value) {
     if (!this.has(value)) {
-      this._items.set(value, true);
-      return true;
+      this._items.set(value, true)
+      return true
     }
 
-    return false;
+    return false
   }
 
-  has(value) {
-    return this._items.has(value);
+  has (value) {
+    return this._items.has(value)
   }
 
-  remove(value) {
+  remove (value) {
     if (this.has(value)) {
-      return this._items.remove(value);
+      return this._items.remove(value)
     }
 
-    return false;
+    return false
   }
 
-  size() {
-    return this._items.size();
+  size () {
+    return this._items.size()
   }
 
-  values() {
-    return this._items.keys();
+  values () {
+    return this._items.keys()
   }
 
-  clear() {
-    this._items = new HashMap();
+  clear () {
+    this._items = new HashMap()
   }
 
   // Operations
@@ -90,4 +90,4 @@ class HashSet {
 
 // console.log(unionAB.values());
 
-module.exports = HashSet;
+module.exports = HashSet

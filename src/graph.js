@@ -1,109 +1,108 @@
-const HashMap = require('./hashmap');
-const LinkedList = require('./linked-list');
-const Queue = require('./queue');
-const Stack = require('./stack');
+const HashMap = require('./hashmap')
+const LinkedList = require('./linked-list')
+const Queue = require('./queue')
+const Stack = require('./stack')
 
 /**
  * Data Structure
  */
 
 class Graph {
-  constructor() {
-    this._nodes = new HashMap();
-    this._edges = new HashMap();
+  constructor () {
+    this._nodes = new HashMap()
+    this._edges = new HashMap()
   }
 
-  createNode(key, value) {
-    const node = {key, value};
+  createNode (key, value) {
+    const node = {key, value}
 
-    this._nodes.set(key, node);
-    this._edges.set(key, new LinkedList());
+    this._nodes.set(key, node)
+    this._edges.set(key, new LinkedList())
 
-    return node;
+    return node
   }
 
-  addEdge(startNode, endNode, weight = 1) {
+  addEdge (startNode, endNode, weight = 1) {
     // Adjacency List
-    this._edges.get(startNode.key).append({node: endNode, weight});
+    this._edges.get(startNode.key).append({node: endNode, weight})
   }
 
-  getEdges(node) {
-    return this._edges.get(node.key);
+  getEdges (node) {
+    return this._edges.get(node.key)
   }
 
-  getNode(key) {
-    return this._nodes.get(key);
+  getNode (key) {
+    return this._nodes.get(key)
   }
 
-  getNodes() {
-    return this._nodes.values();
+  getNodes () {
+    return this._nodes.values()
   }
 
-  toString() {
-    const nodes = this.getNodes();
-    let str = '';
+  toString () {
+    const nodes = this.getNodes()
+    let str = ''
 
     for (let node of nodes) {
-      str += `${node.key} -> ${this.getEdges(node).toString()}\n`;
+      str += `${node.key} -> ${this.getEdges(node).toString()}\n`
     }
 
-    return str;
+    return str
   }
 
-  findShortestPath(start, end, algorithm = breadthFirstSearch) {
-    const {prev} = algorithm(this, start);
-    const result = [];
-    let {key} = end;
+  findShortestPath (start, end, algorithm = breadthFirstSearch) {
+    const {prev} = algorithm(this, start)
+    const result = []
+    let {key} = end
 
     while (key) {
-      result.unshift(key);
-      key = prev[key];
+      result.unshift(key)
+      key = prev[key]
     }
 
-    return result;
+    return result
   }
 }
-
 
 /**
  * Algorithms
  */
 
-const noop = (f) => f;
+const noop = (f) => f
 
 // Iterative version
-function breadthFirstSearch(graph, start, callback = noop) {
-  const visited = {};
-  const dist = {};
-  const prev = {};
-  const nodes = graph.getNodes();
-  const queue = new Queue([start]);
+function breadthFirstSearch (graph, start, callback = noop) {
+  const visited = {}
+  const dist = {}
+  const prev = {}
+  const nodes = graph.getNodes()
+  const queue = new Queue([start])
 
   for (let node of nodes) {
-    visited[node.key] = false;
-    dist[node.key] = Infinity;
+    visited[node.key] = false
+    dist[node.key] = Infinity
   }
 
-  dist[start.key] = 0;
-  prev[start.key] = null;
-  visited[start.key] = true;
+  dist[start.key] = 0
+  prev[start.key] = null
+  visited[start.key] = true
 
-  callback(start);
+  callback(start)
 
   while (!queue.isEmpty()) {
-    let node = queue.remove();
-    let edges = graph.getEdges(node);
+    let node = queue.remove()
+    let edges = graph.getEdges(node)
 
     for (let edge of edges) {
-      let neighbor = edge.node;
+      let neighbor = edge.node
 
       if (!visited[neighbor.key]) {
-        dist[neighbor.key] = dist[node.key] + edge.weight; // weight should be 1 on unweighted graphs
-        prev[neighbor.key] = node.key;
-        visited[neighbor.key] = true;
-        callback(neighbor);
+        dist[neighbor.key] = dist[node.key] + edge.weight // weight should be 1 on unweighted graphs
+        prev[neighbor.key] = node.key
+        visited[neighbor.key] = true
+        callback(neighbor)
 
-        queue.add(neighbor);
+        queue.add(neighbor)
       }
     }
   }
@@ -111,127 +110,126 @@ function breadthFirstSearch(graph, start, callback = noop) {
   return {
     dist,
     prev
-  };
+  }
 }
 
 // Recursive version of BFS: https://goo.gl/qN1E4o
 
 // Recursive version
-function depthFirstSearch(graph, start, callback = noop) {
-  const visited = {};
-  const nodes = graph.getNodes();
+function depthFirstSearch (graph, start, callback = noop) {
+  const visited = {}
+  const nodes = graph.getNodes()
 
   for (let node of nodes) {
-    visited[node.key] = false;
+    visited[node.key] = false
   }
 
-  function visit(node) {
-    let edges = graph.getEdges(node);
+  function visit (node) {
+    let edges = graph.getEdges(node)
 
-    visited[node.key] = true;
-    callback(node);
+    visited[node.key] = true
+    callback(node)
 
     for (let edge of edges) {
-      let neighbor = edge.node;
+      let neighbor = edge.node
 
       if (!visited[neighbor.key]) {
-        visit(neighbor);
+        visit(neighbor)
       }
     }
   }
 
-  visit(start);
+  visit(start)
 }
 
 // Iterative version
-function depthFirstSearchIter(graph, start, callback = noop) {
-  const visited = {};
-  const stack = new Stack([start]);
-  const nodes = graph.getNodes();
+function depthFirstSearchIter (graph, start, callback = noop) {
+  const visited = {}
+  const stack = new Stack([start])
+  const nodes = graph.getNodes()
 
   for (let node of nodes) {
-    visited[node.key] = false;
+    visited[node.key] = false
   }
 
-  visited[start.key] = true;
-  callback(start);
+  visited[start.key] = true
+  callback(start)
 
   while (!stack.isEmpty()) {
-    let node = stack.pop();
-    let edges = graph.getEdges(node);
+    let node = stack.pop()
+    let edges = graph.getEdges(node)
 
     for (let edge of edges) {
-      let neighbor = edge.node;
+      let neighbor = edge.node
 
       if (!visited[neighbor.key]) {
-        visited[neighbor.key] = true;
-        callback(neighbor);
+        visited[neighbor.key] = true
+        callback(neighbor)
 
-        stack.push(neighbor);
+        stack.push(neighbor)
       }
     }
   }
 }
 
-function dijkstra(graph, start) {
-  const visited = {};
-  const dist = {};
-  const prev = {};
-  const nodes = graph.getNodes();
+function dijkstra (graph, start) {
+  const visited = {}
+  const dist = {}
+  const prev = {}
+  const nodes = graph.getNodes()
 
   for (let node of nodes) {
-    visited[node.key] = false;
-    dist[node.key] = Infinity;
+    visited[node.key] = false
+    dist[node.key] = Infinity
   }
 
-  dist[start.key] = 0;
+  dist[start.key] = 0
 
-  let key = findLowestCostKey(dist, visited);
-  let node = graph.getNode(key);
+  let key = findLowestCostKey(dist, visited)
+  let node = graph.getNode(key)
 
   while (node) {
-    let edges = graph.getEdges(node);
+    let edges = graph.getEdges(node)
 
     for (let edge of edges) {
-      let neighbor = edge.node;
-      let newCost = dist[node.key] + edge.weight;
+      let neighbor = edge.node
+      let newCost = dist[node.key] + edge.weight
 
       if (newCost < dist[neighbor.key]) {
-        dist[neighbor.key] = newCost;
-        prev[neighbor.key] = node.key;
+        dist[neighbor.key] = newCost
+        prev[neighbor.key] = node.key
       }
     }
 
-    visited[node.key] = true;
+    visited[node.key] = true
 
-    key = findLowestCostKey(dist, visited);
-    node = graph.getNode(key);
+    key = findLowestCostKey(dist, visited)
+    node = graph.getNode(key)
   }
 
   return {
     dist,
-    prev,
-  };
+    prev
+  }
 }
 
 // Priority Queue?
-function findLowestCostKey(dist, visited) {
-  const keys = Object.keys(dist);
-  let lowestCost = Infinity;
-  let lowestCostKey = null;
+function findLowestCostKey (dist, visited) {
+  const keys = Object.keys(dist)
+  let lowestCost = Infinity
+  let lowestCostKey = null
 
   for (let key of keys) {
-    let cost = dist[key];
+    let cost = dist[key]
 
     if (cost < lowestCost && !visited[key]) {
-      lowestCostKey = key;
-      lowestCost = cost;
+      lowestCostKey = key
+      lowestCost = cost
     }
   }
 
-  return lowestCostKey;
+  return lowestCostKey
 }
-
 
 module.exports = {
   Graph,
@@ -239,5 +237,4 @@ module.exports = {
   depthFirstSearch,
   depthFirstSearchIter,
   dijkstra
-};
-
+}
