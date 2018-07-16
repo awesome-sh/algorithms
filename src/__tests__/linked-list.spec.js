@@ -1,51 +1,49 @@
 const LinkedList = require('../linked-list');
 
 describe('LinkedList', () => {
-  let list;
-
   it('starts empty', () => {
-    list = new LinkedList();
+    const list = new LinkedList();
 
     expect(list.values()).toEqual([]);
   });
 
   it('initializes with values', () => {
-    list = new LinkedList(['a', 'b', 'c']);
+    const list = new LinkedList(['a', 'b', 'c']);
 
     expect(list.values()).toEqual(['a', 'b', 'c']);
   });
 
   describe('addition', () => {
     it('adds element at the end', () => {
-      list = new LinkedList(['a', 'b']);
+      const list = new LinkedList(['a', 'b']);
 
       expect(list.append('c')).toBe(list);
       expect(list.values()).toEqual(['a', 'b', 'c']);
     });
 
     it('adds element at the end', () => {
-      list = new LinkedList(['a', 'b']);
+      const list = new LinkedList(['a', 'b']);
 
       expect(list.addLast('c')).toBe(list);
       expect(list.values()).toEqual(['a', 'b', 'c']);
     });
 
     it('adds element by index', () => {
-      list = new LinkedList(['a', 'c']);
+      const list = new LinkedList(['a', 'c']);
 
       expect(list.addAt(1, 'b')).toBe(list);
       expect(list.values()).toEqual(['a', 'b', 'c']);
     });
 
     it('adds element at the beginning using prepend', () => {
-      list = new LinkedList(['b', 'c']);
+      const list = new LinkedList(['b', 'c']);
 
       expect(list.prepend('a')).toBe(list);
       expect(list.values()).toEqual(['a', 'b', 'c']);
     });
 
     it('adds element at the beginning using addFirst', () => {
-      list = new LinkedList(['b', 'c']);
+      const list = new LinkedList(['b', 'c']);
 
       expect(list.addFirst('a')).toBe(list);
       expect(list.values()).toEqual(['a', 'b', 'c']);
@@ -53,6 +51,8 @@ describe('LinkedList', () => {
   });
 
   describe('removal', () => {
+    let list;
+
     beforeEach(() => {
       list = new LinkedList(['a', 'b', 'c']);
     });
@@ -76,6 +76,16 @@ describe('LinkedList', () => {
     it('removes the last element', () => {
       expect(list.removeLast()).toBe('c');
       expect(list.values()).toEqual(['a', 'b']);
+    });
+  });
+
+  describe('reverse', () => {
+    it('reverses the list', () => {
+      const list = new LinkedList(['a', 'b', 'c']);
+      list.reverse();
+      expect(list.toString()).toBe('c, b, a');
+      expect(list.getHead()).toBe('c');
+      expect(list.getTail()).toBe('a');
     });
   });
 });

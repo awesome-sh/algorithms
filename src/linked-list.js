@@ -10,11 +10,11 @@ class LinkedList {
   }
 
   getHead() {
-    return this._head;
+    return this._head.data;
   }
 
   getTail() {
-    return this._tail;
+    return this._tail.data;
   }
 
   size() {
@@ -170,6 +170,26 @@ class LinkedList {
 
   toString() {
     return this.values().join(', ');
+  }
+
+  reverse() {
+    const reverse = (node) => {
+      if (!node) {
+        return null; // list does not exist.
+      }
+
+      if (node.next === null) {
+        return node; // list with only one node.
+      }
+
+      const rest = reverse(node.next); // recursive call on rest.
+      node.next.next = node; // make first; link to the last node in the reversed rest.
+      node.next = null; // since first is the new last, make its link null.
+      return rest; // rest now points to the head of the reversed list.
+    };
+
+    this._tail = this._head;
+    this._head = reverse(this._head);
   }
 
   [Symbol.iterator]() {
