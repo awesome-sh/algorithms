@@ -1,4 +1,4 @@
-export default class Elevator {
+class Elevator {
   constructor () {
     this.current = 0
     this.status = 'stand'
@@ -51,3 +51,5 @@ export default class Elevator {
     this.requests[floor] = false
   }
 }
+
+module.exports = Elevator
