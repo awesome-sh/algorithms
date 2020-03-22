@@ -14,6 +14,19 @@
   "standard": {
     "env": "jest"
   },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": false,
+    "coverageDirectory": "<rootDir>/.coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lquixada/algorithms.git"
