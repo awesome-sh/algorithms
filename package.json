@@ -28,7 +28,7 @@
     ]
   },
   "dependencies": {
-    "jest": "23.1.0",
+    "jest": "25.1.0",
     "string-hash": "1.1.3"
   },
   "devDependencies": {
