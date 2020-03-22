@@ -26,10 +26,7 @@
   },
   "homepage": "https://github.com/lquixada/algorithms#readme",
   "lint-staged": {
-    "*.js": [
-      "standard --fix",
-      "git add"
-    ]
+    "*.js": "standard --fix"
   },
   "dependencies": {
     "jest": "25.1.0",
@@ -37,7 +34,7 @@
   },
   "devDependencies": {
     "husky": "4.2.3",
-    "lint-staged": "7.2.0",
+    "lint-staged": "10.0.8",
     "standard": "14.3.3"
   }
 }
