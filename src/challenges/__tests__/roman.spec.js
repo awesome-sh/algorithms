@@ -1,4 +1,4 @@
-const {toRoman, fromRoman} = require('../roman')
+const { toRoman, fromRoman } = require('../roman')
 
 describe('Roman', () => {
   it('converts number to roman', () => {
