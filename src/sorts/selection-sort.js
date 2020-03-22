@@ -25,7 +25,6 @@ function selectionSort (array) {
   }
 }
 
-// let result = selectionSort([5, 4, 3, 2, 1]);
-// console.log(result);
-
-module.exports = selectionSort
+module.exports = {
+  selectionSort
+}

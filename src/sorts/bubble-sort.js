@@ -8,17 +8,13 @@ function bubbleSort (array) {
       }
     }
   }
-
-  return array
 }
 
-// result = bubbleSort([5, 4, 3, 2, 1]);
-// console.log(result);
-
 function betterBubbleSort (array) {
-  let swapped = false
+  let swapped
 
   do {
+    swapped = false
     for (let j = 0; j < array.length - 1; j++) {
       if (array[j] > array[j + 1]) {
         swap(array, j, j + 1)
@@ -27,9 +23,6 @@ function betterBubbleSort (array) {
     }
   } while (swapped)
 }
-
-// result = betterBubbleSort([5, 4, 3, 2, 1]);
-// console.log(result);
 
 module.exports = {
   bubbleSort,

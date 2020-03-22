@@ -1,46 +1,46 @@
 const { swap } = require('../array')
 
-function partition (items, left, right) {
-  var pivot = items[Math.floor((right + left) / 2)]
-  var i = left
-  var j = right
+function partition (array, low, high) {
+  const pivotIndex = Math.floor((low + high) / 2)
+  const pivot = array[pivotIndex]
+  let i = low
+  let j = high
 
   while (i <= j) {
-    while (items[i] < pivot) {
+    while (array[i] < pivot) {
       i++
     }
 
-    while (items[j] > pivot) {
+    while (array[j] > pivot) {
       j--
     }
 
     if (i <= j) {
-      swap(items, i, j)
+      swap(array, i, j)
       i++
       j--
     }
   }
+
   return i
 }
 
-function quickSort (items, left, right) {
+function quickSort (array, low = 0, high = array.length - 1) {
   let index
 
-  if (items.length > 1) {
-    index = partition(items, left, right)
+  if (array.length > 1) {
+    index = partition(array, low, high)
 
-    if (left < index - 1) {
-      quickSort(items, left, index - 1)
+    if (low < index - 1) {
+      quickSort(array, low, index - 1)
     }
 
-    if (index < right) {
-      quickSort(items, index, right)
+    if (index < high) {
+      quickSort(array, index, high)
     }
   }
-
-  return items
 }
 
-const items = [5, 3, 7, 6, 2, 9]
-const sortedArray = quickSort(items, 0, items.length - 1)
-console.log(sortedArray)
+module.exports = {
+  quickSort
+}
