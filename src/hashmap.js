@@ -14,7 +14,7 @@ class HashMap {
     }
 
     const hash = this._hash(key)
-    this._bucket[hash].append({key, value})
+    this._bucket[hash].append({ key, value })
     this._count++
   }
 
@@ -23,9 +23,9 @@ class HashMap {
       return
     }
 
-    let list = this._getList(key)
+    const list = this._getList(key)
 
-    for (let item of list) {
+    for (const item of list) {
       if (item.key === key) {
         return item.value
       }
@@ -38,9 +38,9 @@ class HashMap {
   }
 
   remove (key) {
-    let list = this._getList(key)
+    const list = this._getList(key)
 
-    for (let item of list) {
+    for (const item of list) {
       if (item.key === key) {
         list.remove(item)
         this._count--
@@ -55,8 +55,8 @@ class HashMap {
   keys () {
     const keys = []
 
-    for (let list of this._bucket) {
-      for (let item of list) {
+    for (const list of this._bucket) {
+      for (const item of list) {
         keys.push(item.key)
       }
     }
@@ -67,8 +67,8 @@ class HashMap {
   values () {
     const values = []
 
-    for (let list of this._bucket) {
-      for (let item of list) {
+    for (const list of this._bucket) {
+      for (const item of list) {
         values.push(item.value)
       }
     }
@@ -100,7 +100,7 @@ class HashMap {
     const nodes = this._nodes()
     this._bucket = this._createBucket(this._bucket.length * 2)
 
-    for (let node of nodes) {
+    for (const node of nodes) {
       this.set(node.key, node.value)
     }
   }
@@ -116,8 +116,8 @@ class HashMap {
   _nodes () {
     const nodes = []
 
-    for (let list of this._bucket) {
-      for (let node of list) {
+    for (const list of this._bucket) {
+      for (const node of list) {
         nodes.push(node)
       }
     }

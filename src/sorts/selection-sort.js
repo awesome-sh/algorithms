@@ -1,4 +1,4 @@
-const {swap} = require('../array')
+const { swap } = require('../array')
 
 function selectionSort (array) {
   let indexMin

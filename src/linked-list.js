@@ -4,7 +4,7 @@ class LinkedList {
     this._tail = null
     this._length = 0
 
-    for (let item of array) {
+    for (const item of array) {
       this.append(item)
     }
   }
@@ -157,7 +157,7 @@ class LinkedList {
   }
 
   values () {
-    let list = []
+    const list = []
 
     for (let item of this) {
       item = item instanceof Object ? JSON.stringify(item) : item
@@ -195,10 +195,10 @@ class LinkedList {
     return {
       node: this._head,
       next () {
-        let result = {value: undefined, done: true}
+        let result = { value: undefined, done: true }
 
         if (this.node) {
-          result = {value: this.node.data, done: false}
+          result = { value: this.node.data, done: false }
           this.node = this.node.next
         }
 

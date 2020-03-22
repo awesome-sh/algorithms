@@ -1,4 +1,4 @@
-const {Graph, breadthFirstSearch, depthFirstSearch, depthFirstSearchIter, dijkstra} = require('../graph')
+const { Graph, breadthFirstSearch, depthFirstSearch, depthFirstSearchIter, dijkstra } = require('../graph')
 
 describe('Graph', () => {
   describe('Non-Weighted', () => {
@@ -45,7 +45,7 @@ describe('Graph', () => {
     describe('Breadth-First Search', () => {
       it('visits node by level', () => {
         let visitOrder = ''
-        let visit = (node) => {
+        const visit = (node) => {
           visitOrder += node.key
         }
 
@@ -55,20 +55,20 @@ describe('Graph', () => {
       })
 
       it('calculates distances from start to all other nodes', () => {
-        const {dist} = breadthFirstSearch(graph, C)
-        expect(dist).toEqual({'A': 1, 'B': 1, 'C': 0, 'D': 2, 'E': Infinity, 'F': 2})
+        const { dist } = breadthFirstSearch(graph, C)
+        expect(dist).toEqual({ A: 1, B: 1, C: 0, D: 2, E: Infinity, F: 2 })
       })
 
       it('traces path from start node', () => {
-        const {prev} = breadthFirstSearch(graph, C)
-        expect(prev).toEqual({'A': 'C', 'B': 'C', 'C': null, 'D': 'A', 'F': 'B'})
+        const { prev } = breadthFirstSearch(graph, C)
+        expect(prev).toEqual({ A: 'C', B: 'C', C: null, D: 'A', F: 'B' })
       })
     })
 
     describe('Depth-First Search', () => {
       it('visits node by child recursively', () => {
         let visitOrder = ''
-        let visit = (node) => {
+        const visit = (node) => {
           visitOrder += node.key
         }
 
@@ -79,7 +79,7 @@ describe('Graph', () => {
 
       it('visits node by child iteratively', () => {
         let visitOrder = ''
-        let visit = (node) => {
+        const visit = (node) => {
           visitOrder += node.key
         }
 
@@ -126,7 +126,7 @@ describe('Graph', () => {
 
     describe('Dijkstra', () => {
       it('finds shortest path between two nodes', () => {
-        const {dist} = dijkstra(graph, A)
+        const { dist } = dijkstra(graph, A)
         expect(dist.D).toBe(6)
       })
     })

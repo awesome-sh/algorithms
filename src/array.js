@@ -7,7 +7,7 @@ function binarySearch (array, x) {
   let high = array.length - 1
 
   while (low <= high) {
-    let mid = Math.floor((low + high) / 2)
+    const mid = Math.floor((low + high) / 2)
 
     if (array[mid] === x) {
       return mid
@@ -97,7 +97,7 @@ function flatten (array) {
 }
 
 function flattenIter (stack) {
-  let result = []
+  const result = []
   let item
 
   while (stack.length) {

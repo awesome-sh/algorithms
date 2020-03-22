@@ -1,4 +1,4 @@
-const {clone, equilibriumIndex, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap} = require('../array')
+const { clone, equilibriumIndex, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap } = require('../array')
 
 describe('Array', () => {
   it('clones an array', () => {
@@ -36,15 +36,15 @@ describe('Array', () => {
   })
 
   it('flattens recursively an array', () => {
-    const array = [1, {a: [2, [3]]}, 4, [5, [6]], [[7], 8, 9], 10, 'eleven']
-    const expected = [1, {a: [2, [3]]}, 4, 5, 6, 7, 8, 9, 10, 'eleven']
+    const array = [1, { a: [2, [3]] }, 4, [5, [6]], [[7], 8, 9], 10, 'eleven']
+    const expected = [1, { a: [2, [3]] }, 4, 5, 6, 7, 8, 9, 10, 'eleven']
 
     expect(flatten(array)).toEqual(expected)
   })
 
   it('flattens iteratively an array', () => {
-    const array = [1, {a: [2, [3]]}, 4, [5, [6]], [[7], 8, 9], 10, 'eleven']
-    const expected = [1, {a: [2, [3]]}, 4, 5, 6, 7, 8, 9, 10, 'eleven']
+    const array = [1, { a: [2, [3]] }, 4, [5, [6]], [[7], 8, 9], 10, 'eleven']
+    const expected = [1, { a: [2, [3]] }, 4, 5, 6, 7, 8, 9, 10, 'eleven']
 
     expect(flattenIter(array)).toEqual(expected)
     expect(array).toEqual([])

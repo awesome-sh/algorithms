@@ -14,7 +14,7 @@ class Graph {
   }
 
   createNode (key, value) {
-    const node = {key, value}
+    const node = { key, value }
 
     this._nodes.set(key, node)
     this._edges.set(key, new LinkedList())
@@ -24,7 +24,7 @@ class Graph {
 
   addEdge (startNode, endNode, weight = 1) {
     // Adjacency List
-    this._edges.get(startNode.key).append({node: endNode, weight})
+    this._edges.get(startNode.key).append({ node: endNode, weight })
   }
 
   getEdges (node) {
@@ -43,7 +43,7 @@ class Graph {
     const nodes = this.getNodes()
     let str = ''
 
-    for (let node of nodes) {
+    for (const node of nodes) {
       str += `${node.key} -> ${this.getEdges(node).toString()}\n`
     }
 
@@ -51,9 +51,9 @@ class Graph {
   }
 
   findShortestPath (start, end, algorithm = breadthFirstSearch) {
-    const {prev} = algorithm(this, start)
+    const { prev } = algorithm(this, start)
     const result = []
-    let {key} = end
+    let { key } = end
 
     while (key) {
       result.unshift(key)
@@ -78,7 +78,7 @@ function breadthFirstSearch (graph, start, callback = noop) {
   const nodes = graph.getNodes()
   const queue = new Queue([start])
 
-  for (let node of nodes) {
+  for (const node of nodes) {
     visited[node.key] = false
     dist[node.key] = Infinity
   }
@@ -90,11 +90,11 @@ function breadthFirstSearch (graph, start, callback = noop) {
   callback(start)
 
   while (!queue.isEmpty()) {
-    let node = queue.remove()
-    let edges = graph.getEdges(node)
+    const node = queue.remove()
+    const edges = graph.getEdges(node)
 
-    for (let edge of edges) {
-      let neighbor = edge.node
+    for (const edge of edges) {
+      const neighbor = edge.node
 
       if (!visited[neighbor.key]) {
         dist[neighbor.key] = dist[node.key] + edge.weight // weight should be 1 on unweighted graphs
@@ -120,18 +120,18 @@ function depthFirstSearch (graph, start, callback = noop) {
   const visited = {}
   const nodes = graph.getNodes()
 
-  for (let node of nodes) {
+  for (const node of nodes) {
     visited[node.key] = false
   }
 
   function visit (node) {
-    let edges = graph.getEdges(node)
+    const edges = graph.getEdges(node)
 
     visited[node.key] = true
     callback(node)
 
-    for (let edge of edges) {
-      let neighbor = edge.node
+    for (const edge of edges) {
+      const neighbor = edge.node
 
       if (!visited[neighbor.key]) {
         visit(neighbor)
@@ -148,7 +148,7 @@ function depthFirstSearchIter (graph, start, callback = noop) {
   const stack = new Stack([start])
   const nodes = graph.getNodes()
 
-  for (let node of nodes) {
+  for (const node of nodes) {
     visited[node.key] = false
   }
 
@@ -156,11 +156,11 @@ function depthFirstSearchIter (graph, start, callback = noop) {
   callback(start)
 
   while (!stack.isEmpty()) {
-    let node = stack.pop()
-    let edges = graph.getEdges(node)
+    const node = stack.pop()
+    const edges = graph.getEdges(node)
 
-    for (let edge of edges) {
-      let neighbor = edge.node
+    for (const edge of edges) {
+      const neighbor = edge.node
 
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true
@@ -178,7 +178,7 @@ function dijkstra (graph, start) {
   const prev = {}
   const nodes = graph.getNodes()
 
-  for (let node of nodes) {
+  for (const node of nodes) {
     visited[node.key] = false
     dist[node.key] = Infinity
   }
@@ -189,11 +189,11 @@ function dijkstra (graph, start) {
   let node = graph.getNode(key)
 
   while (node) {
-    let edges = graph.getEdges(node)
+    const edges = graph.getEdges(node)
 
-    for (let edge of edges) {
-      let neighbor = edge.node
-      let newCost = dist[node.key] + edge.weight
+    for (const edge of edges) {
+      const neighbor = edge.node
+      const newCost = dist[node.key] + edge.weight
 
       if (newCost < dist[neighbor.key]) {
         dist[neighbor.key] = newCost
@@ -219,8 +219,8 @@ function findLowestCostKey (dist, visited) {
   let lowestCost = Infinity
   let lowestCostKey = null
 
-  for (let key of keys) {
-    let cost = dist[key]
+  for (const key of keys) {
+    const cost = dist[key]
 
     if (cost < lowestCost && !visited[key]) {
       lowestCostKey = key

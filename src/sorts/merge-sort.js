@@ -3,15 +3,15 @@ function mergeSort (array) {
     return array
   }
 
-  let mid = Math.floor(array.length / 2)
-  let left = array.slice(0, mid)
-  let right = array.slice(mid, array.length)
+  const mid = Math.floor(array.length / 2)
+  const left = array.slice(0, mid)
+  const right = array.slice(mid, array.length)
 
   return merge(mergeSort(left), mergeSort(right))
 }
 
 function merge (L, R) {
-  let result = []
+  const result = []
   let l = 0
   let r = 0
 
@@ -42,15 +42,15 @@ function mergeSort2 (array) {
     return array
   }
 
-  let mid = Math.floor(array.length / 2)
-  let left = array.slice(0, mid)
-  let right = array.slice(mid, array.length)
+  const mid = Math.floor(array.length / 2)
+  const left = array.slice(0, mid)
+  const right = array.slice(mid, array.length)
 
   return merge2(mergeSort2(left), mergeSort2(right))
 }
 
 function merge2 (L, R) {
-  let result = []
+  const result = []
   let l = L.shift()
   let r = R.shift()
 

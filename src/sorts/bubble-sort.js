@@ -1,4 +1,4 @@
-const {swap} = require('../array')
+const { swap } = require('../array')
 
 function bubbleSort (array) {
   for (let i = 0; i < array.length; i++) {

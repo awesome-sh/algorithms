@@ -1,4 +1,4 @@
-const {MinHeap, MaxHeap} = require('../heap')
+const { MinHeap, MaxHeap } = require('../heap')
 
 describe('Heap', () => {
   describe('MinHeap', () => {

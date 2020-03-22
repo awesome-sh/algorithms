@@ -111,7 +111,7 @@ class BinarySearchTree {
     }
 
     while (queue.length) {
-      let node = queue.remove()
+      const node = queue.remove()
 
       if (node.key === key) {
         return true

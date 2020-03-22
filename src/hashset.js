@@ -4,7 +4,7 @@ class HashSet {
   constructor (array = []) {
     this._items = new HashMap()
 
-    for (let item of array) {
+    for (const item of array) {
       this.add(item)
     }
   }

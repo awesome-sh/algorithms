@@ -1,5 +1,5 @@
 const Comparator = require('./comparator')
-const {swap} = require('./array')
+const { swap } = require('./array')
 
 class Heap {
   constructor () {
@@ -79,7 +79,7 @@ class Heap {
   }
 
   heapifyDown () {
-    let index = 0
+    const index = 0
     let childIndex = this.leftIndexOf(index)
 
     while (childIndex) {
