@@ -1,37 +1,43 @@
-function mergeSort (array) {
-  if (array.length === 1) {
-    return array
+function mergeSort (array, low = 0, high = array.length - 1) {
+  if (low < high) {
+    const mid = Math.floor((low + high) / 2)
+    mergeSort(array, low, mid)
+    mergeSort(array, mid + 1, high)
+    merge(array, low, mid, high)
   }
-
-  const mid = Math.floor(array.length / 2)
-  const left = array.slice(0, mid)
-  const right = array.slice(mid, array.length)
-
-  return merge(mergeSort(left), mergeSort(right))
 }
 
-function merge (L, R) {
-  const result = []
-  let l = 0
-  let r = 0
+function merge (array, low, mid, high) {
+  const L = []
+  const R = []
 
-  while (l < L.length && r < R.length) {
-    if (L[l] < R[r]) {
-      result.push(L[l++])
+  for (let i = low; i <= mid; i++) {
+    L.push(array[i])
+  }
+
+  for (let i = mid + 1; i <= high; i++) {
+    R.push(array[i])
+  }
+
+  let i = 0
+  let j = 0
+  let k = low
+
+  while (i < L.length && j < R.length) {
+    if (L[i] < R[j]) {
+      array[k++] = L[i++]
     } else {
-      result.push(R[r++])
+      array[k++] = R[j++]
     }
   }
 
-  while (l < L.length) {
-    result.push(L[l++])
+  while (i < L.length) {
+    array[k++] = L[i++]
   }
 
-  while (r < R.length) {
-    result.push(R[r++])
+  while (j < R.length) {
+    array[k++] = R[j++]
   }
-
-  return result
 }
 
 module.exports = {
