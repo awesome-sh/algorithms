@@ -33,6 +33,29 @@ function partition (array, low, high) {
   return i
 }
 
+// function quickSort2 (array, low = 0, high = array.length - 1) {
+//   if (low < high) {
+//     const index = partition2(array, low, high)
+//     quickSort2(array, low, index - 1)
+//     quickSort2(array, index + 1, high)
+//   }
+// }
+
+// function partition2 (array, low, high) {
+//   const pivot = array[high]
+//   let i = low - 1
+
+//   for (let j = low; j < high; j++) {
+//     if (array[j] <= pivot) {
+//       i++
+//       swap(array, i, j)
+//     }
+//   }
+//   i++
+//   swap(array, i, high)
+//   return i
+// }
+
 module.exports = {
   quickSort
 }
