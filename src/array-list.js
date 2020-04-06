@@ -45,7 +45,7 @@ class ArrayList {
   }
 
   remove (item) {
-    const newArray = new Array(this._bucket.length)
+    const newBucket = []
     let isRemoved = false
 
     for (let i = 0; i < this._bucket.length; i++) {
@@ -54,24 +54,16 @@ class ArrayList {
         continue
       }
 
-      newArray[i] = this._bucket[i]
+      newBucket[newBucket.length] = this._bucket[i]
     }
 
-    this._bucket = newArray
+    this._bucket = newBucket
 
     return isRemoved
   }
 
   values () {
-    const values = []
-
-    for (let i = 0; i < this._bucket.length; i++) {
-      if (this._bucket[i]) {
-        values[values.length] = this._bucket[i]
-      }
-    }
-
-    return values
+    return this._bucket
   }
 
   size () {
