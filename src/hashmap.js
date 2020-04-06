@@ -1,4 +1,5 @@
 const hash = require('string-hash')
+const ArrayList = require('./array-list')
 const LinkedList = require('./linked-list')
 
 class HashMap {
@@ -8,13 +9,8 @@ class HashMap {
   }
 
   set (key, value) {
-    // TODO: needs a fill factor
-    if (this._count >= this._bucket.length) {
-      this._doubleBucket()
-    }
-
     const hash = this._hash(key)
-    this._bucket[hash].append({ key, value })
+    this._bucket.get(hash).append([key, value])
     this._count++
   }
 
@@ -26,8 +22,8 @@ class HashMap {
     const list = this._getList(key)
 
     for (const item of list) {
-      if (item.key === key) {
-        return item.value
+      if (item[0] === key) {
+        return item[1]
       }
     }
   }
@@ -41,7 +37,7 @@ class HashMap {
     const list = this._getList(key)
 
     for (const item of list) {
-      if (item.key === key) {
+      if (item[0] === key) {
         list.remove(item)
         this._count--
 
@@ -57,7 +53,7 @@ class HashMap {
 
     for (const list of this._bucket) {
       for (const item of list) {
-        keys.push(item.key)
+        keys.push(item[0])
       }
     }
 
@@ -69,7 +65,7 @@ class HashMap {
 
     for (const list of this._bucket) {
       for (const item of list) {
-        values.push(item.value)
+        values.push(item[1])
       }
     }
 
@@ -83,8 +79,8 @@ class HashMap {
   toString () {
     let str = ''
 
-    for (let i = 0; i < this._bucket.length; i++) {
-      str += `[${i}] -> ${this._bucket[i].toString()}\n`
+    for (let i = 0; i < this._bucket.length(); i++) {
+      str += `[${i}] -> ${this._bucket.get(i).toString()}\n`
     }
 
     return str
@@ -93,36 +89,21 @@ class HashMap {
   // private
 
   _createBucket (size) {
-    return Array(size).fill(null).map(() => new LinkedList())
-  }
+    const bucket = new ArrayList(size)
 
-  _doubleBucket () {
-    const nodes = this._nodes()
-    this._bucket = this._createBucket(this._bucket.length * 2)
-
-    for (const node of nodes) {
-      this.set(node.key, node.value)
+    for (let i = 0; i < size; i++) {
+      bucket.append(new LinkedList())
     }
+
+    return bucket
   }
 
   _getList (key) {
-    return this._bucket[this._hash(key)]
+    return this._bucket.get(this._hash(key))
   }
 
   _hash (key) {
-    return hash(key) % this._bucket.length
-  }
-
-  _nodes () {
-    const nodes = []
-
-    for (const list of this._bucket) {
-      for (const node of list) {
-        nodes.push(node)
-      }
-    }
-
-    return nodes
+    return hash(key) % this._bucket.length()
   }
 }
 

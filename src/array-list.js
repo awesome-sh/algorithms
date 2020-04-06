@@ -66,6 +66,10 @@ class ArrayList {
     return this._bucket
   }
 
+  length () {
+    return this._bucket.length
+  }
+
   size () {
     return this._size
   }
@@ -80,6 +84,23 @@ class ArrayList {
 
     this._size = newSize
     this._bucket = newBucket
+  }
+
+  [Symbol.iterator] () {
+    const list = this
+    return {
+      index: 0,
+      next () {
+        let result = { value: undefined, done: true }
+
+        if (this.index < list.length()) {
+          result = { value: list.get(this.index), done: false }
+          this.index++
+        }
+
+        return result
+      }
+    }
   }
 }
 

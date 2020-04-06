@@ -62,7 +62,7 @@ describe('dict', () => {
 
     expect(dict.toString()).toBe([
       '[0] -> \n',
-      '[1] -> {"key":"key1","value":true}\n'
+      '[1] -> ["key1",true]\n'
     ].join(''))
   })
 })
