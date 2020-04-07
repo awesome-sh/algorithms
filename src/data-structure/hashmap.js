@@ -96,6 +96,7 @@ class HashMap {
     return bucket
   }
 
+  // Runtime: O(1) assuming good hash function and short list
   _getItem (key) {
     const [item] = this._getItemWithList(key)
 

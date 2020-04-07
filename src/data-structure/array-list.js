@@ -45,21 +45,22 @@ class ArrayList {
   }
 
   remove (item) {
-    const newBucket = []
-    let isRemoved = false
-
-    for (let i = 0; i < this._bucket.length; i++) {
+    for (var i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
-        isRemoved = true
-        continue
+        break
       }
-
-      newBucket[newBucket.length] = this._bucket[i]
     }
 
-    this._bucket = newBucket
+    if (i < this._bucket.length) {
+      for (var j = i; j < this._bucket.length - 1; j++) {
+        this._bucket[j] = this._bucket[j + 1]
+      }
 
-    return isRemoved
+      this._bucket.length -= 1 // Remove last element
+      return true
+    }
+
+    return false
   }
 
   values () {
