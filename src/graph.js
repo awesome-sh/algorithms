@@ -1,7 +1,7 @@
-const HashMap = require('./hashmap')
-const LinkedList = require('./linked-list')
-const Queue = require('./queue')
-const Stack = require('./stack')
+const HashMap = require('./data-structure/hashmap')
+const LinkedList = require('./data-structure/linked-list')
+const Queue = require('./data-structure/queue')
+const Stack = require('./data-structure/stack')
 
 /**
  * Data Structure

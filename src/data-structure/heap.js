@@ -1,5 +1,5 @@
-const Comparator = require('./comparator')
-const { swap } = require('./array')
+const Comparator = require('../comparator')
+const { swap } = require('../array')
 
 class Heap {
   constructor () {
