@@ -41,14 +41,13 @@ describe('HashSet', () => {
 
   it('remove element', () => {
     const set = new HashSet(['a'])
-    set.remove('a')
 
+    expect(set.remove('a')).toBe(true)
     expect(set.has('a')).toBe(false)
-
     expect(set.size()).toEqual(0)
   })
 
-  it('doesnt remove unknown element', () => {
+  it('does not remove unknown element', () => {
     const set = new HashSet(['a'])
     set.remove('a')
 

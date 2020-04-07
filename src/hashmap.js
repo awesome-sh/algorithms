@@ -19,12 +19,10 @@ class HashMap {
       return
     }
 
-    const list = this._getList(key)
+    const item = this._getItem(key)
 
-    for (const item of list) {
-      if (item[0] === key) {
-        return item[1]
-      }
+    if (item) {
+      return item[1]
     }
   }
 
@@ -34,15 +32,15 @@ class HashMap {
   }
 
   remove (key) {
-    const list = this._getList(key)
+    const [item, list] = this._getItemWithList(key)
 
-    for (const item of list) {
-      if (item[0] === key) {
-        list.remove(item)
-        this._count--
+    if (!item) {
+      return false
+    }
 
-        return true
-      }
+    if (list.remove(item)) {
+      this._count--
+      return true
     }
 
     return false
@@ -96,6 +94,24 @@ class HashMap {
     }
 
     return bucket
+  }
+
+  _getItem (key) {
+    const [item] = this._getItemWithList(key)
+
+    return item
+  }
+
+  _getItemWithList (key) {
+    const list = this._getList(key)
+
+    for (const item of list) {
+      if (item[0] === key) {
+        return [item, list]
+      }
+    }
+
+    return [undefined, list]
   }
 
   _getList (key) {
