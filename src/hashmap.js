@@ -27,8 +27,8 @@ class HashMap {
   }
 
   has (key) {
-    const list = this._getList(key)
-    return !list.isEmpty()
+    const item = this._getItem(key)
+    return !!item
   }
 
   remove (key) {
