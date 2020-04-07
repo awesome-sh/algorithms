@@ -1,6 +1,6 @@
 const { mergeSort } = require('../merge-sort')
 
-describe('Merge sort', () => {
+describe('Merge Sort', () => {
   it('sorts an array in place', () => {
     const array = [2, 17, 15, 20, 9, 31]
     mergeSort(array)

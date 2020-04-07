@@ -1,6 +1,6 @@
 const HashMap = require('../hashmap')
 
-describe('dict', () => {
+describe('HashMap', () => {
   let dict
 
   beforeEach(() => {
