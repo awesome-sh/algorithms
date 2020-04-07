@@ -102,6 +102,7 @@ class HashMap {
     return item
   }
 
+  // Runtime: O(1) assuming good hash function and short list
   _getItemWithList (key) {
     const list = this._getList(key)
 
@@ -114,10 +115,13 @@ class HashMap {
     return [undefined, list]
   }
 
+  // Runtime: O(1)
   _getList (key) {
-    return this._bucket.get(this._hash(key))
+    const hash = this._hash(key) // O(1)
+    return this._bucket.get(hash) // O(1)
   }
 
+  // Runtime: O(1)
   _hash (key) {
     return hash(key) % this._bucket.length()
   }
