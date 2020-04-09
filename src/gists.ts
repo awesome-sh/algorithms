@@ -1,18 +1,18 @@
-export function truncate (num) {
+export function truncate (num: number): number {
   return num | 0
 }
 
-export function pop (num) {
+export function pop (num: number): [number, number] {
   const digit = num % 10
   num = (num / 10) | 0
   return [num, digit]
 }
 
-export function push (num, digit) {
+export function push (num: number, digit: number): number {
   return num * 10 + digit
 }
 
-export function numberOfDigits (number) {
+export function numberOfDigits (number: number): number {
   let counter = 0
 
   do {
@@ -23,6 +23,6 @@ export function numberOfDigits (number) {
   return counter
 }
 
-export function matrix (rows, cols) {
+export function matrix (rows: number, cols: number) {
   return Array(rows).fill(Array(cols))
 }
