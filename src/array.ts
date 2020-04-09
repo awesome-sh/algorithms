@@ -2,49 +2,8 @@ export function fill (size, value) {
   return new Array(size).fill(value)
 }
 
-export function binarySearch (array, x) {
-  let low = 0
-  let high = array.length - 1
-
-  while (low <= high) {
-    const mid = Math.floor((low + high) / 2)
-
-    if (array[mid] === x) {
-      return mid
-    } else if (array[mid] < x) {
-      low = mid + 1
-    } else {
-      high = mid - 1
-    }
-  }
-
-  return -1
-}
-
 export function clone (array) {
   return array.slice()
-}
-
-export function equilibriumIndex (array) {
-  let sum = 0
-  let leftsum = 0
-
-  for (let i = 0; i < array.length; ++i) {
-    sum += array[i]
-  }
-
-  for (let i = 0; i < array.length; ++i) {
-    sum -= array[i]
-
-    if (leftsum === sum) {
-      return i
-    }
-
-    leftsum += array[i]
-  }
-
-  /* If no equilibrium index found, then return 0 */
-  return -1
 }
 
 export function leftRotation (array, n) {

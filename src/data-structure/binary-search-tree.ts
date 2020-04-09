@@ -1,3 +1,5 @@
+import Queue from './queue'
+
 /**
  * Dúvidas
  * - E se a posição a ser inserida n for uma folha?
@@ -5,14 +7,15 @@
  * - pra q o parent?
  * - Como que balanceia?
  */
-const Queue = require('./queue')
 
 class BinarySearchTree {
+  _root: Node
+
   constructor () {
     this._root = null
   }
 
-  insert (data) {
+  insert (data: any) {
     const node = new Node(data)
 
     if (!this._root) {
@@ -23,7 +26,7 @@ class BinarySearchTree {
     this.insertNode(this._root, node)
   }
 
-  insertNode (root, node) {
+  insertNode (root: Node, node: Node) {
     if (root.data < node.data) {
       if (!root.left) {
         root.left = node
@@ -110,7 +113,7 @@ class BinarySearchTree {
       return
     }
 
-    while (queue.length) {
+    while (queue.size()) {
       const node = queue.remove()
 
       if (node.key === key) {
@@ -191,11 +194,15 @@ class BinarySearchTree {
 }
 
 class Node {
-  constructor (data) {
+  data: any
+  left: Node
+  right: Node
+
+  constructor (data: any) {
     this.data = data
     this.left = null
     this.right = null
   }
 }
 
-module.exports = BinarySearchTree
+export default BinarySearchTree

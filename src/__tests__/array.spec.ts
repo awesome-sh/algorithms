@@ -1,4 +1,4 @@
-import { clone, equilibriumIndex, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap } from '../array'
+import { clone, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap } from '../array'
 
 describe('Array', () => {
   it('clones an array', () => {
@@ -6,10 +6,6 @@ describe('Array', () => {
     const cloned = clone(array)
 
     expect(cloned).not.toBe(array)
-  })
-
-  it('calculates equilibrium index', function () {
-    expect(equilibriumIndex([-7, 1, 5, 2, -4, 3, 0])).toBe(3)
   })
 
   it('created a filled array', () => {
