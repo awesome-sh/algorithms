@@ -1,25 +1,25 @@
-export function fill (size, value) {
+export function fill (size: number, value: any): any[] {
   return new Array(size).fill(value)
 }
 
-export function clone (array) {
+export function clone (array: any[]): any[] {
   return array.slice()
 }
 
-export function leftRotation (array, n) {
+export function leftRotation (array: any[], n: number): any[] {
   // Prevent unnecessary rotations
   n = n % array.length
   return array.slice(n, array.length).concat(array.slice(0, n))
 }
 
-export function swap (array, i, j) {
+export function swap (array: any[], i: number, j: number): void {
   const tmp = array[i]
   array[i] = array[j]
   array[j] = tmp
 }
 
 // Good for reversing a string
-export function reverse (array) {
+export function reverse (array: any[]): any[] {
   for (let i = 0, j = array.length - 1; i < j; i++, j--) {
     swap(array, i, j)
   }
@@ -27,7 +27,7 @@ export function reverse (array) {
   return array
 }
 
-export function ranking (array) {
+export function ranking (array: any[]): any[] {
   // Clones and sorts in ascending order
   const cloned = clone(array)
   const sorted = cloned.sort((a, b) => b - a)
@@ -37,7 +37,7 @@ export function ranking (array) {
 }
 
 // Is this a post order DFS?
-export function flatten (array) {
+export function flatten (array: any[]): any[] {
   // If it is a leaf
   if (!Array.isArray(array)) { // recursion base case
     // Return flat array to parent
@@ -55,9 +55,9 @@ export function flatten (array) {
   return memo
 }
 
-export function flattenIter (stack) {
+export function flattenIter (stack: any[]): any[] {
   const result = []
-  let item
+  let item: any
 
   while (stack.length) {
     // Altera o array original
