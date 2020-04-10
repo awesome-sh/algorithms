@@ -13,7 +13,7 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
   }
 
   visited[root.key] = true
-  callback(root, null, null)
+  callback(root, null)
 
   while (!queue.isEmpty()) {
     const node = queue.remove()
@@ -24,7 +24,7 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true
-        callback(neighbor, node, edge)
+        callback(neighbor, node)
 
         queue.add(neighbor)
       }
@@ -32,6 +32,7 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
   }
 }
 
+// Recursive version
 export function breadthFirstSearchRecursive(root: TreeNode) {
   function recursive(q: Queue) {
     if (q.isEmpty()) return;

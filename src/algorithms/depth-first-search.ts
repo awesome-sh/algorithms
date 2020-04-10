@@ -13,7 +13,7 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function =
   }
 
   visited[root.key] = true
-  callback(root)
+  callback(root, null)
 
   while (!stack.isEmpty()) {
     const node = stack.pop()
@@ -24,14 +24,13 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function =
 
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true
-        callback(neighbor)
+        callback(neighbor, node)
 
         stack.push(neighbor)
       }
     }
   }
 }
-
 
 // Recursive version
 export function depthFirstSearchRecursive (graph: Graph, root: Node, callback: Function = noop) {

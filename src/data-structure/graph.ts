@@ -25,6 +25,18 @@ class Graph {
     this._edges.get(startNode.key).append({ node: endNode, weight })
   }
 
+  getEdge (nodeA: Node, nodeB: Node) {
+    const edges = this.getEdges(nodeA)
+
+    for (const edge of edges) {
+      if (edge.node === nodeB) {
+        return edge
+      }
+    }
+
+    return null
+  }
+
   getEdges (node) {
     return this._edges.get(node.key)
   }

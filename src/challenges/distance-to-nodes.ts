@@ -13,11 +13,12 @@ export function calculateDistanceToNodes(graph: Graph, start: Node) {
   dist[start.key] = 0
   prev[start.key] = null
 
-  function visit (node: Node, origin: Node, edge) {
+  function visit (node: Node, origin: Node) {
     if (node === start) {
       return
     }
 
+    const edge = graph.getEdge(origin, node)
     dist[node.key] = dist[origin.key] + edge.weight // weight should be 1 on unweighted graphs
     prev[node.key] = origin.key
   }
