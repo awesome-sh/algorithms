@@ -26,7 +26,7 @@ class Graph {
   }
 
   getEdge (nodeA: Node, nodeB: Node): Edge {
-    const edges = this.getEdges(nodeA)
+    const edges = this._getEdges(nodeA)
 
     for (const edge of edges) {
       if (edge.node === nodeB) {
@@ -37,8 +37,15 @@ class Graph {
     return null
   }
 
-  getEdges (node: Node) {
-    return this._edges.get(node.key)
+  getNeighbors(node: Node) {
+    const neighbors = []
+    const edges = this._getEdges(node)
+
+    for (const edge of edges) {
+      neighbors.push(edge.node)
+    }
+
+    return neighbors
   }
 
   getNode (key: string): Node {
@@ -54,7 +61,7 @@ class Graph {
     let str = ''
 
     for (const node of nodes) {
-      str += `${node.key} -> ${this.getEdges(node).toString()}\n`
+      str += `${node.key} -> ${this._getEdges(node).toString()}\n`
     }
 
     return str
@@ -71,6 +78,10 @@ class Graph {
     }
 
     return result
+  }
+
+  _getEdges (node: Node) {
+    return this._edges.get(node.key)
   }
 }
 
@@ -100,6 +111,7 @@ export type Node = {
 export type Edge = {
   key: string
   value: any
+  weight: number
 }
 
 export default Graph

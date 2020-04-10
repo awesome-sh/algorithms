@@ -17,11 +17,9 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function =
 
   while (!stack.isEmpty()) {
     const node = stack.pop()
-    const edges = graph.getEdges(node)
+    const neighbors = graph.getNeighbors(node)
 
-    for (const edge of edges) {
-      const neighbor = edge.node
-
+    for (const neighbor of neighbors) {
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true
         callback(neighbor, node)
@@ -42,14 +40,12 @@ export function depthFirstSearchRecursive (graph: Graph, root: Node, callback: F
   }
 
   function visit (node) {
-    const edges = graph.getEdges(node)
+    const neighbors = graph.getNeighbors(node)
 
     visited[node.key] = true
     callback(node)
 
-    for (const edge of edges) {
-      const neighbor = edge.node
-
+    for (const neighbor of neighbors) {
       if (!visited[neighbor.key]) {
         visit(neighbor)
       }

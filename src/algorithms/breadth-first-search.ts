@@ -17,11 +17,9 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 
   while (!queue.isEmpty()) {
     const node = queue.remove()
-    const edges = graph.getEdges(node)
+    const neighbors = graph.getNeighbors(node)
 
-    for (const edge of edges) {
-      const neighbor = edge.node
-
+    for (const neighbor of neighbors) {
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true
         callback(neighbor, node)

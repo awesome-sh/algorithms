@@ -17,10 +17,10 @@ export function dijkstra (graph: Graph, start: Node) {
   let node = graph.getNode(key)
 
   while (node) {
-    const edges = graph.getEdges(node)
+    const neighbors = graph.getNeighbors(node)
 
-    for (const edge of edges) {
-      const neighbor = edge.node
+    for (const neighbor of neighbors) {
+      const edge = graph.getEdge(node, neighbor)
       const newCost = dist[node.key] + edge.weight
 
       if (newCost < dist[neighbor.key]) {
