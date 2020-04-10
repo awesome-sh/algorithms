@@ -6,18 +6,18 @@ class HashMap {
   _bucket: ArrayList
   _count: number
 
-  constructor (size = 100) {
+  constructor (size: number = 100) {
     this._bucket = this._createBucket(size)
     this._count = 0
   }
 
-  set (key, value) {
+  set (key: string, value: any): void {
     const hash = this._hash(key)
     this._bucket.get(hash).append([key, value])
     this._count++
   }
 
-  get (key) {
+  get (key: string): any {
     if (!key) {
       return
     }
@@ -29,12 +29,12 @@ class HashMap {
     }
   }
 
-  has (key) {
+  has (key: string): boolean {
     const item = this._getItem(key)
     return !!item
   }
 
-  remove (key) {
+  remove (key: string): boolean {
     const [item, list] = this._getItemWithList(key)
 
     if (!item) {
@@ -49,7 +49,7 @@ class HashMap {
     return false
   }
 
-  keys () {
+  keys (): string[] {
     const keys = []
 
     for (const list of this._bucket) {
@@ -61,7 +61,7 @@ class HashMap {
     return keys
   }
 
-  values () {
+  values (): any[] {
     const values = []
 
     for (const list of this._bucket) {
@@ -73,11 +73,11 @@ class HashMap {
     return values
   }
 
-  size () {
+  size (): number {
     return this._count
   }
 
-  toString () {
+  toString (): string {
     let str = ''
 
     for (let i = 0; i < this._bucket.length(); i++) {
@@ -87,7 +87,7 @@ class HashMap {
     return str
   }
 
-  private _createBucket (size) {
+  private _createBucket (size: number): ArrayList {
     const bucket = new ArrayList(size)
 
     for (let i = 0; i < size; i++) {
@@ -98,14 +98,14 @@ class HashMap {
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  private _getItem (key) {
+  private _getItem (key: string): any {
     const [item] = this._getItemWithList(key)
 
     return item
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  private _getItemWithList (key) {
+  private _getItemWithList (key: string): [any, LinkedList] {
     const list = this._getList(key)
 
     for (const item of list) {
@@ -118,13 +118,13 @@ class HashMap {
   }
 
   // Runtime: O(1)
-  private _getList (key) {
+  private _getList (key: string): LinkedList {
     const hash = this._hash(key) // O(1)
     return this._bucket.get(hash) // O(1)
   }
 
   // Runtime: O(1)
-  private _hash (key) {
+  private _hash (key: string): number {
     return hash(key) % this._bucket.length()
   }
 }
