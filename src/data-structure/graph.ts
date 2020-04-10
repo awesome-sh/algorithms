@@ -1,6 +1,6 @@
 import HashMap from './hashmap'
 import LinkedList from './linked-list'
-import { breadthFirstSearch } from '../algorithms/breadth-first-search'
+import { calculateDistanceToNodes } from '../challenges/distance-to-nodes'
 
 class Graph {
   _edges: HashMap
@@ -48,7 +48,7 @@ class Graph {
     return str
   }
 
-  findShortestPath (start, end, algorithm = breadthFirstSearch) {
+  findShortestPath (start: Node, end: Node, algorithm = calculateDistanceToNodes) {
     const { prev } = algorithm(this, start)
     const result = []
     let { key } = end
