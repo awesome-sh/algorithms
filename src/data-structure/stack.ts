@@ -3,27 +3,27 @@ import LinkedList from './linked-list'
 class Stack {
   private _data: any
 
-  constructor (array = []) {
+  constructor (array: any[] = []) {
     this._data = new LinkedList(array)
   }
 
-  pop () {
+  pop (): LinkedList {
     return this._data.removeFirst()
   }
 
-  push (item) {
+  push (item: any): LinkedList {
     return this._data.addFirst(item)
   }
 
-  isEmpty () {
+  isEmpty (): boolean {
     return this._data.isEmpty()
   }
 
-  size () {
+  size (): number {
     return this._data.size()
   }
 
-  toString () {
+  toString (): string {
     return this._data.toString()
   }
 }
