@@ -1,5 +1,5 @@
 import Graph, { Node } from '../../data-structure/graph'
-import { breadthFirstSearch } from '../breadth-first-search'
+import { calculateDistanceToNodes } from '../distance-to-nodes'
 
 describe('Breadth-First Search', () => {
   let graph: Graph
@@ -37,14 +37,13 @@ describe('Breadth-First Search', () => {
     graph.addEdge(E, B)
   })
 
-  it('visits node by level', () => {
-    let visitOrder = ''
-    const visit = (node: Node) => {
-      visitOrder += node.key
-    }
+  it('calculates distances from start to all other nodes', () => {
+    const { dist } = calculateDistanceToNodes(graph, C)
+    expect(dist).toEqual({ A: 1, B: 1, C: 0, D: 2, E: Infinity, F: 2 })
+  })
 
-    breadthFirstSearch(graph, C, visit)
-
-    expect(visitOrder).toBe('CABDF')
+  it('traces path from start node', () => {
+    const { prev } = calculateDistanceToNodes(graph, C)
+    expect(prev).toEqual({ A: 'C', B: 'C', C: null, D: 'A', F: 'B' })
   })
 })
