@@ -46,4 +46,24 @@ export function breadthFirstSearch (graph: Graph, start: Node, callback: Functio
   }
 }
 
-// Recursive version of BFS: https://goo.gl/qN1E4o
+export function breadthFirstSearchRecursive(root: TreeNode) {
+  function recursive(q: Queue) {
+    if (q.isEmpty()) return;
+
+    const n: TreeNode = q.remove()
+
+    if (n.left) q.add(n.left)
+    if (n.right) q.add(n.right)
+
+    recursive(q)
+  }
+
+  const q = new Queue();
+  q.add(root);
+  recursive(q)
+}
+
+type TreeNode = {
+  left: TreeNode
+  right: TreeNode
+}
