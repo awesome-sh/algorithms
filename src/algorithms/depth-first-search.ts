@@ -1,7 +1,6 @@
 import Graph, { Node } from '../data-structure/graph'
 import Stack from '../data-structure/stack'
-
-const noop = () => {}
+import { noop } from '../utils'
 
 // Non-recursive version
 export function depthFirstSearch (graph: Graph, start: Node, callback: Function = noop) {

@@ -1,7 +1,6 @@
 import Graph, { Node } from '../data-structure/graph'
 import Queue from '../data-structure/queue'
-
-const noop = () => {}
+import { noop } from '../utils'
 
 // Non-recursive version
 export function breadthFirstSearch (graph: Graph, root: Node, callback: Function = noop) {

@@ -1,4 +1,10 @@
 /**
+ * Functions
+ */
+
+export function noop () {}
+
+/**
  * Numbers
  */
 
