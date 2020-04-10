@@ -1,4 +1,4 @@
-const { quickSort } = require('../quick-sort')
+import { quickSort } from '../quick-sort'
 
 describe('Quick Sort', () => {
   it('sorts an array in place', () => {

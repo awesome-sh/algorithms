@@ -1,4 +1,4 @@
-const { mergeSort } = require('../merge-sort')
+import { mergeSort } from '../merge-sort'
 
 describe('Merge Sort', () => {
   it('sorts an array in place', () => {
