@@ -34,7 +34,10 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 
 // Recursive version
 export function breadthFirstSearchRecursive(root: TreeNode) {
-  function recursive(q: Queue) {
+  const q = new Queue();
+  q.add(root);
+
+  function visit(q: Queue) {
     if (q.isEmpty()) return;
 
     const n: TreeNode = q.remove()
@@ -42,12 +45,10 @@ export function breadthFirstSearchRecursive(root: TreeNode) {
     if (n.left) q.add(n.left)
     if (n.right) q.add(n.right)
 
-    recursive(q)
+    visit(q)
   }
 
-  const q = new Queue();
-  q.add(root);
-  recursive(q)
+  visit(q)
 }
 
 type TreeNode = {
