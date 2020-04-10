@@ -20,12 +20,12 @@ class Graph {
     return node
   }
 
-  addEdge (startNode, endNode, weight = 1) {
+  addEdge (startNode: Node, endNode: Node, weight: number = 1): void {
     // Adjacency List
     this._edges.get(startNode.key).append({ node: endNode, weight })
   }
 
-  getEdge (nodeA: Node, nodeB: Node) {
+  getEdge (nodeA: Node, nodeB: Node): Edge {
     const edges = this.getEdges(nodeA)
 
     for (const edge of edges) {
@@ -37,19 +37,19 @@ class Graph {
     return null
   }
 
-  getEdges (node) {
+  getEdges (node: Node) {
     return this._edges.get(node.key)
   }
 
-  getNode (key) {
+  getNode (key: string): Node {
     return this._nodes.get(key)
   }
 
-  getNodes () {
+  getNodes (): any[] {
     return this._nodes.values()
   }
 
-  toString () {
+  toString (): string {
     const nodes = this.getNodes()
     let str = ''
 
@@ -60,7 +60,7 @@ class Graph {
     return str
   }
 
-  findShortestPath (start: Node, end: Node, algorithm = calculateDistanceToNodes) {
+  findShortestPath (start: Node, end: Node, algorithm = calculateDistanceToNodes): string[] {
     const { prev } = algorithm(this, start)
     const result = []
     let { key } = end
@@ -93,6 +93,11 @@ export function findLowestCostKey (dist, visited) {
 }
 
 export type Node = {
+  key: string
+  value: any
+}
+
+export type Edge = {
   key: string
   value: any
 }
