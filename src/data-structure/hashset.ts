@@ -3,7 +3,7 @@ import HashMap from './hashmap'
 class HashSet {
   private _items: HashMap
 
-  constructor (array = []) {
+  constructor (array: any[] = []) {
     this._items = new HashMap()
 
     for (const item of array) {
@@ -11,7 +11,7 @@ class HashSet {
     }
   }
 
-  add (value) {
+  add (value: string): boolean {
     if (!this.has(value)) {
       this._items.set(value, true)
       return true
@@ -20,11 +20,11 @@ class HashSet {
     return false
   }
 
-  has (value) {
+  has (value: string): boolean {
     return this._items.has(value)
   }
 
-  remove (value) {
+  remove (value: string): boolean {
     if (this.has(value)) {
       return this._items.remove(value)
     }
@@ -32,7 +32,7 @@ class HashSet {
     return false
   }
 
-  size () {
+  size (): number {
     return this._items.size()
   }
 
@@ -40,7 +40,7 @@ class HashSet {
     return this._items.keys()
   }
 
-  clear () {
+  clear (): void {
     this._items = new HashMap()
   }
 
