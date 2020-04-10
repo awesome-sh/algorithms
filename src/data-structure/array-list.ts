@@ -7,7 +7,7 @@ class ArrayList {
     this._bucket = []
   }
 
-  add (index, item) {
+  add (index: number, item: any): boolean {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
@@ -25,7 +25,7 @@ class ArrayList {
     return true
   }
 
-  append (item) {
+  append (item: any): void {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
@@ -33,11 +33,11 @@ class ArrayList {
     this._bucket[this._bucket.length] = item
   }
 
-  get (index) {
+  get (index: number): any {
     return this._bucket[index]
   }
 
-  indexOf (item) {
+  indexOf (item: any): number {
     for (let i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
         return i
@@ -47,7 +47,7 @@ class ArrayList {
     return -1
   }
 
-  remove (item) {
+  remove (item: any): boolean {
     for (var i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
         break
@@ -66,19 +66,19 @@ class ArrayList {
     return false
   }
 
-  values () {
+  values (): any[] {
     return this._bucket
   }
 
-  length () {
+  length (): number {
     return this._bucket.length
   }
 
-  size () {
+  size (): number {
     return this._size
   }
 
-  private _expandBucket () {
+  private _expandBucket (): void {
     const newSize = this._size * 2
     const newBucket = new Array(newSize)
 
