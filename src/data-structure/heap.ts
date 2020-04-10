@@ -3,11 +3,11 @@ import { swap } from '../utils'
 
 class Heap {
   private _container: any[]
-  compare: Comparator
+  protected _compare: Comparator
 
   constructor () {
     this._container = []
-    this.compare = new Comparator()
+    this._compare = new Comparator()
   }
 
   add (item) {
@@ -73,7 +73,7 @@ class Heap {
   heapifyUp () {
     let index = this.lastIndex()
 
-    while (this.parentOf(index) && this.compare.greaterThan(this.parentOf(index), this.elementOf(index))) {
+    while (this.parentOf(index) && this._compare.greaterThan(this.parentOf(index), this.elementOf(index))) {
       swap(this._container, this.parentIndexOf(index), index)
 
       // Move up
@@ -87,12 +87,12 @@ class Heap {
 
     while (childIndex) {
       // Compare the values of the two childs
-      if (this.compare.lessThan(this.rightOf(index), this.leftOf(index))) {
+      if (this._compare.lessThan(this.rightOf(index), this.leftOf(index))) {
         childIndex = this.rightIndexOf(index)
       }
 
       // Compare the values of the smaller child with the current element
-      if (this.compare.lessThan(this.elementOf(childIndex), this.elementOf(index))) {
+      if (this._compare.lessThan(this.elementOf(childIndex), this.elementOf(index))) {
         swap(this._container, childIndex, index)
       } else {
         // There's no more swap to do.
@@ -112,13 +112,13 @@ class Heap {
 export class MinHeap extends Heap {
   constructor () {
     super()
-    this.compare = new Comparator((a, b) => a - b)
+    this._compare = new Comparator((a, b) => a - b)
   }
 }
 
 export class MaxHeap extends Heap {
   constructor () {
     super()
-    this.compare = new Comparator((a, b) => b - a)
+    this._compare = new Comparator((a, b) => b - a)
   }
 }
