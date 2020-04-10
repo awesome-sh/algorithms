@@ -6,7 +6,7 @@ import { noop } from '../utils'
 export function depthFirstSearch (graph: Graph, root: Node, callback: Function = noop): void {
   const visited = {}
   const nodes = graph.getNodes()
-  const stack = new Stack([root])
+  const stack = new Stack()
 
   for (const node of nodes) {
     visited[node.key] = false
@@ -14,6 +14,7 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function =
 
   visited[root.key] = true
   callback(root, null)
+  stack.push(root)
 
   while (!stack.isEmpty()) {
     const node = stack.pop()

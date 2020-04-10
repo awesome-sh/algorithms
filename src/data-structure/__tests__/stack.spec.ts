@@ -8,13 +8,6 @@ describe('Stack', () => {
     expect(stack.isEmpty()).toBe(true)
   })
 
-  it('starts with elements', () => {
-    const stack = new Stack(['a', 'b'])
-
-    expect(stack.size()).toBe(2)
-    expect(stack.isEmpty()).toBe(false)
-  })
-
   it('adds element', () => {
     const stack = new Stack()
     stack.push('a')
@@ -23,8 +16,8 @@ describe('Stack', () => {
   })
 
   it('removes element', () => {
-    const stack = new Stack(['a'])
-
+    const stack = new Stack()
+    stack.push('a')
     expect(stack.pop()).toBe('a')
     expect(stack.size()).toBe(0)
   })

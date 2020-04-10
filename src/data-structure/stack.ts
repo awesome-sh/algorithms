@@ -3,8 +3,8 @@ import LinkedList from './linked-list'
 class Stack {
   private _data: any
 
-  constructor (array: any[] = []) {
-    this._data = new LinkedList(array)
+  constructor () {
+    this._data = new LinkedList()
   }
 
   pop (): any {
