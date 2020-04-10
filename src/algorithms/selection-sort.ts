@@ -1,7 +1,7 @@
 import { swap } from '../utils'
 
-export function selectionSort (array) {
-  let indexMin
+export function selectionSort (array: any[]): void {
+  let indexMin: number
 
   // Itere n-1 vezes
   for (let i = 0; i < array.length - 1; i++) {

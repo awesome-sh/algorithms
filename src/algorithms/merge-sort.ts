@@ -1,4 +1,4 @@
-export function mergeSort (array, low = 0, high = array.length - 1) {
+export function mergeSort (array: any[], low: number = 0, high: number = array.length - 1): void {
   if (low < high) {
     const mid = Math.floor((low + high) / 2)
     mergeSort(array, low, mid)
@@ -7,7 +7,7 @@ export function mergeSort (array, low = 0, high = array.length - 1) {
   }
 }
 
-export function merge (array, low, mid, high) {
+export function merge (array: any[], low: number, mid: number, high: number): void {
   const L = []
   const R = []
 

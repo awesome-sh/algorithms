@@ -7,7 +7,7 @@ class Stack {
     this._data = new LinkedList(array)
   }
 
-  pop (): LinkedList {
+  pop (): any {
     return this._data.removeFirst()
   }
 

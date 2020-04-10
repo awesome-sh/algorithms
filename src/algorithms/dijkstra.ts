@@ -1,6 +1,6 @@
 import Graph, { Node, findLowestCostKey } from '../data-structure/graph'
 
-export function dijkstra (graph: Graph, start: Node) {
+export function dijkstra (graph: Graph, start: Node): {dist: any, prev: any} {
   const visited = {}
   const dist: any = {}
   const prev = {}

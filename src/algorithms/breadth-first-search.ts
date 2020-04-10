@@ -3,7 +3,7 @@ import Queue from '../data-structure/queue'
 import { noop } from '../utils'
 
 // Non-recursive version
-export function breadthFirstSearch (graph: Graph, root: Node, callback: Function = noop) {
+export function breadthFirstSearch (graph: Graph, root: Node, callback: Function = noop): void {
   const visited = {}
   const nodes = graph.getNodes()
   const queue = new Queue([root])

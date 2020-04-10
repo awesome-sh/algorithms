@@ -1,6 +1,6 @@
 import { swap } from '../utils'
 
-export function bubbleSort (array) {
+export function bubbleSort (array: any[]): void {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length - i - 1; j++) {
       if (array[j] > array[j + 1]) {
@@ -10,8 +10,8 @@ export function bubbleSort (array) {
   }
 }
 
-export function betterBubbleSort (array) {
-  let swapped
+export function betterBubbleSort (array: any[]): void {
+  let swapped: boolean
 
   do {
     swapped = false
