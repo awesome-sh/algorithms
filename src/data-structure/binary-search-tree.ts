@@ -107,11 +107,13 @@ class BinarySearchTree {
   }
 
   breadthFirstSearch (key) {
-    const queue = new Queue([this._root])
+    const queue = new Queue()
 
     if (!this._root) {
       return
     }
+
+    queue.add(this._root)
 
     while (queue.size()) {
       const node = queue.remove()

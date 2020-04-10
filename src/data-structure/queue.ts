@@ -3,8 +3,8 @@ import LinkedList from './linked-list'
 class Queue {
   private _data: LinkedList
 
-  constructor (array = []) {
-    this._data = new LinkedList(array)
+  constructor () {
+    this._data = new LinkedList()
   }
 
   remove (): any {

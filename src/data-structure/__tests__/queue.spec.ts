@@ -8,13 +8,6 @@ describe('Queue', () => {
     expect(queue.isEmpty()).toBe(true)
   })
 
-  it('starts with elements', () => {
-    const queue = new Queue(['a', 'b'])
-
-    expect(queue.size()).toBe(2)
-    expect(queue.isEmpty()).toBe(false)
-  })
-
   it('adds element', () => {
     const queue = new Queue()
     queue.add('a')
@@ -23,8 +16,8 @@ describe('Queue', () => {
   })
 
   it('removes element', () => {
-    const queue = new Queue(['a'])
-
+    const queue = new Queue()
+    queue.add('a')
     expect(queue.remove()).toBe('a')
     expect(queue.size()).toBe(0)
   })
