@@ -7,23 +7,23 @@ class Queue {
     this._data = new LinkedList(array)
   }
 
-  remove () {
+  remove (): any {
     return this._data.removeFirst()
   }
 
-  add (item) {
+  add (item: any) {
     return this._data.addLast(item)
   }
 
-  isEmpty () {
+  isEmpty (): boolean {
     return this._data.isEmpty()
   }
 
-  size () {
+  size (): number {
     return this._data.size()
   }
 
-  toString () {
+  toString (): string {
     return this._data.toString()
   }
 }
