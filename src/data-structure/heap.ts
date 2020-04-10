@@ -10,67 +10,67 @@ class Heap {
     this._compare = new Comparator()
   }
 
-  add (item) {
+  add (item: any): void {
     this._container.push(item)
     this.heapifyUp()
   }
 
-  elementOf (index) {
+  elementOf (index: number): any {
     return this._container[index]
   }
 
-  parentOf (index) {
+  parentOf (index: number): any {
     return this.elementOf(this.parentIndexOf(index))
   }
 
-  leftOf (index) {
+  leftOf (index: number): any {
     return this.elementOf(this.leftIndexOf(index))
   }
 
-  rightOf (index) {
+  rightOf (index: number): any {
     return this.elementOf(this.rightIndexOf(index))
   }
 
-  parentIndexOf (index) {
+  parentIndexOf (index: number): number {
     return Math.floor((index - 1) / 2)
   }
 
-  lastIndex () {
+  lastIndex (): number {
     return this._container.length - 1
   }
 
-  leftIndexOf (index) {
+  leftIndexOf (index: number): number {
     return 2 * index + 1
   }
 
-  rightIndexOf (index) {
+  rightIndexOf (index: number): number {
     return 2 * index + 2
   }
 
-  peek () {
+  peek (): any {
     return this.elementOf(0)
   }
 
-  last () {
+  last (): any {
     return this.elementOf(this.lastIndex())
   }
 
-  size () {
+  size (): number {
     return this._container.length
   }
 
-  isEmpty () {
+  isEmpty (): boolean {
     return this.size() === 0
   }
 
-  poll () {
+  poll (): any {
     const item = this.peek()
     this._container[0] = this._container.pop()
     this.heapifyDown()
     return item
   }
 
-  heapifyUp () {
+  heapifyUp (): void {
     let index = this.lastIndex()
 
     while (this.parentOf(index) && this._compare.greaterThan(this.parentOf(index), this.elementOf(index))) {
@@ -81,7 +81,7 @@ class Heap {
     }
   }
 
-  heapifyDown () {
+  heapifyDown (): void {
     const index = 0
     let childIndex = this.leftIndexOf(index)
 
@@ -104,7 +104,7 @@ class Heap {
     }
   }
 
-  toString () {
+  toString (): string {
     return this._container.toString()
   }
 }
@@ -112,13 +112,13 @@ class Heap {
 export class MinHeap extends Heap {
   constructor () {
     super()
-    this._compare = new Comparator((a, b) => a - b)
+    this._compare = new Comparator((a: number, b: number) => a - b)
   }
 }
 
 export class MaxHeap extends Heap {
   constructor () {
     super()
-    this._compare = new Comparator((a, b) => b - a)
+    this._compare = new Comparator((a: number, b: number) => b - a)
   }
 }
