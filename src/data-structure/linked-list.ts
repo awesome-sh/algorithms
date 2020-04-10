@@ -3,7 +3,7 @@ class LinkedList implements Iterator<Node> {
   private _tail: Node
   private _length: number
 
-  constructor (array = []) {
+  constructor (array: any[] = []) {
     this._head = null
     this._tail = null
     this._length = 0
@@ -13,23 +13,23 @@ class LinkedList implements Iterator<Node> {
     }
   }
 
-  getHead () {
+  getHead (): any {
     return this._head.data
   }
 
-  getTail () {
+  getTail (): any {
     return this._tail.data
   }
 
-  size () {
+  size (): number {
     return this._length
   }
 
-  isEmpty () {
+  isEmpty (): boolean {
     return this._length === 0
   }
 
-  append (data) {
+  append (data: any): LinkedList {
     const node = new Node(data)
 
     if (!this._head) {
@@ -46,7 +46,7 @@ class LinkedList implements Iterator<Node> {
     return this
   }
 
-  prepend (data) {
+  prepend (data: any): LinkedList {
     const node = new Node(data)
 
     if (!this._head) {
@@ -63,15 +63,15 @@ class LinkedList implements Iterator<Node> {
     return this
   }
 
-  addFirst (data) {
+  addFirst (data: any): LinkedList {
     return this.prepend(data)
   }
 
-  addLast (data) {
+  addLast (data: any): LinkedList {
     return this.append(data)
   }
 
-  addAt (index, data) {
+  addAt (index: number, data: any): LinkedList {
     const node = new Node(data)
 
     if (index < 0 || index > this._length) {
@@ -99,15 +99,15 @@ class LinkedList implements Iterator<Node> {
     return this
   }
 
-  removeFirst () {
+  removeFirst (): any {
     return this.removeAt(0)
   }
 
-  removeLast () {
+  removeLast (): any {
     return this.removeAt(this._length - 1)
   }
 
-  remove (data) {
+  remove (data: any) {
     let prev = null
     let current = this._head
 
@@ -132,7 +132,7 @@ class LinkedList implements Iterator<Node> {
     return false
   }
 
-  removeAt (index) {
+  removeAt (index: number): any {
     if (!this._head) {
       return
     }
@@ -160,7 +160,7 @@ class LinkedList implements Iterator<Node> {
     return current.data
   }
 
-  values () {
+  values (): any[] {
     const list = []
 
     for (let item of this) {
@@ -171,11 +171,11 @@ class LinkedList implements Iterator<Node> {
     return list
   }
 
-  toString () {
+  toString (): string {
     return this.values().join(', ')
   }
 
-  reverse () {
+  reverse (): void {
     const reverse = (node) => {
       if (!node) {
         return null // list does not exist.
