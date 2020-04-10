@@ -1,7 +1,7 @@
 import HashMap from './hashmap'
 
 class HashSet {
-  _items: HashMap
+  private _items: HashMap
 
   constructor (array = []) {
     this._items = new HashMap()

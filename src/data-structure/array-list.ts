@@ -78,7 +78,7 @@ class ArrayList {
     return this._size
   }
 
-  _expandBucket () {
+  private _expandBucket () {
     const newSize = this._size * 2
     const newBucket = new Array(newSize)
 

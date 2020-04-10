@@ -1,7 +1,7 @@
 import LinkedList from './linked-list'
 
 class Queue {
-  _data: LinkedList
+  private _data: LinkedList
 
   constructor (array = []) {
     this._data = new LinkedList(array)

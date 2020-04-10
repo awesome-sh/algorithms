@@ -1,7 +1,7 @@
 import LinkedList from './linked-list'
 
 class Stack {
-  _data: any
+  private _data: any
 
   constructor (array = []) {
     this._data = new LinkedList(array)

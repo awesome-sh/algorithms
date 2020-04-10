@@ -2,7 +2,7 @@ import Comparator from '../comparator'
 import { swap } from '../utils'
 
 class Heap {
-  _container: any[]
+  private _container: any[]
   compare: Comparator
 
   constructor () {

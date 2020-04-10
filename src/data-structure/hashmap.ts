@@ -87,9 +87,7 @@ class HashMap {
     return str
   }
 
-  // private
-
-  _createBucket (size) {
+  private _createBucket (size) {
     const bucket = new ArrayList(size)
 
     for (let i = 0; i < size; i++) {
@@ -100,14 +98,14 @@ class HashMap {
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  _getItem (key) {
+  private _getItem (key) {
     const [item] = this._getItemWithList(key)
 
     return item
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  _getItemWithList (key) {
+  private _getItemWithList (key) {
     const list = this._getList(key)
 
     for (const item of list) {
@@ -120,13 +118,13 @@ class HashMap {
   }
 
   // Runtime: O(1)
-  _getList (key) {
+  private _getList (key) {
     const hash = this._hash(key) // O(1)
     return this._bucket.get(hash) // O(1)
   }
 
   // Runtime: O(1)
-  _hash (key) {
+  private _hash (key) {
     return hash(key) % this._bucket.length()
   }
 }

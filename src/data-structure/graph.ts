@@ -80,7 +80,7 @@ class Graph {
     return result
   }
 
-  _getEdges (node: Node) {
+  private _getEdges (node: Node) {
     return this._edges.get(node.key)
   }
 }

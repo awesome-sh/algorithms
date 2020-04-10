@@ -1,7 +1,7 @@
 class LinkedList implements Iterator<Node> {
-  _head: Node
-  _tail: Node
-  _length: number
+  private _head: Node
+  private _tail: Node
+  private _length: number
 
   constructor (array = []) {
     this._head = null
