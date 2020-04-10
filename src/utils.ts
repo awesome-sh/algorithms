@@ -1,3 +1,36 @@
+/**
+ * Numbers
+ */
+
+export function truncate (num: number): number {
+  return num | 0
+}
+
+export function pop (num: number): [number, number] {
+  const digit = num % 10
+  num = (num / 10) | 0
+  return [num, digit]
+}
+
+export function push (num: number, digit: number): number {
+  return num * 10 + digit
+}
+
+export function numberOfDigits (number: number): number {
+  let counter = 0
+
+  do {
+    [number] = pop(number)
+    counter++
+  } while (number)
+
+  return counter
+}
+
+/**
+ * Arrays
+ */
+
 export function fill (size: number, value: any): any[] {
   return new Array(size).fill(value)
 }
@@ -28,7 +61,6 @@ export function reverse (array: any[]): any[] {
 }
 
 export function ranking (array: any[]): any[] {
-  // Clones and sorts in ascending order
   const cloned = clone(array)
   const sorted = cloned.sort((a, b) => b - a)
 
@@ -36,42 +68,6 @@ export function ranking (array: any[]): any[] {
   return array.map((v) => sorted.indexOf(v) + 1)
 }
 
-// Is this a post order DFS?
-export function flatten (array: any[]): any[] {
-  // If it is a leaf
-  if (!Array.isArray(array)) { // recursion base case
-    // Return flat array to parent
-    return [array]
-  }
-
-  let memo = []
-
-  // For each child, from left to right
-  for (let i = 0; i < array.length; i++) {
-    memo = memo.concat(flatten(array[i]))
-  }
-
-  // Return flat array to parent
-  return memo
+export function matrix (rows: number, cols: number) {
+  return Array(rows).fill(Array(cols))
 }
-
-export function flattenIter (stack: any[]): any[] {
-  const result = []
-  let item: any
-
-  while (stack.length) {
-    // Altera o array original
-    item = stack.shift()
-
-    if (Array.isArray(item)) {
-      stack.unshift(...item)
-    } else {
-      result.push(item)
-    }
-  }
-
-  return result
-}
-
-// http://blog.benoitvallon.com/tips/flattening-arrays-in-javascript/
-// http://amanvirk.me/flatten-an-array-without-recursion/

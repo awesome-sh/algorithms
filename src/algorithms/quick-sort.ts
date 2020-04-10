@@ -1,4 +1,4 @@
-import { swap } from '../array'
+import { swap } from '../utils'
 
 export function quickSort (array, low = 0, high = array.length - 1) {
   if (low < high) {

@@ -1,4 +1,4 @@
-import { swap } from '../array'
+import { swap } from '../utils'
 
 export function bubbleSort (array) {
   for (let i = 0; i < array.length; i++) {

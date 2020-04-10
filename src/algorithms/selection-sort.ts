@@ -1,4 +1,4 @@
-import { swap } from '../array'
+import { swap } from '../utils'
 
 export function selectionSort (array) {
   let indexMin

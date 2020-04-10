@@ -1,5 +1,5 @@
 import Comparator from '../comparator'
-import { swap } from '../array'
+import { swap } from '../utils'
 
 class Heap {
   _container: any[]

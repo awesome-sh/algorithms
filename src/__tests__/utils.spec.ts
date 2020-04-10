@@ -1,6 +1,17 @@
-import { clone, fill, flatten, flattenIter, leftRotation, ranking, reverse, swap } from '../array'
+import { clone, fill, leftRotation, ranking, reverse, swap, numberOfDigits } from '../utils'
 
-describe('Array', () => {
+describe('Numbers', () => {
+  it('returns the number of digits in an integer', () => {
+    expect(numberOfDigits(0)).toBe(1)
+    expect(numberOfDigits(1)).toBe(1)
+    expect(numberOfDigits(10)).toBe(2)
+    expect(numberOfDigits(11)).toBe(2)
+    expect(numberOfDigits(100)).toBe(3)
+    expect(numberOfDigits(101)).toBe(3)
+  })
+})
+
+describe('Arrays', () => {
   it('clones an array', () => {
     const array = [1, 2, 3]
     const cloned = clone(array)
@@ -29,20 +40,5 @@ describe('Array', () => {
 
   it('rotates array "n" times', () => {
     expect(leftRotation([1, 2, 3, 4, 5], 3)).toEqual([4, 5, 1, 2, 3])
-  })
-
-  it('flattens recursively an array', () => {
-    const array = [1, { a: [2, [3]] }, 4, [5, [6]], [[7], 8, 9], 10, 'eleven']
-    const expected = [1, { a: [2, [3]] }, 4, 5, 6, 7, 8, 9, 10, 'eleven']
-
-    expect(flatten(array)).toEqual(expected)
-  })
-
-  it('flattens iteratively an array', () => {
-    const array = [1, { a: [2, [3]] }, 4, [5, [6]], [[7], 8, 9], 10, 'eleven']
-    const expected = [1, { a: [2, [3]] }, 4, 5, 6, 7, 8, 9, 10, 'eleven']
-
-    expect(flattenIter(array)).toEqual(expected)
-    expect(array).toEqual([])
   })
 })
