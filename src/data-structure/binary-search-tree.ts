@@ -9,13 +9,13 @@ import Queue from './queue'
  */
 
 class BinarySearchTree {
-  _root: Node
+  private _root: Node
 
   constructor () {
     this._root = null
   }
 
-  insert (data: any) {
+  insert (data: any): void {
     const node = new Node(data)
 
     if (!this._root) {
@@ -26,7 +26,7 @@ class BinarySearchTree {
     this.insertNode(this._root, node)
   }
 
-  insertNode (root: Node, node: Node) {
+  insertNode (root: Node, node: Node): void {
     if (root.data < node.data) {
       if (!root.left) {
         root.left = node
@@ -43,17 +43,17 @@ class BinarySearchTree {
     }
   }
 
-  remove (data) {
+  remove (data: any): Node {
     return this.removeNode(this._root, data)
   }
 
-  removeNode (root, data) {
+  removeNode (root: Node, data: any): Node {
     if (!this._root) {
       return null
     } else if (root.data < data) {
       root.left = this.removeNode(root.left, data)
     } else if (root.data > data) {
-      root.right = this.insertNode(root.right, data)
+      this.insertNode(root.right, data)
 
     // Found it!
     } else {
@@ -71,14 +71,14 @@ class BinarySearchTree {
       } else {
         const temp = this.findMin(root.right)
         root.data = temp.data
-        root.right = this.insertNode(root.right, temp.data)
+        this.insertNode(root.right, temp.data)
       }
     }
 
     return root
   }
 
-  findMin (root) {
+  findMin (root: Node): Node {
     while (root.left) {
       root = root.left
     }
@@ -86,7 +86,7 @@ class BinarySearchTree {
     return root
   }
 
-  findMax (root) {
+  findMax (root: Node): Node {
     while (root.right) {
       root = root.right
     }
@@ -94,7 +94,7 @@ class BinarySearchTree {
     return root
   }
 
-  getNodeHeight (node) {
+  getNodeHeight (node: Node): number {
     if (!node) {
       return -1
     }
@@ -106,7 +106,7 @@ class BinarySearchTree {
     return this.getNodeHeight(this._root)
   }
 
-  breadthFirstSearch (key) {
+  breadthFirstSearch (key: string): boolean {
     const queue = new Queue()
 
     if (!this._root) {
@@ -134,7 +134,7 @@ class BinarySearchTree {
     return false
   }
 
-  depthFirstSearch (key, type) {
+  depthFirstSearch (key: string, type: string): void {
     switch (type) {
       case 'inorder': this.dfsInorder(this._root, key); break
       case 'postorder': this.dfsPostorder(this._root, key); break
@@ -144,7 +144,7 @@ class BinarySearchTree {
     }
   }
 
-  dfsPreorder (node, key) {
+  dfsPreorder (node: Node, key: string) {
     if (!node) {
       return false
     }
@@ -160,7 +160,7 @@ class BinarySearchTree {
     return this.dfsPreorder(node.right, key)
   }
 
-  dfsInorder (node, key) {
+  dfsInorder (node: Node, key: string) {
     if (!node) {
       return false
     }
@@ -176,7 +176,7 @@ class BinarySearchTree {
     return this.dfsInorder(node.right, key)
   }
 
-  dfsPostorder (node, key) {
+  dfsPostorder (node: Node, key: string) {
     if (!node) {
       return false
     }
@@ -196,6 +196,7 @@ class BinarySearchTree {
 }
 
 class Node {
+  key: string
   data: any
   left: Node
   right: Node
