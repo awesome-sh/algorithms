@@ -1,14 +1,14 @@
-import Graph from '../../data-structure/graph'
+import Graph, { Node } from '../../data-structure/graph'
 import { depthFirstSearch, depthFirstSearchRecursive } from '../depth-first-search'
 
 describe('Depth-First Search', () => {
-  let graph
-  let A
-  let B
-  let C
-  let D
-  let E
-  let F
+  let graph: Graph
+  let A: Node
+  let B: Node
+  let C: Node
+  let D: Node
+  let E: Node
+  let F: Node
 
   beforeEach(() => {
     /**
@@ -39,7 +39,7 @@ describe('Depth-First Search', () => {
 
   it('visits node by child recursively', () => {
     let visitOrder = ''
-    const visit = (node) => {
+    const visit = (node: Node) => {
       visitOrder += node.key
     }
 
@@ -50,7 +50,7 @@ describe('Depth-First Search', () => {
 
   it('visits node by child iteratively', () => {
     let visitOrder = ''
-    const visit = (node) => {
+    const visit = (node: Node) => {
       visitOrder += node.key
     }
 

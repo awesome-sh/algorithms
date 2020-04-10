@@ -11,7 +11,7 @@ class Graph {
     this._edges = new HashMap()
   }
 
-  createNode (key, value) {
+  createNode (key: string, value?: any) {
     const node = { key, value }
 
     this._nodes.set(key, node)
