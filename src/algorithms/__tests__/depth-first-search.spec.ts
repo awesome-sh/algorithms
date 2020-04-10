@@ -1,5 +1,5 @@
 import Graph from '../../data-structure/graph'
-import { depthFirstSearch, depthFirstSearchIter } from '../depth-first-search'
+import { depthFirstSearch, depthFirstSearchRecursive } from '../depth-first-search'
 
 describe('Depth-First Search', () => {
   let graph
@@ -43,7 +43,7 @@ describe('Depth-First Search', () => {
       visitOrder += node.key
     }
 
-    depthFirstSearch(graph, C, visit)
+    depthFirstSearchRecursive(graph, C, visit)
 
     expect(visitOrder).toBe('CABFD')
   })
@@ -54,7 +54,7 @@ describe('Depth-First Search', () => {
       visitOrder += node.key
     }
 
-    depthFirstSearchIter(graph, C, visit)
+    depthFirstSearch(graph, C, visit)
 
     expect(visitOrder).toBe('CABFD')
   })
