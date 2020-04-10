@@ -43,7 +43,7 @@ describe('Breadth-First Search', () => {
   })
 
   it('traces path from start node', () => {
-    const { prev } = calculateDistanceToNodes(graph, C)
-    expect(prev).toEqual({ A: 'C', B: 'C', C: null, D: 'A', F: 'B' })
+    const { path } = calculateDistanceToNodes(graph, C)
+    expect(path).toEqual({ A: 'C', B: 'C', C: null, D: 'A', F: 'B' })
   })
 })

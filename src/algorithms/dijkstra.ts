@@ -1,9 +1,9 @@
-import Graph, { Node, findLowestCostKey } from '../data-structure/graph'
+import Graph, { Node } from '../data-structure/graph'
 
-export function dijkstra (graph: Graph, start: Node): {dist: any, prev: any} {
-  const visited = {}
-  const dist: any = {}
-  const prev = {}
+export function dijkstra (graph: Graph, root: Node): {dist: KeyValue, path: KeyValue} {
+  const visited: KeyValue = {}
+  const dist: KeyValue = {}
+  const path: KeyValue = {}
   const nodes = graph.getNodes()
 
   for (const node of nodes) {
@@ -11,7 +11,7 @@ export function dijkstra (graph: Graph, start: Node): {dist: any, prev: any} {
     dist[node.key] = Infinity
   }
 
-  dist[start.key] = 0
+  dist[root.key] = 0
 
   let key = findLowestCostKey(dist, visited)
   let node = graph.getNode(key)
@@ -25,7 +25,7 @@ export function dijkstra (graph: Graph, start: Node): {dist: any, prev: any} {
 
       if (newCost < dist[neighbor.key]) {
         dist[neighbor.key] = newCost
-        prev[neighbor.key] = node.key
+        path[neighbor.key] = node.key
       }
     }
 
@@ -37,6 +37,24 @@ export function dijkstra (graph: Graph, start: Node): {dist: any, prev: any} {
 
   return {
     dist,
-    prev
+    path
   }
+}
+
+// Priority Queue?
+export function findLowestCostKey (dist: KeyValue, visited: KeyValue) {
+  const keys = Object.keys(dist)
+  let lowestCost = Infinity
+  let lowestCostKey = null
+
+  for (const key of keys) {
+    const cost = dist[key]
+
+    if (cost < lowestCost && !visited[key]) {
+      lowestCostKey = key
+      lowestCost = cost
+    }
+  }
+
+  return lowestCostKey
 }

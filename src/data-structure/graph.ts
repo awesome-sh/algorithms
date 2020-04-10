@@ -12,7 +12,7 @@ class Graph {
   }
 
   createNode (key: string, value?: any) {
-    const node = { key, value }
+    const node: Node = { key, value }
 
     this._nodes.set(key, node)
     this._edges.set(key, new LinkedList())
@@ -37,7 +37,7 @@ class Graph {
     return null
   }
 
-  getNeighbors(node: Node) {
+  getNeighbors(node: Node): Node[] {
     const neighbors = []
     const edges = this._getEdges(node)
 
@@ -52,7 +52,7 @@ class Graph {
     return this._nodes.get(key)
   }
 
-  getNodes (): any[] {
+  getNodes (): Node[] {
     return this._nodes.values()
   }
 
@@ -67,40 +67,22 @@ class Graph {
     return str
   }
 
-  findShortestPath (start: Node, end: Node, algorithm = calculateDistanceToNodes): string[] {
-    const { prev } = algorithm(this, start)
+  findShortestPath (start: Node, end: Node, algorithm: Function = calculateDistanceToNodes): string[] {
+    const { path } = algorithm(this, start)
     const result = []
     let { key } = end
 
     while (key) {
       result.unshift(key)
-      key = prev[key]
+      key = path[key]
     }
 
     return result
   }
 
-  private _getEdges (node: Node) {
+  private _getEdges (node: Node): LinkedList {
     return this._edges.get(node.key)
   }
-}
-
-// Priority Queue?
-export function findLowestCostKey (dist, visited) {
-  const keys = Object.keys(dist)
-  let lowestCost = Infinity
-  let lowestCostKey = null
-
-  for (const key of keys) {
-    const cost = dist[key]
-
-    if (cost < lowestCost && !visited[key]) {
-      lowestCostKey = key
-      lowestCost = cost
-    }
-  }
-
-  return lowestCostKey
 }
 
 export type Node = {

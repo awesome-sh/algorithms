@@ -3,7 +3,7 @@ import { breadthFirstSearch } from '../algorithms/breadth-first-search'
 
 export function calculateDistanceToNodes(graph: Graph, start: Node) {
   const dist = {}
-  const prev = {}
+  const path = {}
   const nodes = graph.getNodes()
 
   for (const node of nodes) {
@@ -11,7 +11,7 @@ export function calculateDistanceToNodes(graph: Graph, start: Node) {
   }
 
   dist[start.key] = 0
-  prev[start.key] = null
+  path[start.key] = null
 
   function visit (node: Node, origin: Node) {
     if (node === start) {
@@ -20,14 +20,14 @@ export function calculateDistanceToNodes(graph: Graph, start: Node) {
 
     const edge = graph.getEdge(origin, node)
     dist[node.key] = dist[origin.key] + edge.weight // weight should be 1 on unweighted graphs
-    prev[node.key] = origin.key
+    path[node.key] = origin.key
   }
 
   breadthFirstSearch(graph, start, visit)
 
   return {
     dist,
-    prev
+    path
   }
 }
 
