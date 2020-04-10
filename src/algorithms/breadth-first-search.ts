@@ -6,7 +6,7 @@ import { noop } from '../utils'
 export function breadthFirstSearch (graph: Graph, root: Node, callback: Function = noop): void {
   const visited = {}
   const nodes = graph.getNodes()
-  const queue = new Queue([root])
+  const queue = new Queue()
 
   for (const node of nodes) {
     visited[node.key] = false
@@ -14,6 +14,7 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 
   visited[root.key] = true
   callback(root, null)
+  queue.add(root)
 
   while (!queue.isEmpty()) {
     const node = queue.remove()
@@ -23,7 +24,6 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
       if (!visited[neighbor.key]) {
         visited[neighbor.key] = true
         callback(neighbor, node)
-
         queue.add(neighbor)
       }
     }
@@ -31,25 +31,35 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 }
 
 // Recursive version
-export function breadthFirstSearchRecursive(root: TreeNode) {
-  const q = new Queue();
-  q.add(root);
+export function breadthFirstSearchRecursive(graph: Graph, root: Node, callback: Function = noop) {
+  const visited = {}
+  const nodes = graph.getNodes()
+  const queue = new Queue()
 
-  function visit(q: Queue) {
-    if (q.isEmpty()) return;
-
-    const n: TreeNode = q.remove()
-
-    if (n.left) q.add(n.left)
-    if (n.right) q.add(n.right)
-
-    visit(q)
+  for (const node of nodes) {
+    visited[node.key] = false
   }
 
-  visit(q)
-}
+  visited[root.key] = true
+  callback(root)
+  queue.add(root)
 
-type TreeNode = {
-  left: TreeNode
-  right: TreeNode
+  function visit(queue: Queue) {
+    if (queue.isEmpty()) return;
+
+    const node: Node = queue.remove()
+    const neighbors = graph.getNeighbors(node)
+
+    for (const neighbor of neighbors) {
+      if (!visited[neighbor.key]) {
+        visited[neighbor.key] = true
+        callback(neighbor)
+        queue.add(neighbor)
+      }
+    }
+
+    visit(queue)
+  }
+
+  visit(queue)
 }

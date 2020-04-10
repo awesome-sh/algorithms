@@ -1,5 +1,5 @@
 import Graph, { Node } from '../../data-structure/graph'
-import { breadthFirstSearch } from '../breadth-first-search'
+import { breadthFirstSearch, breadthFirstSearchRecursive } from '../breadth-first-search'
 
 describe('Breadth-First Search', () => {
   let graph: Graph
@@ -44,6 +44,17 @@ describe('Breadth-First Search', () => {
     }
 
     breadthFirstSearch(graph, C, visit)
+
+    expect(visitOrder).toBe('CABDF')
+  })
+
+  it('visits node by level recursively', () => {
+    let visitOrder = ''
+    const visit = (node: Node) => {
+      visitOrder += node.key
+    }
+
+    breadthFirstSearchRecursive(graph, C, visit)
 
     expect(visitOrder).toBe('CABDF')
   })
