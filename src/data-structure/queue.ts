@@ -1,17 +1,17 @@
 import LinkedList from './linked-list'
 
-class Queue {
-  private _data: LinkedList
+class Queue<T> {
+  private _data: LinkedList<T>
 
   constructor () {
-    this._data = new LinkedList()
+    this._data = new LinkedList<T>()
   }
 
-  remove (): any {
+  remove (): T {
     return this._data.removeFirst()
   }
 
-  add (item: any) {
+  add (item: T) {
     return this._data.addLast(item)
   }
 
