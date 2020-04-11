@@ -12,7 +12,7 @@ describe('HashMap', () => {
     expect(dict.size()).toEqual(0)
   })
 
-  it('add key-values', () => {
+  it('adds key-values', () => {
     dict.set('key1', true)
     dict.set('key2', 2)
     dict.set('key3', 'value3')
@@ -20,6 +20,18 @@ describe('HashMap', () => {
     expect(dict.get('key1')).toBe(true)
     expect(dict.get('key2')).toBe(2)
     expect(dict.get('key3')).toBe('value3')
+  })
+
+  it('overwrites value', () => {
+    dict.set('key1', true)
+
+    expect(dict.keys()).toEqual(['key1'])
+    expect(dict.values()).toEqual([true])
+
+    dict.set('key1', false)
+
+    expect(dict.keys()).toEqual(['key1'])
+    expect(dict.values()).toEqual([false])
   })
 
   it('returns undefined on invalid keys', () => {

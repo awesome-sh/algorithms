@@ -12,9 +12,14 @@ class HashMap {
   }
 
   set (key: string, value: any): void {
-    const hash = this._hash(key)
-    this._bucket.get(hash).append([key, value])
-    this._count++
+    const [item, list] = this._getItemWithList(key)
+
+    if (item) {
+      item[1] = value
+    } else {
+      list.append([key, value])
+      this._count++
+    }
   }
 
   get (key: string): any {
