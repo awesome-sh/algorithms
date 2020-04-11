@@ -39,11 +39,22 @@ describe('Breadth-First Search', () => {
 
   it('calculates distances from start to all other nodes', () => {
     const { dist } = calculateDistanceToNodes(graph, C)
-    expect(dist).toEqual({ A: 1, B: 1, C: 0, D: 2, E: Infinity, F: 2 })
+
+    expect(dist.get('A')).toBe(1)
+    expect(dist.get('B')).toBe(1)
+    expect(dist.get('C')).toBe(0)
+    expect(dist.get('D')).toBe(2)
+    expect(dist.get('E')).toBe(Infinity)
+    expect(dist.get('F')).toBe(2)
   })
 
   it('traces path from start node', () => {
     const { path } = calculateDistanceToNodes(graph, C)
-    expect(path).toEqual({ A: 'C', B: 'C', C: null, D: 'A', F: 'B' })
+
+    expect(path.get('A')).toBe('C')
+    expect(path.get('B')).toBe('C')
+    expect(path.get('C')).toBe(null)
+    expect(path.get('D')).toBe('A')
+    expect(path.get('F')).toBe('B')
   })
 })

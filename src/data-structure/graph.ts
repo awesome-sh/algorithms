@@ -74,7 +74,7 @@ class Graph {
 
     while (key) {
       result.unshift(key)
-      key = path[key]
+      key = path.get(key)
     }
 
     return result

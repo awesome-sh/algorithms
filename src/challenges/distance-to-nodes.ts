@@ -1,17 +1,18 @@
+import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import { breadthFirstSearch } from '../algorithms/breadth-first-search'
 
-export function calculateDistanceToNodes(graph: Graph, start: Node) {
-  const dist = {}
-  const path = {}
+export function calculateDistanceToNodes(graph: Graph, start: Node): { dist: HashMap, path: HashMap } {
+  const dist = new HashMap()
+  const path = new HashMap()
   const nodes = graph.getNodes()
 
   for (const node of nodes) {
-    dist[node.key] = Infinity
+    dist.set(node.key, Infinity)
   }
 
-  dist[start.key] = 0
-  path[start.key] = null
+  dist.set(start.key, 0)
+  path.set(start.key, null)
 
   function visit (node: Node, origin: Node) {
     if (node === start) {
@@ -19,8 +20,8 @@ export function calculateDistanceToNodes(graph: Graph, start: Node) {
     }
 
     const weight = graph.getEdgeWeight(origin, node)
-    dist[node.key] = dist[origin.key] + weight // weight should be 1 on unweighted graphs
-    path[node.key] = origin.key
+    dist.set(node.key, dist.get(origin.key) + weight) // weight should be 1 on unweighted graphs
+    path.set(node.key, origin.key)
   }
 
   breadthFirstSearch(graph, start, visit)
