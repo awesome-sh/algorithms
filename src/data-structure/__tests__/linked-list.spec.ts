@@ -70,7 +70,7 @@ describe('LinkedList', () => {
   })
 
   describe('removal', () => {
-    let list: LinkedList
+    let list: LinkedList<string>
 
     beforeEach(() => {
       list = new LinkedList(['a', 'b', 'c'])

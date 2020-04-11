@@ -1,9 +1,9 @@
-class LinkedList implements Iterator<Node> {
+class LinkedList<T> implements Iterator<Node> {
   private _head: Node
   private _tail: Node
   private _length: number
 
-  constructor (array: any[] = []) {
+  constructor (array: T[] = []) {
     this._head = null
     this._tail = null
     this._length = 0
@@ -13,7 +13,7 @@ class LinkedList implements Iterator<Node> {
     }
   }
 
-  getHead (): any {
+  getHead (): T {
     if (this._head) {
       return this._head.data
     }
@@ -21,7 +21,7 @@ class LinkedList implements Iterator<Node> {
     return null
   }
 
-  getTail (): any {
+  getTail (): T {
     if (this._tail) {
       return this._tail.data
     }
@@ -37,7 +37,7 @@ class LinkedList implements Iterator<Node> {
     return this._length === 0
   }
 
-  append (data: any): LinkedList {
+  append (data: T): LinkedList<T> {
     const node = new Node(data)
 
     if (!this._head) {
@@ -54,7 +54,7 @@ class LinkedList implements Iterator<Node> {
     return this
   }
 
-  prepend (data: any): LinkedList {
+  prepend (data: T): LinkedList<T> {
     const node = new Node(data)
 
     if (!this._head) {
@@ -71,15 +71,15 @@ class LinkedList implements Iterator<Node> {
     return this
   }
 
-  addFirst (data: any): LinkedList {
+  addFirst (data: any): LinkedList<T> {
     return this.prepend(data)
   }
 
-  addLast (data: any): LinkedList {
+  addLast (data: any): LinkedList<T> {
     return this.append(data)
   }
 
-  addAt (index: number, data: any): LinkedList {
+  addAt (index: number, data: T): LinkedList<T> {
     const node = new Node(data)
 
     if (index < 0 || index > this._length) {
@@ -107,15 +107,15 @@ class LinkedList implements Iterator<Node> {
     return this
   }
 
-  removeFirst (): any {
+  removeFirst (): T {
     return this.removeAt(0)
   }
 
-  removeLast (): any {
+  removeLast (): T {
     return this.removeAt(this._length - 1)
   }
 
-  remove (data: any) {
+  remove (data: T) {
     let prev = null
     let current = this._head
 
@@ -141,7 +141,7 @@ class LinkedList implements Iterator<Node> {
     return false
   }
 
-  removeAt (index: number): any {
+  removeAt (index: number): T {
     if (!this._head) {
       return
     }
@@ -169,7 +169,7 @@ class LinkedList implements Iterator<Node> {
     return current.data
   }
 
-  values (): any[] {
+  values (): string[] {
     const list = []
 
     for (let item of this) {
@@ -181,7 +181,7 @@ class LinkedList implements Iterator<Node> {
   }
 
   reverse (): void {
-    const reverse = (node) => {
+    const reverse = (node: Node) => {
       if (!node) {
         return null // list does not exist.
       }

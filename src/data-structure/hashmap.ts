@@ -110,7 +110,7 @@ class HashMap {
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  private _getItemWithList (key: string): [any, LinkedList] {
+  private _getItemWithList (key: string): [any, LinkedList<any>] {
     const list = this._getList(key)
 
     for (const item of list) {
@@ -123,7 +123,7 @@ class HashMap {
   }
 
   // Runtime: O(1)
-  private _getList (key: string): LinkedList {
+  private _getList (key: string): LinkedList<any> {
     const hash = this._hash(key) // O(1)
     return this._bucket.get(hash) // O(1)
   }
