@@ -1,6 +1,6 @@
-class LinkedList<T> implements Iterator<Node> {
-  private _head: Node
-  private _tail: Node
+class LinkedList<T> implements Iterator<T, { done: boolean, value: Node<T>}> {
+  private _head: Node<T>
+  private _tail: Node<T>
   private _length: number
 
   constructor (array: T[] = []) {
@@ -71,11 +71,11 @@ class LinkedList<T> implements Iterator<Node> {
     return this
   }
 
-  addFirst (data: any): LinkedList<T> {
+  addFirst (data: T): LinkedList<T> {
     return this.prepend(data)
   }
 
-  addLast (data: any): LinkedList<T> {
+  addLast (data: T): LinkedList<T> {
     return this.append(data)
   }
 
@@ -181,7 +181,7 @@ class LinkedList<T> implements Iterator<Node> {
   }
 
   reverse (): void {
-    const reverse = (node: Node) => {
+    const reverse = (node: Node<T>) => {
       if (!node) {
         return null // list does not exist.
       }
@@ -220,9 +220,9 @@ class LinkedList<T> implements Iterator<Node> {
     return this.values().join(' -> ')
   }
 
-  private node: Node
+  private node: Node<T>
 
-  public next(): IteratorResult<Node> {
+  public next(): IteratorResult<T, { done: boolean, value: Node<T>}> {
     return {
       done: false,
       value: this.node.data
@@ -230,11 +230,11 @@ class LinkedList<T> implements Iterator<Node> {
   }
 }
 
-class Node {
-  data: any
-  next: any
+class Node<T> {
+  data: T
+  next: Node<T>
   
-  constructor (data: any) {
+  constructor (data: T) {
     this.data = data
     this.next = null
   }

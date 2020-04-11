@@ -1,5 +1,5 @@
 class ArrayList<T> {
-  _bucket: any[]
+  _bucket: T[]
   _size: number
 
   constructor (size?: number) {

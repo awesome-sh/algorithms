@@ -1,12 +1,12 @@
-import Graph from '../graph'
+import Graph, { Node } from '../graph'
 import { dijkstra } from '../../algorithms/dijkstra'
 
 describe('Shortest Path', () => {
-  let graph
-  let A
-  let B
-  let C
-  let D
+  let graph: Graph
+  let A: Node
+  let B: Node
+  let C: Node
+  let D: Node
 
   beforeEach(() => {
     /**

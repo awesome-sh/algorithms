@@ -11,8 +11,8 @@ class Graph {
     this._nodes = new HashMap<string, Node>()
   }
 
-  createNode (key: string, value?: any) {
-    const node: Node = { key, value }
+  createNode (key: string, data?: any) {
+    const node: Node = { key, data }
 
     this._nodes.set(key, node)
     this._edges.set(key, new LinkedList())
@@ -92,7 +92,7 @@ export type Edge = {
 
 export type Node = {
   key: string
-  value: any
+  data: any
 }
 
 export default Graph

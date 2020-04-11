@@ -43,17 +43,17 @@ class BinarySearchTree<T> {
     }
   }
 
-  remove (data: any): Node<T> {
+  remove (data: T): Node<T> {
     return this.removeNode(this._root, data)
   }
 
-  removeNode (root: Node<T>, data: any): Node<T> {
+  removeNode (root: Node<T>, data: T): Node<T> {
     if (!this._root) {
       return null
     } else if (root.data < data) {
       root.left = this.removeNode(root.left, data)
     } else if (root.data > data) {
-      this.insertNode(root.right, data)
+      this.insertNode(root.right, new Node(data))
 
     // Found it!
     } else {
@@ -71,7 +71,7 @@ class BinarySearchTree<T> {
       } else {
         const temp = this.findMin(root.right)
         root.data = temp.data
-        this.insertNode(root.right, temp.data)
+        this.insertNode(root.right, new Node(temp.data))
       }
     }
 
@@ -197,7 +197,7 @@ class BinarySearchTree<T> {
 
 class Node<T> {
   key: string
-  data: any
+  data: T
   left: Node<T>
   right: Node<T>
 

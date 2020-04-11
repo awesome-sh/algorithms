@@ -1,17 +1,17 @@
 import HashMap from './hashmap'
 
-class HashSet {
-  private _items: HashMap<string, boolean>
+class HashSet<T> {
+  private _items: HashMap<T, boolean>
 
-  constructor (array: any[] = []) {
-    this._items = new HashMap()
+  constructor (array: T[] = []) {
+    this._items = new HashMap<T, boolean>()
 
     for (const item of array) {
       this.add(item)
     }
   }
 
-  add (value: string): boolean {
+  add (value: T): boolean {
     if (!this.has(value)) {
       this._items.set(value, true)
       return true
@@ -20,11 +20,11 @@ class HashSet {
     return false
   }
 
-  has (value: string): boolean {
+  has (value: T): boolean {
     return this._items.has(value)
   }
 
-  remove (value: string): boolean {
+  remove (value: T): boolean {
     if (this.has(value)) {
       return this._items.remove(value)
     }
