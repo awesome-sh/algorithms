@@ -1,17 +1,18 @@
+import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import Stack from '../data-structure/stack'
 
 // Non-recursive version
 export function depthFirstSearch (graph: Graph, root: Node, callback: Function): void {
-  const visited = {}
+  const visited = new HashMap()
   const nodes = graph.getNodes()
   const stack = new Stack()
 
   for (const node of nodes) {
-    visited[node.key] = false
+    visited.set(node.key, false)
   }
 
-  visited[root.key] = true
+  visited.set(root.key, true)
   callback(root, null)
   stack.push(root)
 
@@ -20,10 +21,9 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function):
     const neighbors = graph.getNeighbors(node)
 
     for (const neighbor of neighbors) {
-      if (!visited[neighbor.key]) {
-        visited[neighbor.key] = true
+      if (!visited.get(neighbor.key)) {
+        visited.set(neighbor.key, true)
         callback(neighbor, node)
-
         stack.push(neighbor)
       }
     }
@@ -32,21 +32,21 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function):
 
 // Recursive version
 export function depthFirstSearchRecursive (graph: Graph, root: Node, callback: Function): void {
-  const visited = {}
+  const visited = new HashMap()
   const nodes = graph.getNodes()
 
   for (const node of nodes) {
-    visited[node.key] = false
+    visited.set(node.key, false)
   }
 
   function visit (node: Node) {
     const neighbors = graph.getNeighbors(node)
 
-    visited[node.key] = true
+    visited.set(node.key, true)
     callback(node)
 
     for (const neighbor of neighbors) {
-      if (!visited[neighbor.key]) {
+      if (!visited.get(neighbor.key)) {
         visit(neighbor)
       }
     }
