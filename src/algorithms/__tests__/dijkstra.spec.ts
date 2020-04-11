@@ -1,12 +1,12 @@
-import Graph from '../../data-structure/graph'
+import Graph, { Node } from '../../data-structure/graph'
 import { dijkstra } from '../dijkstra'
 
 describe('Dijkstra', () => {
-  let graph
-  let A
-  let B
-  let C
-  let D
+  let graph: Graph
+  let A: Node
+  let B: Node
+  let C: Node
+  let D: Node
 
   beforeEach(() => {
     /**
@@ -32,6 +32,6 @@ describe('Dijkstra', () => {
 
   it('finds shortest path between two nodes', () => {
     const { dist } = dijkstra(graph, A)
-    expect(dist.D).toBe(6)
+    expect(dist.get('D')).toBe(6)
   })
 })

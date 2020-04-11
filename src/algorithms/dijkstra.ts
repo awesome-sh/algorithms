@@ -1,17 +1,18 @@
+import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 
-export function dijkstra (graph: Graph, root: Node): {dist: KeyValue, path: KeyValue} {
-  const visited: KeyValue = {}
-  const dist: KeyValue = {}
-  const path: KeyValue = {}
+export function dijkstra (graph: Graph, root: Node): {dist: HashMap, path: HashMap} {
+  const visited = new HashMap()
+  const dist = new HashMap()
+  const path = new HashMap()
   const nodes = graph.getNodes()
 
   for (const node of nodes) {
-    visited[node.key] = false
-    dist[node.key] = Infinity
+    visited.set(node.key, false)
+    dist.set(node.key, Infinity)
   }
 
-  dist[root.key] = 0
+  dist.set(root.key, 0)
 
   let key = findLowestCostKey(dist, visited)
   let node = graph.getNode(key)
@@ -21,15 +22,15 @@ export function dijkstra (graph: Graph, root: Node): {dist: KeyValue, path: KeyV
 
     for (const neighbor of neighbors) {
       const weight = graph.getEdgeWeight(node, neighbor)
-      const newCost = dist[node.key] + weight
+      const newCost = dist.get(node.key) + weight
 
-      if (newCost < dist[neighbor.key]) {
-        dist[neighbor.key] = newCost
-        path[neighbor.key] = node.key
+      if (newCost < dist.get(neighbor.key)) {
+        dist.set(neighbor.key, newCost)
+        path.set(neighbor.key, node.key)
       }
     }
 
-    visited[node.key] = true
+    visited.set(node.key, true)
 
     key = findLowestCostKey(dist, visited)
     node = graph.getNode(key)
@@ -42,15 +43,15 @@ export function dijkstra (graph: Graph, root: Node): {dist: KeyValue, path: KeyV
 }
 
 // Priority Queue?
-export function findLowestCostKey (dist: KeyValue, visited: KeyValue) {
-  const keys = Object.keys(dist)
+export function findLowestCostKey (dist: HashMap, visited: HashMap) {
+  const keys = dist.keys()
   let lowestCost = Infinity
   let lowestCostKey = null
 
   for (const key of keys) {
-    const cost = dist[key]
+    const cost = dist.get(key)
 
-    if (cost < lowestCost && !visited[key]) {
+    if (cost < lowestCost && !visited.get(key)) {
       lowestCostKey = key
       lowestCost = cost
     }
