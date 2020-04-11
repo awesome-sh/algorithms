@@ -18,8 +18,8 @@ export function calculateDistanceToNodes(graph: Graph, start: Node) {
       return
     }
 
-    const edge = graph.getEdge(origin, node)
-    dist[node.key] = dist[origin.key] + edge.weight // weight should be 1 on unweighted graphs
+    const weight = graph.getEdgeWeight(origin, node)
+    dist[node.key] = dist[origin.key] + weight // weight should be 1 on unweighted graphs
     path[node.key] = origin.key
   }
 

@@ -25,16 +25,16 @@ class Graph {
     this._edges.get(startNode.key).append({ node: endNode, weight })
   }
 
-  getEdge (nodeA: Node, nodeB: Node): Edge {
+  getEdgeWeight (nodeA: Node, nodeB: Node): number {
     const edges = this._getEdges(nodeA)
 
     for (const edge of edges) {
       if (edge.node === nodeB) {
-        return edge
+        return edge.weight
       }
     }
 
-    return null
+    return 0
   }
 
   getNeighbors(node: Node): Node[] {
@@ -88,12 +88,6 @@ class Graph {
 export type Node = {
   key: string
   value: any
-}
-
-export type Edge = {
-  key: string
-  value: any
-  weight: number
 }
 
 export default Graph

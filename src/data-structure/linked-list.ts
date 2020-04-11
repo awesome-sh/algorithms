@@ -234,7 +234,7 @@ class Node {
   data: any
   next: any
   
-  constructor (data) {
+  constructor (data: any) {
     this.data = data
     this.next = null
   }

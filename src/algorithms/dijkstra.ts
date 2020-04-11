@@ -20,8 +20,8 @@ export function dijkstra (graph: Graph, root: Node): {dist: KeyValue, path: KeyV
     const neighbors = graph.getNeighbors(node)
 
     for (const neighbor of neighbors) {
-      const edge = graph.getEdge(node, neighbor)
-      const newCost = dist[node.key] + edge.weight
+      const weight = graph.getEdgeWeight(node, neighbor)
+      const newCost = dist[node.key] + weight
 
       if (newCost < dist[neighbor.key]) {
         dist[neighbor.key] = newCost
