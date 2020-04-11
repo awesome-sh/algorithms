@@ -73,8 +73,8 @@ describe('HashMap', () => {
     dict.set('key1', true)
 
     expect(dict.toString()).toBe([
-      '[0] -> \n',
-      '[1] -> ["key1",true]\n'
+      '[0]: \n',
+      '[1]: ["key1",true]\n'
     ].join(''))
   })
 })

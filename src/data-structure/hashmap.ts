@@ -86,7 +86,7 @@ class HashMap<KeyT, ValueT> {
     let str = ''
 
     for (let i = 0; i < this._bucket.length(); i++) {
-      str += `[${i}] -> ${this._bucket.get(i).toString()}\n`
+      str += `[${i}]: ${this._bucket.get(i).toString()}\n`
     }
 
     return str
