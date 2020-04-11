@@ -1,17 +1,18 @@
+import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import Queue from '../data-structure/queue'
 
 // Non-recursive version
 export function breadthFirstSearch (graph: Graph, root: Node, callback: Function): void {
-  const visited = {}
+  const visited = new HashMap()
   const nodes = graph.getNodes()
   const queue = new Queue()
 
   for (const node of nodes) {
-    visited[node.key] = false
+    visited.set(node.key, false)
   }
 
-  visited[root.key] = true
+  visited.set(root.key, true)
   callback(root, null)
   queue.add(root)
 
@@ -20,8 +21,8 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
     const neighbors = graph.getNeighbors(node)
 
     for (const neighbor of neighbors) {
-      if (!visited[neighbor.key]) {
-        visited[neighbor.key] = true
+      if (!visited.get(neighbor.key)) {
+        visited.set(neighbor.key, true)
         callback(neighbor, node)
         queue.add(neighbor)
       }
@@ -31,15 +32,15 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 
 // Recursive version
 export function breadthFirstSearchRecursive(graph: Graph, root: Node, callback: Function) {
-  const visited = {}
+  const visited = new HashMap()
   const nodes = graph.getNodes()
   const queue = new Queue()
 
   for (const node of nodes) {
-    visited[node.key] = false
+    visited.set(node.key, false)
   }
 
-  visited[root.key] = true
+  visited.set(root.key, true)
   callback(root)
   queue.add(root)
 
@@ -50,8 +51,8 @@ export function breadthFirstSearchRecursive(graph: Graph, root: Node, callback: 
     const neighbors = graph.getNeighbors(node)
 
     for (const neighbor of neighbors) {
-      if (!visited[neighbor.key]) {
-        visited[neighbor.key] = true
+      if (!visited.get(neighbor.key)) {
+        visited.set(neighbor.key, true)
         callback(neighbor)
         queue.add(neighbor)
       }
