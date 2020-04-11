@@ -1,17 +1,17 @@
 import LinkedList from './linked-list'
 
-class Stack {
+class Stack<T> {
   private _data: any
 
   constructor () {
-    this._data = new LinkedList()
+    this._data = new LinkedList<T>()
   }
 
-  pop (): any {
+  pop (): T {
     return this._data.removeFirst()
   }
 
-  push (item: any): LinkedList {
+  push (item: T): LinkedList<T> {
     return this._data.addFirst(item)
   }
 
