@@ -35,6 +35,13 @@ describe('LinkedList', () => {
       expect(list.values()).toEqual(['a', 'b', 'c'])
     })
 
+    it('adds element by index in the head', () => {
+      const list = new LinkedList(['b', 'c'])
+
+      expect(list.addAt(0, 'a')).toBe(list)
+      expect(list.values()).toEqual(['a', 'b', 'c'])
+    })
+
     it('adds element at the beginning using prepend', () => {
       const list = new LinkedList(['b', 'c'])
 
@@ -51,7 +58,7 @@ describe('LinkedList', () => {
   })
 
   describe('removal', () => {
-    let list
+    let list: LinkedList
 
     beforeEach(() => {
       list = new LinkedList(['a', 'b', 'c'])
@@ -61,6 +68,12 @@ describe('LinkedList', () => {
       expect(list.remove('b')).toBe(true)
       expect(list.remove('d')).toBe(false)
       expect(list.values()).toEqual(['a', 'c'])
+    })
+
+    it('removes last element by value', () => {
+      expect(list.remove('c')).toBe(true)
+      expect(list.remove('d')).toBe(false)
+      expect(list.values()).toEqual(['a', 'b'])
     })
 
     it('removes element by index', () => {
@@ -86,6 +99,14 @@ describe('LinkedList', () => {
       expect(list.toString()).toBe('c, b, a')
       expect(list.getHead()).toBe('c')
       expect(list.getTail()).toBe('a')
+    })
+
+    it('reverses empty list', () => {
+      const list = new LinkedList()
+      list.reverse()
+      expect(list.toString()).toBe('')
+      expect(list.getHead()).toBe(null)
+      expect(list.getTail()).toBe(null)
     })
   })
 })

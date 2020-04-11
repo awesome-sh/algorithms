@@ -1,9 +1,8 @@
 import Graph, { Node } from '../data-structure/graph'
 import Stack from '../data-structure/stack'
-import { noop } from '../utils'
 
 // Non-recursive version
-export function depthFirstSearch (graph: Graph, root: Node, callback: Function = noop): void {
+export function depthFirstSearch (graph: Graph, root: Node, callback: Function): void {
   const visited = {}
   const nodes = graph.getNodes()
   const stack = new Stack()
@@ -32,7 +31,7 @@ export function depthFirstSearch (graph: Graph, root: Node, callback: Function =
 }
 
 // Recursive version
-export function depthFirstSearchRecursive (graph: Graph, root: Node, callback: Function = noop): void {
+export function depthFirstSearchRecursive (graph: Graph, root: Node, callback: Function): void {
   const visited = {}
   const nodes = graph.getNodes()
 
@@ -40,7 +39,7 @@ export function depthFirstSearchRecursive (graph: Graph, root: Node, callback: F
     visited[node.key] = false
   }
 
-  function visit (node) {
+  function visit (node: Node) {
     const neighbors = graph.getNeighbors(node)
 
     visited[node.key] = true

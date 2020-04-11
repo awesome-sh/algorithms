@@ -14,11 +14,19 @@ class LinkedList implements Iterator<Node> {
   }
 
   getHead (): any {
-    return this._head.data
+    if (this._head) {
+      return this._head.data
+    }
+
+    return null
   }
 
   getTail (): any {
-    return this._tail.data
+    if (this._tail) {
+      return this._tail.data
+    }
+    
+    return null
   }
 
   size (): number {
@@ -117,6 +125,7 @@ class LinkedList implements Iterator<Node> {
           this._head = this._head.next
         } else if (current === this._tail) {
           this._tail = prev
+          prev.next = null
         } else {
           prev.next = current.next
         }

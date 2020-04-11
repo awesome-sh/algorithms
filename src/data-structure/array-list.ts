@@ -37,16 +37,6 @@ class ArrayList {
     return this._bucket[index]
   }
 
-  indexOf (item: any): number {
-    for (let i = 0; i < this._bucket.length; i++) {
-      if (this._bucket[i] === item) {
-        return i
-      }
-    }
-
-    return -1
-  }
-
   remove (item: any): boolean {
     for (var i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
