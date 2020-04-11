@@ -41,6 +41,6 @@ describe('Queue', () => {
     queue.add('b')
     queue.add('c')
 
-    expect(queue.toString()).toBe('a, b, c')
+    expect(queue.toString()).toBe('a -> b -> c')
   })
 })

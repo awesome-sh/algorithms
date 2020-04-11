@@ -41,6 +41,6 @@ describe('Stack', () => {
     stack.push('b')
     stack.push('c')
 
-    expect(stack.toString()).toBe('c, b, a')
+    expect(stack.toString()).toBe('c -> b -> a')
   })
 })

@@ -13,6 +13,18 @@ describe('LinkedList', () => {
     expect(list.values()).toEqual(['a', 'b', 'c'])
   })
 
+  describe('toString', () => {
+    it('stringifies scalar values', () => {
+      const list = new LinkedList(['a', 'b', 'c'])
+      expect(list.toString()).toBe('a -> b -> c')
+    })
+
+    it('stringifies complex values', () => {
+      const list = new LinkedList([{a:1}, ['b'], {c:2}])
+      expect(list.toString()).toBe('{"a":1} -> ["b"] -> {"c":2}')
+    })
+  })
+
   describe('addition', () => {
     it('adds element at the end', () => {
       const list = new LinkedList(['a', 'b'])
@@ -96,7 +108,7 @@ describe('LinkedList', () => {
     it('reverses the list', () => {
       const list = new LinkedList(['a', 'b', 'c'])
       list.reverse()
-      expect(list.toString()).toBe('c, b, a')
+      expect(list.toString()).toBe('c -> b -> a')
       expect(list.getHead()).toBe('c')
       expect(list.getTail()).toBe('a')
     })

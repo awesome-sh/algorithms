@@ -180,10 +180,6 @@ class LinkedList implements Iterator<Node> {
     return list
   }
 
-  toString (): string {
-    return this.values().join(', ')
-  }
-
   reverse (): void {
     const reverse = (node) => {
       if (!node) {
@@ -218,6 +214,10 @@ class LinkedList implements Iterator<Node> {
         return result
       }
     }
+  }
+
+  toString (): string {
+    return this.values().join(' -> ')
   }
 
   private node: Node
