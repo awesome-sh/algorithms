@@ -1,6 +1,15 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "project": ".",
     "target": "es6",
-    "esModuleInterop": true
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
+  "include": [
+    "src/**/*"
+  ]
 }

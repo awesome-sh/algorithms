@@ -6,7 +6,7 @@ import Queue from '../data-structure/queue'
 export function breadthFirstSearch (graph: Graph, root: Node, callback: Function): void {
   const visited = new HashMap()
   const nodes = graph.getNodes()
-  const queue = new Queue()
+  const queue = new Queue<Node>()
 
   for (const node of nodes) {
     visited.set(node.key, false)
@@ -34,7 +34,7 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 export function breadthFirstSearchRecursive(graph: Graph, root: Node, callback: Function) {
   const visited = new HashMap()
   const nodes = graph.getNodes()
-  const queue = new Queue()
+  const queue = new Queue<Node>()
 
   for (const node of nodes) {
     visited.set(node.key, false)
@@ -44,7 +44,7 @@ export function breadthFirstSearchRecursive(graph: Graph, root: Node, callback: 
   callback(root)
   queue.add(root)
 
-  function visit(queue: Queue) {
+  function visit(queue: Queue<Node>) {
     if (queue.isEmpty()) return;
 
     const node: Node = queue.remove()

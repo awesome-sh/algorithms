@@ -6,7 +6,7 @@ import Stack from '../data-structure/stack'
 export function depthFirstSearch (graph: Graph, root: Node, callback: Function): void {
   const visited = new HashMap()
   const nodes = graph.getNodes()
-  const stack = new Stack()
+  const stack = new Stack<Node>()
 
   for (const node of nodes) {
     visited.set(node.key, false)
