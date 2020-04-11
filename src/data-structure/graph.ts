@@ -3,12 +3,12 @@ import LinkedList from './linked-list'
 import { calculateDistanceToNodes } from '../challenges/distance-to-nodes'
 
 class Graph {
-  _edges: HashMap
-  _nodes: HashMap
+  _edges: HashMap<string, LinkedList<Edge>>
+  _nodes: HashMap<string, Node>
 
   constructor () {
-    this._nodes = new HashMap()
-    this._edges = new HashMap()
+    this._edges = new HashMap<string, LinkedList<Edge>>()
+    this._nodes = new HashMap<string, Node>()
   }
 
   createNode (key: string, value?: any) {
@@ -80,9 +80,14 @@ class Graph {
     return result
   }
 
-  private _getEdges (node: Node): LinkedList {
+  private _getEdges (node: Node): LinkedList<Edge> {
     return this._edges.get(node.key)
   }
+}
+
+export type Edge = {
+  node: Node
+  weight: number
 }
 
 export type Node = {
