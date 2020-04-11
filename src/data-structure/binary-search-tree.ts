@@ -8,14 +8,14 @@ import Queue from './queue'
  * - Como que balanceia?
  */
 
-class BinarySearchTree {
-  private _root: Node
+class BinarySearchTree<T> {
+  private _root: Node<T>
 
   constructor () {
     this._root = null
   }
 
-  insert (data: any): void {
+  insert (data: T): void {
     const node = new Node(data)
 
     if (!this._root) {
@@ -26,7 +26,7 @@ class BinarySearchTree {
     this.insertNode(this._root, node)
   }
 
-  insertNode (root: Node, node: Node): void {
+  insertNode (root: Node<T>, node: Node<T>): void {
     if (root.data < node.data) {
       if (!root.left) {
         root.left = node
@@ -43,11 +43,11 @@ class BinarySearchTree {
     }
   }
 
-  remove (data: any): Node {
+  remove (data: any): Node<T> {
     return this.removeNode(this._root, data)
   }
 
-  removeNode (root: Node, data: any): Node {
+  removeNode (root: Node<T>, data: any): Node<T> {
     if (!this._root) {
       return null
     } else if (root.data < data) {
@@ -78,7 +78,7 @@ class BinarySearchTree {
     return root
   }
 
-  findMin (root: Node): Node {
+  findMin (root: Node<T>): Node<T> {
     while (root.left) {
       root = root.left
     }
@@ -86,7 +86,7 @@ class BinarySearchTree {
     return root
   }
 
-  findMax (root: Node): Node {
+  findMax (root: Node<T>): Node<T> {
     while (root.right) {
       root = root.right
     }
@@ -94,7 +94,7 @@ class BinarySearchTree {
     return root
   }
 
-  getNodeHeight (node: Node): number {
+  getNodeHeight (node: Node<T>): number {
     if (!node) {
       return -1
     }
@@ -107,7 +107,7 @@ class BinarySearchTree {
   }
 
   breadthFirstSearch (key: string): boolean {
-    const queue = new Queue()
+    const queue = new Queue<Node<T>>()
 
     if (!this._root) {
       return
@@ -144,7 +144,7 @@ class BinarySearchTree {
     }
   }
 
-  dfsPreorder (node: Node, key: string) {
+  dfsPreorder (node: Node<T>, key: string) {
     if (!node) {
       return false
     }
@@ -160,7 +160,7 @@ class BinarySearchTree {
     return this.dfsPreorder(node.right, key)
   }
 
-  dfsInorder (node: Node, key: string) {
+  dfsInorder (node: Node<T>, key: string) {
     if (!node) {
       return false
     }
@@ -176,7 +176,7 @@ class BinarySearchTree {
     return this.dfsInorder(node.right, key)
   }
 
-  dfsPostorder (node: Node, key: string) {
+  dfsPostorder (node: Node<T>, key: string) {
     if (!node) {
       return false
     }
@@ -195,13 +195,13 @@ class BinarySearchTree {
   }
 }
 
-class Node {
+class Node<T> {
   key: string
   data: any
-  left: Node
-  right: Node
+  left: Node<T>
+  right: Node<T>
 
-  constructor (data: any) {
+  constructor (data: T) {
     this.data = data
     this.left = null
     this.right = null
