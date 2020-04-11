@@ -2,7 +2,7 @@ import hash from 'string-hash'
 import ArrayList from './array-list'
 import LinkedList from './linked-list'
 
-class HashMap {
+class HashMap<KeyT, ValueT> {
   _bucket: ArrayList
   _count: number
 
@@ -11,7 +11,7 @@ class HashMap {
     this._count = 0
   }
 
-  set (key: string, value: any): void {
+  set (key: KeyT, value: ValueT): void {
     const [item, list] = this._getItemWithList(key)
 
     if (item) {
@@ -22,7 +22,7 @@ class HashMap {
     }
   }
 
-  get (key: string): any {
+  get (key: KeyT): ValueT {
     if (!key) {
       return
     }
@@ -34,12 +34,12 @@ class HashMap {
     }
   }
 
-  has (key: string): boolean {
+  has (key: KeyT): boolean {
     const item = this._getItem(key)
     return !!item
   }
 
-  remove (key: string): boolean {
+  remove (key: KeyT): boolean {
     const [item, list] = this._getItemWithList(key)
 
     if (!item) {
@@ -54,7 +54,7 @@ class HashMap {
     return false
   }
 
-  keys (): string[] {
+  keys (): KeyT[] {
     const keys = []
 
     for (const list of this._bucket) {
@@ -66,7 +66,7 @@ class HashMap {
     return keys
   }
 
-  values (): any[] {
+  values (): ValueT[] {
     const values = []
 
     for (const list of this._bucket) {
@@ -103,14 +103,14 @@ class HashMap {
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  private _getItem (key: string): any {
+  private _getItem (key: KeyT): any {
     const [item] = this._getItemWithList(key)
 
     return item
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  private _getItemWithList (key: string): [any, LinkedList<any>] {
+  private _getItemWithList (key: KeyT): [any, LinkedList<any>] {
     const list = this._getList(key)
 
     for (const item of list) {
@@ -123,13 +123,13 @@ class HashMap {
   }
 
   // Runtime: O(1)
-  private _getList (key: string): LinkedList<any> {
+  private _getList (key: KeyT): LinkedList<any> {
     const hash = this._hash(key) // O(1)
     return this._bucket.get(hash) // O(1)
   }
 
   // Runtime: O(1)
-  private _hash (key: string): number {
+  private _hash (key: KeyT): number {
     return hash(key) % this._bucket.length()
   }
 }
