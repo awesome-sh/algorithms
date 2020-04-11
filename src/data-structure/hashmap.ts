@@ -3,7 +3,7 @@ import ArrayList from './array-list'
 import LinkedList from './linked-list'
 
 class HashMap<KeyT, ValueT> {
-  _bucket: ArrayList
+  _bucket: ArrayList<LinkedList<any>>
   _count: number
 
   constructor (size: number = 100) {
@@ -92,8 +92,8 @@ class HashMap<KeyT, ValueT> {
     return str
   }
 
-  private _createBucket (size: number): ArrayList {
-    const bucket = new ArrayList(size)
+  private _createBucket (size: number): ArrayList<LinkedList<any>> {
+    const bucket = new ArrayList<LinkedList<any>> (size)
 
     for (let i = 0; i < size; i++) {
       bucket.append(new LinkedList())

@@ -1,4 +1,4 @@
-class ArrayList {
+class ArrayList<T> {
   _bucket: any[]
   _size: number
 
@@ -7,7 +7,7 @@ class ArrayList {
     this._bucket = []
   }
 
-  add (index: number, item: any): boolean {
+  add (index: number, item: T): boolean {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
@@ -25,7 +25,7 @@ class ArrayList {
     return true
   }
 
-  append (item: any): void {
+  append (item: T): void {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
@@ -33,11 +33,11 @@ class ArrayList {
     this._bucket[this._bucket.length] = item
   }
 
-  get (index: number): any {
+  get (index: number): T {
     return this._bucket[index]
   }
 
-  remove (item: any): boolean {
+  remove (item: T): boolean {
     for (var i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
         break
@@ -56,7 +56,7 @@ class ArrayList {
     return false
   }
 
-  values (): any[] {
+  values (): T[] {
     return this._bucket
   }
 
