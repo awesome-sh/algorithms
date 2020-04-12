@@ -46,12 +46,9 @@ class HashMap<KeyT, ValueT> {
       return false
     }
 
-    if (list.remove(item)) {
-      this._count--
-      return true
-    }
-
-    return false
+    list.remove(item)
+    this._count--
+    return true
   }
 
   keys (): KeyT[] {
