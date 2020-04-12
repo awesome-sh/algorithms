@@ -1,4 +1,4 @@
-import { clone, fill, leftRotation, matrix, push, pop, ranking, reverse, swap, truncate, numberOfDigits } from '../utils'
+import { clone, fill, leftRotation, mark, matrix, push, pop, ranking, reverse, swap, truncate, unmark, numberOfDigits } from '../utils'
 
 describe('Numbers', () => {
   it('returns the number of digits in an integer', () => {
@@ -22,10 +22,20 @@ describe('Numbers', () => {
     expect(pop(1234)).toEqual([123, 4])
   })
 
-  it('creates a NxN matrix', () => {
-    const grid = matrix(4, 4)
-    expect(grid.length).toBe(4)
-    expect(grid[0].length).toBe(4)
+  it('marks a positive number', () => {
+    expect(mark(4)).toBe(-4)
+  })
+
+  it('marks a negative number', () => {
+    expect(mark(-4)).toBe(-4)
+  })
+
+  it('unmarks a positive number', () => {
+    expect(unmark(4)).toBe(4)
+  })
+
+  it('unmarks a negative number', () => {
+    expect(unmark(-4)).toBe(4)
   })
 })
 
@@ -58,5 +68,11 @@ describe('Arrays', () => {
 
   it('rotates array "n" times', () => {
     expect(leftRotation([1, 2, 3, 4, 5], 3)).toEqual([4, 5, 1, 2, 3])
+  })
+
+  it('creates a NxN matrix', () => {
+    const grid = matrix(4, 4)
+    expect(grid.length).toBe(4)
+    expect(grid[0].length).toBe(4)
   })
 })

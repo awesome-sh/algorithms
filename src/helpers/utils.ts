@@ -27,6 +27,20 @@ export function numberOfDigits (number: number): number {
   return counter
 }
 
+export function mark (number: number): number {
+  if (number < 0) {
+    return number
+  }
+  return number * -1
+}
+
+export function unmark (number: number): number {
+  if (number < 0) {
+    return number * -1
+  }
+  return number
+}
+
 /**
  * Arrays
  */
