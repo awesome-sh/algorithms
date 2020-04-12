@@ -99,14 +99,14 @@ class HashMap<KeyT, ValueT> {
     return bucket
   }
 
-  // Runtime: O(1) assuming good hash function and short list
+  // Time complexity: O(1) assuming good hash function and short list
   private _getItem (key: KeyT): Item<KeyT, ValueT> {
     const [item] = this._getItemWithList(key)
 
     return item
   }
 
-  // Runtime: O(1) assuming good hash function and short list
+  // Time complexity: O(1) assuming good hash function and short list
   private _getItemWithList (key: KeyT): [Item<KeyT, ValueT>, CollisionList<KeyT, ValueT>] {
     const list = this._getList(key)
 
@@ -119,13 +119,13 @@ class HashMap<KeyT, ValueT> {
     return [undefined, list]
   }
 
-  // Runtime: O(1)
+  // Time complexity: O(1)
   private _getList (key: KeyT): CollisionList<KeyT, ValueT> {
     const hash = this._hash(key) // O(1)
     return this._bucket.get(hash) // O(1)
   }
 
-  // Runtime: O(1)
+  // Time complexity: O(1)
   private _hash (key: KeyT): number {
     return hash(key) % this._bucket.length()
   }
