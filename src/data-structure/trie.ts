@@ -5,6 +5,8 @@ class Trie {
     this._root = new Node()
   }
 
+  // Time complexity: O(m) where m is the key length
+  // Space complexity: O(m) as no nodes were found during the string insertion
   insert (key: string): void {
     let node = this._root
 
@@ -21,12 +23,16 @@ class Trie {
     node.setEndOfWord()
   }
 
+  // Time complexity: same as "searchPrefix"
+  // Space complexity: same as "searchPrefix"
   search (key: string): boolean {
     const node = this.searchPrefix(key)
 
     return node !== null && node.isEndOfWord()
   }
 
+  // Time complexity: O(m) where m is the key length
+  // Space complexity: O(1) as no auxiliary space was needed
   searchPrefix (key: string): Node {
     let node = this._root
 
