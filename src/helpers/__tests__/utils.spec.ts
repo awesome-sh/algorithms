@@ -1,4 +1,4 @@
-import { clone, fill, leftRotation, ranking, reverse, swap, numberOfDigits } from '../utils'
+import { clone, fill, leftRotation, matrix, push, pop, ranking, reverse, swap, truncate, numberOfDigits } from '../utils'
 
 describe('Numbers', () => {
   it('returns the number of digits in an integer', () => {
@@ -8,6 +8,24 @@ describe('Numbers', () => {
     expect(numberOfDigits(11)).toBe(2)
     expect(numberOfDigits(100)).toBe(3)
     expect(numberOfDigits(101)).toBe(3)
+  })
+
+  it('truncates a float number', () => {
+    expect(truncate(10.5)).toBe(10)
+  })
+
+  it('adds a digit to the end', () => {
+    expect(push(123, 4)).toBe(1234)
+  })
+
+  it('removes the digit in the end', () => {
+    expect(pop(1234)).toEqual([123, 4])
+  })
+
+  it('creates a NxN matrix', () => {
+    const grid = matrix(4, 4)
+    expect(grid.length).toBe(4)
+    expect(grid[0].length).toBe(4)
   })
 })
 
