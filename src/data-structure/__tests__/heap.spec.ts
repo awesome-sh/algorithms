@@ -28,16 +28,38 @@ describe('Heap', () => {
       expect(heap.peek()).toBe(1)
     })
 
-    it('always remove the minium element', () => {
+    it('always remove the minimum element', () => {
+      const heap = new MinHeap()
+
+      heap.add(4)
+      heap.add(1)
+      heap.add(2)
+      heap.add(3)
+
+      expect(heap.poll()).toBe(1)
+      expect(heap.poll()).toBe(2)
+      expect(heap.poll()).toBe(3)
+      expect(heap.poll()).toBe(4)
+    })
+
+    it('retrieves the last element of the heap', () => {
       const heap = new MinHeap()
 
       heap.add(3)
       heap.add(1)
       heap.add(2)
 
-      expect(heap.poll()).toBe(1)
-      expect(heap.poll()).toBe(2)
-      expect(heap.poll()).toBe(3)
+      expect(heap.last()).toBe(2)
+    })
+
+    it('stringifies the heap', () => {
+      const heap = new MinHeap()
+
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+
+      expect(heap.toString()).toBe('1,3,2')
     })
   })
 
@@ -74,10 +96,32 @@ describe('Heap', () => {
       heap.add(3)
       heap.add(1)
       heap.add(2)
+      heap.add(4)
 
+      expect(heap.poll()).toBe(4)
       expect(heap.poll()).toBe(3)
       expect(heap.poll()).toBe(2)
       expect(heap.poll()).toBe(1)
+    })
+
+    it('retrieves the last element of the heap', () => {
+      const heap = new MaxHeap()
+
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+
+      expect(heap.last()).toBe(2)
+    })
+
+    it('stringifies the heap', () => {
+      const heap = new MaxHeap()
+
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+
+      expect(heap.toString()).toBe('3,1,2')
     })
   })
 })
