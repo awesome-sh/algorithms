@@ -58,13 +58,13 @@ class Graph {
 
   toString (): string {
     const nodes = this.getNodes()
-    let str = ''
+    let result = []
 
     for (const node of nodes) {
-      str += `${node.key} -> ${this._getEdges(node).toString()}\n`
+      result.push(`${node.key}: ${this._getEdges(node).toString()}`)
     }
 
-    return str
+    return result.join('\n')
   }
 
   findShortestPath (start: Node, end: Node, algorithm: Function = calculateDistanceToNodes): string[] {
