@@ -1,4 +1,4 @@
-class LinkedList<T> implements Iterator<T, { done: boolean, value: Node<T>}> {
+class LinkedList<T> {
   private _head: Node<T>
   private _tail: Node<T>
   private _length: number
@@ -79,11 +79,11 @@ class LinkedList<T> implements Iterator<T, { done: boolean, value: Node<T>}> {
     return this.append(data)
   }
 
-  addAt (index: number, data: T): LinkedList<T> {
+  addAt (index: number, data: T): boolean {
     const node = new Node(data)
 
     if (index < 0 || index > this._length) {
-      return
+      return false
     }
 
     let prev = null
@@ -104,7 +104,7 @@ class LinkedList<T> implements Iterator<T, { done: boolean, value: Node<T>}> {
 
     this._length++
 
-    return this
+    return true
   }
 
   removeFirst (): T {
@@ -143,11 +143,11 @@ class LinkedList<T> implements Iterator<T, { done: boolean, value: Node<T>}> {
 
   removeAt (index: number): T {
     if (!this._head) {
-      return
+      return null
     }
 
     if (index < 0 || index > this._length - 1) {
-      return
+      return null
     }
 
     let prev = null
@@ -218,15 +218,6 @@ class LinkedList<T> implements Iterator<T, { done: boolean, value: Node<T>}> {
 
   toString (): string {
     return this.values().join(' -> ')
-  }
-
-  private node: Node<T>
-
-  public next(): IteratorResult<T, { done: boolean, value: Node<T>}> {
-    return {
-      done: false,
-      value: this.node.data
-    }
   }
 }
 

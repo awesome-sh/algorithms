@@ -43,15 +43,29 @@ describe('LinkedList', () => {
     it('adds element by index', () => {
       const list = new LinkedList(['a', 'c'])
 
-      expect(list.addAt(1, 'b')).toBe(list)
+      expect(list.addAt(1, 'b')).toBe(true)
       expect(list.values()).toEqual(['a', 'b', 'c'])
     })
 
     it('adds element by index in the head', () => {
       const list = new LinkedList(['b', 'c'])
 
-      expect(list.addAt(0, 'a')).toBe(list)
+      expect(list.addAt(0, 'a')).toBe(true)
       expect(list.values()).toEqual(['a', 'b', 'c'])
+    })
+
+    it('does not add element if index is negative', () => {
+      const list = new LinkedList(['b', 'c'])
+
+      expect(list.addAt(-1, 'a')).toBe(false)
+      expect(list.values()).toEqual(['b', 'c'])
+    })
+
+    it('does not add element if index is out of bound', () => {
+      const list = new LinkedList(['b', 'c'])
+
+      expect(list.addAt(5, 'a')).toBe(false)
+      expect(list.values()).toEqual(['b', 'c'])
     })
 
     it('adds element at the beginning using prepend', () => {
@@ -91,6 +105,22 @@ describe('LinkedList', () => {
     it('removes element by index', () => {
       expect(list.removeAt(1)).toBe('b')
       expect(list.values()).toEqual(['a', 'c'])
+    })
+
+    it('does not remove element on empty list', () => {
+      const list = new LinkedList()
+      expect(list.removeAt(1)).toBe(null)
+      expect(list.values()).toEqual([])
+    })
+
+    it('does not remove element on negative index', () => {
+      expect(list.removeAt(-1)).toBe(null)
+      expect(list.values()).toEqual(['a', 'b', 'c'])
+    })
+
+    it('does not remove element out of bound', () => {
+      expect(list.removeAt(5)).toBe(null)
+      expect(list.values()).toEqual(['a', 'b', 'c'])
     })
 
     it('removes the first element', () => {
