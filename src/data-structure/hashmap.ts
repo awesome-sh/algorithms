@@ -90,7 +90,7 @@ class HashMap<KeyT, ValueT> {
   }
 
   private _createBucket (size: number): Bucket<KeyT, ValueT> {
-    const bucket = new ArrayList<Collisions<KeyT, ValueT>> (size)
+    const bucket = new ArrayList<CollisionList<KeyT, ValueT>> (size)
 
     for (let i = 0; i < size; i++) {
       bucket.append(new LinkedList())
@@ -107,7 +107,7 @@ class HashMap<KeyT, ValueT> {
   }
 
   // Runtime: O(1) assuming good hash function and short list
-  private _getItemWithList (key: KeyT): [Item<KeyT, ValueT>, Collisions<KeyT, ValueT>] {
+  private _getItemWithList (key: KeyT): [Item<KeyT, ValueT>, CollisionList<KeyT, ValueT>] {
     const list = this._getList(key)
 
     for (const item of list) {
@@ -120,7 +120,7 @@ class HashMap<KeyT, ValueT> {
   }
 
   // Runtime: O(1)
-  private _getList (key: KeyT): Collisions<KeyT, ValueT> {
+  private _getList (key: KeyT): CollisionList<KeyT, ValueT> {
     const hash = this._hash(key) // O(1)
     return this._bucket.get(hash) // O(1)
   }
@@ -131,9 +131,9 @@ class HashMap<KeyT, ValueT> {
   }
 }
 
-type Bucket<KeyT, ValueT> = ArrayList<Collisions<KeyT, ValueT>>
+type Bucket<KeyT, ValueT> = ArrayList<CollisionList<KeyT, ValueT>>
 
-type Collisions<KeyT, ValueT> = LinkedList<Item<KeyT, ValueT>>
+type CollisionList<KeyT, ValueT> = LinkedList<Item<KeyT, ValueT>>
 
 type Item<KeyT, ValueT> = [KeyT, ValueT]
 
