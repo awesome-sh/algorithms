@@ -1,6 +1,6 @@
 const memo = []
 
-export function fibonacci (n) {
+export function fibonacci (n: number): number {
   if (n <= 1) {
     return 1
   }

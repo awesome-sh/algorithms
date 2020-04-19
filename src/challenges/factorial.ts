@@ -1,4 +1,4 @@
-export function factorial (n) {
+export function factorial (n: number): number {
   if (n <= 1) {
     return 1
   }

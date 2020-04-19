@@ -1,4 +1,4 @@
-export function isPalindrome (str) {
+export function isPalindrome (str: string): boolean {
   if (str.length <= 1) {
     return true
   }

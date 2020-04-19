@@ -1,15 +1,9 @@
 class Elevator {
-  current: number
-  status: string
-  requests: any[]
+  current: number = 0
+  status: string = 'stand'
+  requests: any[] = new Array(10)
 
-  constructor () {
-    this.current = 0
-    this.status = 'stand'
-    this.requests = new Array(10)
-  }
-
-  request (floor) {
+  request (floor: number) {
     this.requests[floor] = true
 
     if (this.status === 'stand') {
@@ -21,7 +15,7 @@ class Elevator {
     }
   }
 
-  move (floor) {
+  move (floor: number) {
     this.status = 'moving'
 
     if (floor < this.current) {
@@ -33,7 +27,7 @@ class Elevator {
     }
   }
 
-  up (floor) {
+  up (floor: number) {
     while (floor < this.current) {
       floor++
     }
@@ -41,7 +35,7 @@ class Elevator {
     this.open(floor)
   }
 
-  down (floor) {
+  down (floor: number) {
     while (floor > this.current) {
       floor--
     }
@@ -49,7 +43,7 @@ class Elevator {
     this.open(floor)
   }
 
-  open (floor) {
+  open (floor: number) {
     this.status = 'stand'
     this.current = floor
     this.requests[floor] = false
