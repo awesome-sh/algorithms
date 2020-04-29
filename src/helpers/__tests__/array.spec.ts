@@ -1,4 +1,4 @@
-import { clone, fill, leftRotation, matrix, ranking, reverse, swap } from '../array'
+import { clone, fill, leftRotation, permute, matrix, ranking, reverse, swap } from '../array'
 
 describe('Array', () => {
   it('clones an array', () => {
@@ -35,5 +35,16 @@ describe('Array', () => {
     const grid = matrix(4, 4)
     expect(grid.length).toBe(4)
     expect(grid[0].length).toBe(4)
+  })
+
+  it('creates a permutation of an array', () => {
+    const result = permute(['a', 'b', 'c'])
+    expect(result.length).toBe(6)
+    expect(result[0]).toEqual(['a', 'b', 'c'])
+    expect(result[1]).toEqual(['a', 'c', 'b'])
+    expect(result[2]).toEqual(['b', 'a', 'c'])
+    expect(result[3]).toEqual(['b', 'c', 'a'])
+    expect(result[4]).toEqual(['c', 'b', 'a'])
+    expect(result[5]).toEqual(['c', 'a', 'b'])
   })
 })
