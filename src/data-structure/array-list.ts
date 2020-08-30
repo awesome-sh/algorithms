@@ -2,12 +2,12 @@ class ArrayList<T> {
   _bucket: T[]
   _size: number
 
-  constructor (size?: number) {
+  constructor(size?: number) {
     this._size = size || 10
     this._bucket = []
   }
 
-  add (index: number, item: T): boolean {
+  add(index: number, item: T): boolean {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
@@ -25,7 +25,7 @@ class ArrayList<T> {
     return true
   }
 
-  append (item: T): void {
+  append(item: T): void {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
@@ -33,12 +33,12 @@ class ArrayList<T> {
     this._bucket[this._bucket.length] = item
   }
 
-  get (index: number): T {
+  get(index: number): T {
     return this._bucket[index]
   }
 
-  remove (item: T): boolean {
-    let i: number;
+  remove(item: T): boolean {
+    let i: number
 
     for (i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
@@ -58,19 +58,19 @@ class ArrayList<T> {
     return false
   }
 
-  values (): T[] {
+  values(): T[] {
     return this._bucket
   }
 
-  length (): number {
+  length(): number {
     return this._bucket.length
   }
 
-  size (): number {
+  size(): number {
     return this._size
   }
 
-  private _expandBucket (): void {
+  private _expandBucket(): void {
     const newSize = this._size * 2
     const newBucket = new Array(newSize)
 
@@ -82,11 +82,11 @@ class ArrayList<T> {
     this._bucket = newBucket
   }
 
-  [Symbol.iterator] (): {index: number, next: () => any} {
+  [Symbol.iterator](): { index: number; next: () => any } {
     const self = this
     return {
       index: 0,
-      next () {
+      next() {
         let result = { value: undefined, done: true }
 
         if (this.index < self.length()) {
@@ -95,7 +95,7 @@ class ArrayList<T> {
         }
 
         return result
-      }
+      },
     }
   }
 }
