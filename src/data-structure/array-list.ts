@@ -38,14 +38,16 @@ class ArrayList<T> {
   }
 
   remove (item: T): boolean {
-    for (var i = 0; i < this._bucket.length; i++) {
+    let i: number;
+
+    for (i = 0; i < this._bucket.length; i++) {
       if (this._bucket[i] === item) {
         break
       }
     }
 
     if (i < this._bucket.length) {
-      for (var j = i; j < this._bucket.length - 1; j++) {
+      for (let j = i; j < this._bucket.length - 1; j++) {
         this._bucket[j] = this._bucket[j + 1]
       }
 
@@ -80,15 +82,15 @@ class ArrayList<T> {
     this._bucket = newBucket
   }
 
-  [Symbol.iterator] () {
-    const list = this
+  [Symbol.iterator] (): {index: number, next: () => any} {
+    const self = this
     return {
       index: 0,
       next () {
         let result = { value: undefined, done: true }
 
-        if (this.index < list.length()) {
-          result = { value: list.get(this.index), done: false }
+        if (this.index < self.length()) {
+          result = { value: self.get(this.index), done: false }
           this.index++
         }
 

@@ -115,7 +115,7 @@ class LinkedList<T> {
     return this.removeAt(this._length - 1)
   }
 
-  remove (data: T) {
+  remove (data: T): boolean {
     let prev = null
     let current = this._head
 
@@ -200,7 +200,7 @@ class LinkedList<T> {
     this._head = reverse(this._head)
   }
 
-  [Symbol.iterator] () {
+  [Symbol.iterator] (): {node: Node<any>, next: () => any} {
     return {
       node: this._head,
       next () {

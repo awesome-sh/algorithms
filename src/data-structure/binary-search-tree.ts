@@ -102,7 +102,7 @@ class BinarySearchTree<T> {
     return 1 + Math.max(this.getNodeHeight(node.left), this.getNodeHeight(node.right))
   }
 
-  height () {
+  height (): number {
     return this.getNodeHeight(this._root)
   }
 
@@ -144,7 +144,7 @@ class BinarySearchTree<T> {
     }
   }
 
-  dfsPreorder (node: Node<T>, key: string) {
+  dfsPreorder (node: Node<T>, key: string): boolean {
     if (!node) {
       return false
     }
@@ -160,7 +160,7 @@ class BinarySearchTree<T> {
     return this.dfsPreorder(node.right, key)
   }
 
-  dfsInorder (node: Node<T>, key: string) {
+  dfsInorder (node: Node<T>, key: string): boolean {
     if (!node) {
       return false
     }
@@ -176,7 +176,7 @@ class BinarySearchTree<T> {
     return this.dfsInorder(node.right, key)
   }
 
-  dfsPostorder (node: Node<T>, key: string) {
+  dfsPostorder (node: Node<T>, key: string): boolean {
     if (!node) {
       return false
     }

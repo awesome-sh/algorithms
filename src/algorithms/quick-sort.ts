@@ -1,6 +1,6 @@
 import { swap } from '../helpers/array'
 
-export function quickSort (array: any[], low: number = 0, high: number = array.length - 1): void {
+export function quickSort (array: any[], low = 0, high: number = array.length - 1): void {
   if (low < high) {
     const index = partition(array, low, high)
     quickSort(array, low, index - 1)

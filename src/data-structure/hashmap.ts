@@ -6,7 +6,7 @@ class HashMap<KeyT, ValueT> {
   _bucket: Bucket<KeyT, ValueT>
   _count: number
 
-  constructor (size: number = 100) {
+  constructor (size = 100) {
     this._bucket = this._createBucket(size)
     this._count = 0
   }

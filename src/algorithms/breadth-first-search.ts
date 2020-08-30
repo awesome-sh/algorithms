@@ -3,7 +3,11 @@ import Graph, { Node } from '../data-structure/graph'
 import Queue from '../data-structure/queue'
 
 // Non-recursive version
-export function breadthFirstSearch (graph: Graph, root: Node, callback: Function): void {
+export function breadthFirstSearch (
+  graph: Graph,
+  root: Node,
+  callback: (nodeA: Node, nodeB: Node) => void
+): void {
   const visited = new HashMap()
   const nodes = graph.getNodes()
   const queue = new Queue<Node>()
@@ -31,7 +35,11 @@ export function breadthFirstSearch (graph: Graph, root: Node, callback: Function
 }
 
 // Recursive version
-export function breadthFirstSearchRecursive(graph: Graph, root: Node, callback: Function) {
+export function breadthFirstSearchRecursive(
+  graph: Graph,
+  root: Node,
+  callback: (node: Node) => void
+): void {
   const visited = new HashMap()
   const nodes = graph.getNodes()
   const queue = new Queue<Node>()

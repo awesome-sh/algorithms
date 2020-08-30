@@ -1,11 +1,11 @@
 class Comparator {
-  private _compare: Function
+  private _compare: (a: any, b: any) => any
 
   constructor (compareFunction?: (a: any, b: any) => number) {
     this._compare = compareFunction || this.defaultCompareFunction
   }
 
-  defaultCompareFunction (a: any, b: any): number {
+  defaultCompareFunction (a: unknown, b: unknown): number {
     if (a === b) {
       return 0
     }
@@ -13,23 +13,23 @@ class Comparator {
     return a < b ? -1 : 1
   }
 
-  equal (a: any, b: any): boolean {
+  equal (a: unknown, b: unknown): boolean {
     return this._compare(a, b) === 0
   }
 
-  lessThan (a: any, b: any): boolean {
+  lessThan (a: unknown, b: unknown): boolean {
     return this._compare(a, b) < 0
   }
 
-  lessThanOrEqual (a: any, b: any): boolean {
+  lessThanOrEqual (a: unknown, b: unknown): boolean {
     return this.lessThan(a, b) || this.equal(a, b)
   }
 
-  greaterThan (a: any, b: any): boolean {
+  greaterThan (a: unknown, b: unknown): boolean {
     return this._compare(a, b) > 0
   }
 
-  greaterThanOrEqual (a: any, b: any): boolean {
+  greaterThanOrEqual (a: unknown, b: unknown): boolean {
     return this.greaterThan(a, b) || this.equal(a, b)
   }
 }

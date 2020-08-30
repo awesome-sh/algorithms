@@ -1,4 +1,4 @@
-export function fill (size: number, value: any): any[] {
+export function fill (size: number, value: unknown): any[] {
   return new Array(size).fill(value)
 }
 
@@ -18,7 +18,7 @@ export function swap (array: any[], i: number, j: number): void {
   array[j] = tmp
 }
 
-export function permute<T>(array: T[]) {
+export function permute<T>(array: T[]): T[][] {
   const res: T[][] = [];
 
   function backtrack (array: T[], startIndex: number, res: T[][]) {
@@ -28,7 +28,7 @@ export function permute<T>(array: T[]) {
       res.push(array.slice());
     }
 
-    for (var i = startIndex; i <= endIndex; i++) {
+    for (let i = startIndex; i <= endIndex; i++) {
       swap(array, startIndex, i);
       backtrack(array, startIndex + 1, res);
       swap(array, i, startIndex);
@@ -57,6 +57,6 @@ export function ranking (array: any[]): any[] {
   return array.map((v) => sorted.indexOf(v) + 1)
 }
 
-export function matrix (rows: number, cols: number) {
+export function matrix (rows: number, cols: number): number[][] {
   return Array(rows).fill(Array(cols))
 }

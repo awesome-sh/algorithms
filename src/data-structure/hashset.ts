@@ -36,7 +36,7 @@ class HashSet<T> {
     return this._items.size()
   }
 
-  values () {
+  values (): T[] {
     return this._items.keys()
   }
 

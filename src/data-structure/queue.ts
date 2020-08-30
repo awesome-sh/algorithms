@@ -11,7 +11,7 @@ class Queue<T> {
     return this._data.removeFirst()
   }
 
-  add (item: T) {
+  add (item: T): LinkedList<T> {
     return this._data.addLast(item)
   }
 

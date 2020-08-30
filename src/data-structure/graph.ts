@@ -11,7 +11,7 @@ class Graph {
     this._nodes = new HashMap<string, Node>()
   }
 
-  createNode (key: string, data?: any) {
+  createNode (key: string, data?: unknown): Node {
     const node: Node = { key, data }
 
     this._nodes.set(key, node)
@@ -20,7 +20,7 @@ class Graph {
     return node
   }
 
-  addEdge (startNode: Node, endNode: Node, weight: number = 1): void {
+  addEdge (startNode: Node, endNode: Node, weight = 1): void {
     // Adjacency List
     this._edges.get(startNode.key).append({ node: endNode, weight })
   }
@@ -58,7 +58,7 @@ class Graph {
 
   toString (): string {
     const nodes = this.getNodes()
-    let result = []
+    const result = []
 
     for (const node of nodes) {
       result.push(`${node.key}: ${this._getEdges(node).toString()}`)
@@ -67,7 +67,11 @@ class Graph {
     return result.join('\n')
   }
 
-  findShortestPath (start: Node, end: Node, algorithm: Function = calculateDistanceToNodes): string[] {
+  findShortestPath (
+    start: Node,
+    end: Node,
+    algorithm: (graph: Graph, node: Node) => { dist: HashMap<string, number>, path: HashMap<string, string|null> } = calculateDistanceToNodes
+  ): string[] {
     const { path } = algorithm(this, start)
     const result = []
     let { key } = end

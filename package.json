@@ -4,16 +4,14 @@
   "description": "",
   "main": "jest.config.js",
   "scripts": {
-    "test": "jest --coverage && tsc && standard"
+    "lint": "eslint . --ext .ts",
+    "test": "jest --coverage && tsc && npm run lint"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
       "pre-push": "npm test"
     }
-  },
-  "standard": {
-    "env": "jest"
   },
   "jest": {
     "preset": "ts-jest",
@@ -49,10 +47,12 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.10",
+    "@typescript-eslint/eslint-plugin": "3.10.1",
+    "@typescript-eslint/parser": "3.10.1",
+    "eslint": "7.7.0",
     "husky": "4.2.5",
     "jest": "26.4.2",
     "lint-staged": "10.2.13",
-    "standard": "14.3.4",
     "ts-jest": "26.3.0",
     "typescript": "4.0.2"
   }

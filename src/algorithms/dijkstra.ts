@@ -44,7 +44,7 @@ export function dijkstra (graph: Graph, root: Node): {dist: Dist, path: Path} {
 }
 
 // Priority Queue?
-export function findLowestCostKey (dist: Dist, visited: Visited) {
+export function findLowestCostKey (dist: Dist, visited: Visited): string {
   const keys = dist.keys()
   let lowestCost = Infinity
   let lowestCostKey = null

@@ -50,10 +50,10 @@ describe('Shortest Path', () => {
 
   it('generate a string representation of the graph', () => {
     expect(graph.toString()).toEqual([
-      'D: ',
-      'A: {\"node\":{\"key\":\"B\"},\"weight\":6} -> {\"node\":{\"key\":\"C\"},\"weight\":2}',
-      'C: {\"node\":{\"key\":\"B\"},\"weight\":3} -> {\"node\":{\"key\":\"D\"},\"weight\":5}',
-      'B: {\"node\":{\"key\":\"D\"},\"weight\":1}',
+      "D: ",
+      "A: {\"node\":{\"key\":\"B\"},\"weight\":6} -> {\"node\":{\"key\":\"C\"},\"weight\":2}",
+      "C: {\"node\":{\"key\":\"B\"},\"weight\":3} -> {\"node\":{\"key\":\"D\"},\"weight\":5}",
+      "B: {\"node\":{\"key\":\"D\"},\"weight\":1}",
     ].join('\n'))
   })
 })
