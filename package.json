@@ -14,7 +14,8 @@
     }
   },
   "prettier": {
-    "semi": false
+    "semi": false,
+    "singleQuote": true
   },
   "jest": {
     "preset": "ts-jest",

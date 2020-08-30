@@ -1,5 +1,8 @@
 import Graph, { Node } from '../../data-structure/graph'
-import { depthFirstSearch, depthFirstSearchRecursive } from '../depth-first-search'
+import {
+  depthFirstSearch,
+  depthFirstSearchRecursive,
+} from '../depth-first-search'
 
 describe('Depth-First Search', () => {
   let graph: Graph

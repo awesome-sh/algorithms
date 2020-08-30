@@ -3,7 +3,7 @@ import Graph, { Node } from '../data-structure/graph'
 import Queue from '../data-structure/queue'
 
 // Non-recursive version
-export function breadthFirstSearch (
+export function breadthFirstSearch(
   graph: Graph,
   root: Node,
   callback: (nodeA: Node, nodeB: Node) => void
@@ -53,7 +53,7 @@ export function breadthFirstSearchRecursive(
   queue.add(root)
 
   function visit(queue: Queue<Node>) {
-    if (queue.isEmpty()) return;
+    if (queue.isEmpty()) return
 
     const node: Node = queue.remove()
     const neighbors = graph.getNeighbors(node)

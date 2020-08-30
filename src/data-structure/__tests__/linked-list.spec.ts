@@ -20,7 +20,7 @@ describe('LinkedList', () => {
     })
 
     it('stringifies complex values', () => {
-      const list = new LinkedList([{a:1}, ['b'], {c:2}])
+      const list = new LinkedList([{ a: 1 }, ['b'], { c: 2 }])
       expect(list.toString()).toBe('{"a":1} -> ["b"] -> {"c":2}')
     })
   })

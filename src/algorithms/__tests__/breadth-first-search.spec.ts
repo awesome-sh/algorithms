@@ -1,5 +1,8 @@
 import Graph, { Node } from '../../data-structure/graph'
-import { breadthFirstSearch, breadthFirstSearchRecursive } from '../breadth-first-search'
+import {
+  breadthFirstSearch,
+  breadthFirstSearchRecursive,
+} from '../breadth-first-search'
 
 describe('Breadth-First Search', () => {
   let graph: Graph

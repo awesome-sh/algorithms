@@ -11,11 +11,11 @@ import Queue from './queue'
 class BinarySearchTree<T> {
   private _root: Node<T>
 
-  constructor () {
+  constructor() {
     this._root = null
   }
 
-  insert (data: T): void {
+  insert(data: T): void {
     const node = new Node(data)
 
     if (!this._root) {
@@ -26,7 +26,7 @@ class BinarySearchTree<T> {
     this.insertNode(this._root, node)
   }
 
-  insertNode (root: Node<T>, node: Node<T>): void {
+  insertNode(root: Node<T>, node: Node<T>): void {
     if (root.data < node.data) {
       if (!root.left) {
         root.left = node
@@ -43,11 +43,11 @@ class BinarySearchTree<T> {
     }
   }
 
-  remove (data: T): Node<T> {
+  remove(data: T): Node<T> {
     return this.removeNode(this._root, data)
   }
 
-  removeNode (root: Node<T>, data: T): Node<T> {
+  removeNode(root: Node<T>, data: T): Node<T> {
     if (!this._root) {
       return null
     } else if (root.data < data) {
@@ -55,19 +55,19 @@ class BinarySearchTree<T> {
     } else if (root.data > data) {
       this.insertNode(root.right, new Node(data))
 
-    // Found it!
+      // Found it!
     } else {
       // Case 1:  No child
       if (root.left == null && root.right == null) {
         root = null
 
-      // Case 2: One child
+        // Case 2: One child
       } else if (root.left == null) {
         root = root.right
       } else if (root.right == null) {
         root = root.left
 
-      // case 3: 2 children
+        // case 3: 2 children
       } else {
         const temp = this.findMin(root.right)
         root.data = temp.data
@@ -78,7 +78,7 @@ class BinarySearchTree<T> {
     return root
   }
 
-  findMin (root: Node<T>): Node<T> {
+  findMin(root: Node<T>): Node<T> {
     while (root.left) {
       root = root.left
     }
@@ -86,7 +86,7 @@ class BinarySearchTree<T> {
     return root
   }
 
-  findMax (root: Node<T>): Node<T> {
+  findMax(root: Node<T>): Node<T> {
     while (root.right) {
       root = root.right
     }
@@ -94,19 +94,22 @@ class BinarySearchTree<T> {
     return root
   }
 
-  getNodeHeight (node: Node<T>): number {
+  getNodeHeight(node: Node<T>): number {
     if (!node) {
       return -1
     }
 
-    return 1 + Math.max(this.getNodeHeight(node.left), this.getNodeHeight(node.right))
+    return (
+      1 +
+      Math.max(this.getNodeHeight(node.left), this.getNodeHeight(node.right))
+    )
   }
 
-  height (): number {
+  height(): number {
     return this.getNodeHeight(this._root)
   }
 
-  breadthFirstSearch (key: string): boolean {
+  breadthFirstSearch(key: string): boolean {
     const queue = new Queue<Node<T>>()
 
     if (!this._root) {
@@ -134,17 +137,22 @@ class BinarySearchTree<T> {
     return false
   }
 
-  depthFirstSearch (key: string, type: string): void {
+  depthFirstSearch(key: string, type: string): void {
     switch (type) {
-      case 'inorder': this.dfsInorder(this._root, key); break
-      case 'postorder': this.dfsPostorder(this._root, key); break
+      case 'inorder':
+        this.dfsInorder(this._root, key)
+        break
+      case 'postorder':
+        this.dfsPostorder(this._root, key)
+        break
       case 'preorder':
       default:
-        this.dfsPreorder(this._root, key); break
+        this.dfsPreorder(this._root, key)
+        break
     }
   }
 
-  dfsPreorder (node: Node<T>, key: string): boolean {
+  dfsPreorder(node: Node<T>, key: string): boolean {
     if (!node) {
       return false
     }
@@ -160,7 +168,7 @@ class BinarySearchTree<T> {
     return this.dfsPreorder(node.right, key)
   }
 
-  dfsInorder (node: Node<T>, key: string): boolean {
+  dfsInorder(node: Node<T>, key: string): boolean {
     if (!node) {
       return false
     }
@@ -176,7 +184,7 @@ class BinarySearchTree<T> {
     return this.dfsInorder(node.right, key)
   }
 
-  dfsPostorder (node: Node<T>, key: string): boolean {
+  dfsPostorder(node: Node<T>, key: string): boolean {
     if (!node) {
       return false
     }
@@ -201,7 +209,7 @@ class Node<T> {
   left: Node<T>
   right: Node<T>
 
-  constructor (data: T) {
+  constructor(data: T) {
     this.data = data
     this.left = null
     this.right = null

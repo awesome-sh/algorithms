@@ -1,4 +1,4 @@
-export function equilibriumIndex (array: number[]): number {
+export function equilibriumIndex(array: number[]): number {
   let sum = 0
   let leftsum = 0
 

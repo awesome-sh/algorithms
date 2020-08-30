@@ -6,12 +6,12 @@ class Graph {
   _edges: HashMap<string, LinkedList<Edge>>
   _nodes: HashMap<string, Node>
 
-  constructor () {
+  constructor() {
     this._edges = new HashMap<string, LinkedList<Edge>>()
     this._nodes = new HashMap<string, Node>()
   }
 
-  createNode (key: string, data?: unknown): Node {
+  createNode(key: string, data?: unknown): Node {
     const node: Node = { key, data }
 
     this._nodes.set(key, node)
@@ -20,12 +20,12 @@ class Graph {
     return node
   }
 
-  addEdge (startNode: Node, endNode: Node, weight = 1): void {
+  addEdge(startNode: Node, endNode: Node, weight = 1): void {
     // Adjacency List
     this._edges.get(startNode.key).append({ node: endNode, weight })
   }
 
-  getEdgeWeight (nodeA: Node, nodeB: Node): number {
+  getEdgeWeight(nodeA: Node, nodeB: Node): number {
     const edges = this._getEdges(nodeA)
 
     for (const edge of edges) {
@@ -48,15 +48,15 @@ class Graph {
     return neighbors
   }
 
-  getNode (key: string): Node {
+  getNode(key: string): Node {
     return this._nodes.get(key)
   }
 
-  getNodes (): Node[] {
+  getNodes(): Node[] {
     return this._nodes.values()
   }
 
-  toString (): string {
+  toString(): string {
     const nodes = this.getNodes()
     const result = []
 
@@ -67,10 +67,16 @@ class Graph {
     return result.join('\n')
   }
 
-  findShortestPath (
+  findShortestPath(
     start: Node,
     end: Node,
-    algorithm: (graph: Graph, node: Node) => { dist: HashMap<string, number>, path: HashMap<string, string|null> } = calculateDistanceToNodes
+    algorithm: (
+      graph: Graph,
+      node: Node
+    ) => {
+      dist: HashMap<string, number>
+      path: HashMap<string, string | null>
+    } = calculateDistanceToNodes
   ): string[] {
     const { path } = algorithm(this, start)
     const result = []
@@ -84,7 +90,7 @@ class Graph {
     return result
   }
 
-  private _getEdges (node: Node): LinkedList<Edge> {
+  private _getEdges(node: Node): LinkedList<Edge> {
     return this._edges.get(node.key)
   }
 }

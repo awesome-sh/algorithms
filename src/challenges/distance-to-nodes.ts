@@ -2,9 +2,12 @@ import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import { breadthFirstSearch } from '../algorithms/breadth-first-search'
 
-export function calculateDistanceToNodes(graph: Graph, start: Node): { dist: HashMap<string, number>, path: HashMap<string, string|null> } {
+export function calculateDistanceToNodes(
+  graph: Graph,
+  start: Node
+): { dist: HashMap<string, number>; path: HashMap<string, string | null> } {
   const dist = new HashMap<string, number>()
-  const path = new HashMap<string, string|null>()
+  const path = new HashMap<string, string | null>()
   const nodes = graph.getNodes()
 
   for (const node of nodes) {
@@ -14,7 +17,7 @@ export function calculateDistanceToNodes(graph: Graph, start: Node): { dist: Has
   dist.set(start.key, 0)
   path.set(start.key, null)
 
-  function visit (node: Node, origin: Node) {
+  function visit(node: Node, origin: Node) {
     if (node === start) {
       return
     }
@@ -28,7 +31,6 @@ export function calculateDistanceToNodes(graph: Graph, start: Node): { dist: Has
 
   return {
     dist,
-    path
+    path,
   }
 }
-

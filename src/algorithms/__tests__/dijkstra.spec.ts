@@ -10,12 +10,12 @@ describe('Dijkstra', () => {
 
   beforeEach(() => {
     /**
-       *    B
-       *  ↗6  ↘1
-       * A  ↑3  D
-       *  ↘2  ↗5
-       *    C
-       */
+     *    B
+     *  ↗6  ↘1
+     * A  ↑3  D
+     *  ↘2  ↗5
+     *    C
+     */
     graph = new Graph()
 
     A = graph.createNode('A')

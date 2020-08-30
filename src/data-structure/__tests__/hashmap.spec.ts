@@ -72,9 +72,6 @@ describe('HashMap', () => {
   it('converts to string', () => {
     dict.set('key1', true)
 
-    expect(dict.toString()).toBe([
-      '[0]: \n',
-      '[1]: ["key1",true]\n'
-    ].join(''))
+    expect(dict.toString()).toBe(['[0]: \n', '[1]: ["key1",true]\n'].join(''))
   })
 })

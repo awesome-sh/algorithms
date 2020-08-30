@@ -1,4 +1,13 @@
-import { clone, fill, leftRotation, permute, matrix, ranking, reverse, swap } from '../array'
+import {
+  clone,
+  fill,
+  leftRotation,
+  permute,
+  matrix,
+  ranking,
+  reverse,
+  swap,
+} from '../array'
 
 describe('Array', () => {
   it('clones an array', () => {
@@ -24,7 +33,18 @@ describe('Array', () => {
   })
 
   it('created a ranking', () => {
-    expect(ranking([79, 5, 18, 5, 32, 1, 16, 1, 82, 13])).toEqual([2, 7, 4, 7, 3, 9, 5, 9, 1, 6])
+    expect(ranking([79, 5, 18, 5, 32, 1, 16, 1, 82, 13])).toEqual([
+      2,
+      7,
+      4,
+      7,
+      3,
+      9,
+      5,
+      9,
+      1,
+      6,
+    ])
   })
 
   it('rotates array "n" times', () => {

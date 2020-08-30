@@ -10,12 +10,12 @@ describe('Shortest Path', () => {
 
   beforeEach(() => {
     /**
-       *    B
-       *  ↗6  ↘1
-       * A  ↑3  D
-       *  ↘2  ↗5
-       *    C
-       */
+     *    B
+     *  ↗6  ↘1
+     * A  ↑3  D
+     *  ↘2  ↗5
+     *    C
+     */
     graph = new Graph()
 
     A = graph.createNode('A')
@@ -49,11 +49,13 @@ describe('Shortest Path', () => {
   })
 
   it('generate a string representation of the graph', () => {
-    expect(graph.toString()).toEqual([
-      "D: ",
-      "A: {\"node\":{\"key\":\"B\"},\"weight\":6} -> {\"node\":{\"key\":\"C\"},\"weight\":2}",
-      "C: {\"node\":{\"key\":\"B\"},\"weight\":3} -> {\"node\":{\"key\":\"D\"},\"weight\":5}",
-      "B: {\"node\":{\"key\":\"D\"},\"weight\":1}",
-    ].join('\n'))
+    expect(graph.toString()).toEqual(
+      [
+        'D: ',
+        'A: {"node":{"key":"B"},"weight":6} -> {"node":{"key":"C"},"weight":2}',
+        'C: {"node":{"key":"B"},"weight":3} -> {"node":{"key":"D"},"weight":5}',
+        'B: {"node":{"key":"D"},"weight":1}',
+      ].join('\n')
+    )
   })
 })

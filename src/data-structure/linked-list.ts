@@ -3,7 +3,7 @@ class LinkedList<T> {
   private _tail: Node<T>
   private _length: number
 
-  constructor (array: T[] = []) {
+  constructor(array: T[] = []) {
     this._head = null
     this._tail = null
     this._length = 0
@@ -13,7 +13,7 @@ class LinkedList<T> {
     }
   }
 
-  getHead (): T {
+  getHead(): T {
     if (this._head) {
       return this._head.data
     }
@@ -21,23 +21,23 @@ class LinkedList<T> {
     return null
   }
 
-  getTail (): T {
+  getTail(): T {
     if (this._tail) {
       return this._tail.data
     }
-    
+
     return null
   }
 
-  size (): number {
+  size(): number {
     return this._length
   }
 
-  isEmpty (): boolean {
+  isEmpty(): boolean {
     return this._length === 0
   }
 
-  append (data: T): LinkedList<T> {
+  append(data: T): LinkedList<T> {
     const node = new Node(data)
 
     if (!this._head) {
@@ -54,7 +54,7 @@ class LinkedList<T> {
     return this
   }
 
-  prepend (data: T): LinkedList<T> {
+  prepend(data: T): LinkedList<T> {
     const node = new Node(data)
 
     if (!this._head) {
@@ -71,15 +71,15 @@ class LinkedList<T> {
     return this
   }
 
-  addFirst (data: T): LinkedList<T> {
+  addFirst(data: T): LinkedList<T> {
     return this.prepend(data)
   }
 
-  addLast (data: T): LinkedList<T> {
+  addLast(data: T): LinkedList<T> {
     return this.append(data)
   }
 
-  addAt (index: number, data: T): boolean {
+  addAt(index: number, data: T): boolean {
     const node = new Node(data)
 
     if (index < 0 || index > this._length) {
@@ -107,15 +107,15 @@ class LinkedList<T> {
     return true
   }
 
-  removeFirst (): T {
+  removeFirst(): T {
     return this.removeAt(0)
   }
 
-  removeLast (): T {
+  removeLast(): T {
     return this.removeAt(this._length - 1)
   }
 
-  remove (data: T): boolean {
+  remove(data: T): boolean {
     let prev = null
     let current = this._head
 
@@ -141,7 +141,7 @@ class LinkedList<T> {
     return false
   }
 
-  removeAt (index: number): T {
+  removeAt(index: number): T {
     if (!this._head) {
       return null
     }
@@ -169,7 +169,7 @@ class LinkedList<T> {
     return current.data
   }
 
-  values (): string[] {
+  values(): string[] {
     const list = []
 
     for (let item of this) {
@@ -180,7 +180,7 @@ class LinkedList<T> {
     return list
   }
 
-  reverse (): void {
+  reverse(): void {
     const reverse = (node: Node<T>) => {
       if (!node) {
         return null // list does not exist.
@@ -200,10 +200,10 @@ class LinkedList<T> {
     this._head = reverse(this._head)
   }
 
-  [Symbol.iterator] (): {node: Node<any>, next: () => any} {
+  [Symbol.iterator](): { node: Node<any>; next: () => any } {
     return {
       node: this._head,
-      next () {
+      next() {
         let result = { value: undefined, done: true }
 
         if (this.node) {
@@ -212,11 +212,11 @@ class LinkedList<T> {
         }
 
         return result
-      }
+      },
     }
   }
 
-  toString (): string {
+  toString(): string {
     return this.values().join(' -> ')
   }
 }
@@ -224,8 +224,8 @@ class LinkedList<T> {
 class Node<T> {
   data: T
   next: Node<T>
-  
-  constructor (data: T) {
+
+  constructor(data: T) {
     this.data = data
     this.next = null
   }
