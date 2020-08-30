@@ -1,7 +1,7 @@
 class Elevator {
   current = 0
   status = 'stand'
-  requests: any[] = new Array(10)
+  requests: boolean[] = new Array(10)
 
   request(floor: number): void {
     this.requests[floor] = true

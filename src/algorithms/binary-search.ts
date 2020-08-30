@@ -1,4 +1,4 @@
-export function binarySearch(array: any[], x: unknown): number {
+export function binarySearch(array: number[], x: number): number {
   let low = 0
   let high = array.length - 1
 

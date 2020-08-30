@@ -1,5 +1,5 @@
 export function mergeSort(
-  array: any[],
+  array: number[],
   low = 0,
   high: number = array.length - 1
 ): void {
@@ -12,7 +12,7 @@ export function mergeSort(
 }
 
 export function merge(
-  array: any[],
+  array: number[],
   low: number,
   mid: number,
   high: number

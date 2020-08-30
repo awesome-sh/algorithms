@@ -46,7 +46,7 @@ describe('Comparator', () => {
     beforeEach(() => {
       john = { name: 'john' }
       marie = { name: 'marie' }
-      comparator = new Comparator((a, b) => {
+      comparator = new Comparator<{ name: string }>((a, b) => {
         if (a.name === b.name) {
           return 0
         }

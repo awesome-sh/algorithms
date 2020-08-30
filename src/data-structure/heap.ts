@@ -1,33 +1,33 @@
 import Comparator from '../helpers/comparator'
 import { swap } from '../helpers/array'
 
-class Heap {
-  private _container: any[]
-  protected _compare: Comparator
+class Heap<T> {
+  private _container: T[]
+  protected _compare: Comparator<T>
 
   constructor() {
     this._container = []
-    this._compare = new Comparator()
+    this._compare = new Comparator<T>()
   }
 
-  add(item: any): void {
+  add(item: T): void {
     this._container.push(item)
     this.heapifyUp()
   }
 
-  elementOf(index: number): any {
+  elementOf(index: number): T {
     return this._container[index]
   }
 
-  parentOf(index: number): any {
+  parentOf(index: number): T {
     return this.elementOf(this.parentIndexOf(index))
   }
 
-  leftOf(index: number): any {
+  leftOf(index: number): T {
     return this.elementOf(this.leftIndexOf(index))
   }
 
-  rightOf(index: number): any {
+  rightOf(index: number): T {
     return this.elementOf(this.rightIndexOf(index))
   }
 
@@ -47,11 +47,11 @@ class Heap {
     return 2 * index + 2
   }
 
-  peek(): any {
+  peek(): T {
     return this.elementOf(0)
   }
 
-  last(): any {
+  last(): T {
     return this.elementOf(this.lastIndex())
   }
 
@@ -63,7 +63,7 @@ class Heap {
     return this.size() === 0
   }
 
-  poll(): any {
+  poll(): T {
     const item = this.peek()
     this._container[0] = this._container.pop()
     this.heapifyDown()
@@ -117,16 +117,16 @@ class Heap {
   }
 }
 
-export class MinHeap extends Heap {
+export class MinHeap<T> extends Heap<T> {
   constructor() {
     super()
-    this._compare = new Comparator((a: number, b: number) => a - b)
+    this._compare = new Comparator<T>((a: unknown, b: unknown) => +a - +b)
   }
 }
 
-export class MaxHeap extends Heap {
+export class MaxHeap<T> extends Heap<T> {
   constructor() {
     super()
-    this._compare = new Comparator((a: number, b: number) => b - a)
+    this._compare = new Comparator<T>((a: T, b: T) => +b - +a)
   }
 }

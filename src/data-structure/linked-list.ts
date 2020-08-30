@@ -169,12 +169,12 @@ class LinkedList<T> {
     return current.data
   }
 
-  values(): string[] {
+  values(): unknown[] {
     const list = []
 
-    for (let item of this) {
-      item = item instanceof Object ? JSON.stringify(item) : item
-      list.push(item)
+    for (const item of this) {
+      const obj = item instanceof Object ? JSON.stringify(item) : item
+      list.push(obj)
     }
 
     return list
@@ -200,7 +200,10 @@ class LinkedList<T> {
     this._head = reverse(this._head)
   }
 
-  [Symbol.iterator](): { node: Node<any>; next: () => any } {
+  [Symbol.iterator](): {
+    node: Node<T>
+    next: () => { value: T; done: boolean }
+  } {
     return {
       node: this._head,
       next() {

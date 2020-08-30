@@ -1,7 +1,7 @@
 import { swap } from '../helpers/array'
 
 export function quickSort(
-  array: any[],
+  array: number[],
   low = 0,
   high: number = array.length - 1
 ): void {
@@ -12,7 +12,7 @@ export function quickSort(
   }
 }
 
-export function partition(array: any[], low: number, high: number): number {
+export function partition(array: number[], low: number, high: number): number {
   const mid = Math.floor((low + high) / 2)
   const pivot = array[mid]
   let i = low

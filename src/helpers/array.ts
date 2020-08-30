@@ -1,18 +1,18 @@
-export function fill(size: number, value: unknown): any[] {
+export function fill<T>(size: number, value: unknown): T[] {
   return new Array(size).fill(value)
 }
 
-export function clone(array: any[]): any[] {
+export function clone<T>(array: T[]): T[] {
   return array.slice()
 }
 
-export function leftRotation(array: any[], n: number): any[] {
+export function leftRotation<T>(array: T[], n: number): T[] {
   // Prevent unnecessary rotations
   n = n % array.length
   return array.slice(n, array.length).concat(array.slice(0, n))
 }
 
-export function swap(array: any[], i: number, j: number): void {
+export function swap<T>(array: T[], i: number, j: number): void {
   const tmp = array[i]
   array[i] = array[j]
   array[j] = tmp
@@ -40,7 +40,7 @@ export function permute<T>(array: T[]): T[][] {
 }
 
 // Good for reversing a string
-export function reverse(array: any[]): any[] {
+export function reverse<T>(array: T[]): T[] {
   for (let i = 0, j = array.length - 1; i < j; i++, j--) {
     swap(array, i, j)
   }
@@ -48,7 +48,7 @@ export function reverse(array: any[]): any[] {
   return array
 }
 
-export function ranking(array: any[]): any[] {
+export function ranking(array: number[]): number[] {
   const cloned = clone(array)
   const sorted = cloned.sort((a, b) => b - a)
 

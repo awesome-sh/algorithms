@@ -82,7 +82,10 @@ class ArrayList<T> {
     this._bucket = newBucket
   }
 
-  [Symbol.iterator](): { index: number; next: () => any } {
+  [Symbol.iterator](): {
+    index: number
+    next: () => { value: T; done: boolean }
+  } {
     const self = this
     return {
       index: 0,

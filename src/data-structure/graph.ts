@@ -102,7 +102,7 @@ export type Edge = {
 
 export type Node = {
   key: string
-  data: any
+  data: unknown
 }
 
 export default Graph
