@@ -1,6 +1,6 @@
 
 export function truncate (num: number): number {
-  return num | 0
+  return num | 0; // Explanation: https://bit.ly/2U9J0tW
 }
 
 export function pop (num: number): [number, number] {
