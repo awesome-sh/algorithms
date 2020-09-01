@@ -59,3 +59,13 @@ export function ranking(array: number[]): number[] {
 export function matrix(rows: number, cols: number): number[][] {
   return Array(rows).fill(Array(cols))
 }
+
+export function counter(str: string): Record<string, number> {
+  const counter = {}
+
+  for (let i = 0; i < str.length; i++) {
+    counter[str[i]] = 0
+  }
+
+  return counter
+}
