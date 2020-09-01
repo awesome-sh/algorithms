@@ -2,7 +2,10 @@ import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import { Dist, Path, Visited } from '../types'
 
-export function dijkstra(graph: Graph, root: Node): { dist: Dist; path: Path } {
+export function dijkstra(
+  graph: Graph,
+  current: Node
+): { dist: Dist; path: Path } {
   const visited: Visited = new HashMap()
   const dist: Dist = new HashMap()
   const path: Path = new HashMap()
@@ -13,28 +16,26 @@ export function dijkstra(graph: Graph, root: Node): { dist: Dist; path: Path } {
     dist.set(node.key, Infinity)
   }
 
-  dist.set(root.key, 0)
+  dist.set(current.key, 0)
 
-  let key = findLowestCostKey(dist, visited)
-  let node = graph.getNode(key)
-
-  while (node) {
-    const neighbors = graph.getNeighbors(node)
+  while (current) {
+    const neighbors = graph.getNeighbors(current)
 
     for (const neighbor of neighbors) {
-      const weight = graph.getEdgeWeight(node, neighbor)
-      const newCost = dist.get(node.key) + weight
+      const cost =
+        dist.get(current.key) + graph.getEdgeWeight(current, neighbor)
 
-      if (newCost < dist.get(neighbor.key)) {
-        dist.set(neighbor.key, newCost)
-        path.set(neighbor.key, node.key)
+      if (cost < dist.get(neighbor.key)) {
+        dist.set(neighbor.key, cost)
+        path.set(neighbor.key, current.key)
       }
     }
 
-    visited.set(node.key, true)
+    visited.set(current.key, true)
 
-    key = findLowestCostKey(dist, visited)
-    node = graph.getNode(key)
+    // Select next node (greedy part)
+    const key = findLowestCostKey(dist, visited)
+    current = graph.getNode(key)
   }
 
   return {
