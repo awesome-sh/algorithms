@@ -2,10 +2,10 @@ import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import { Dist, Path, Visited } from '../types'
 
-export function dijkstra(
+export const dijkstra = (
   graph: Graph,
   current: Node
-): { dist: Dist; path: Path } {
+): { dist: Dist; path: Path } => {
   const visited: Visited = new HashMap()
   const dist: Dist = new HashMap()
   const path: Path = new HashMap()
@@ -45,7 +45,7 @@ export function dijkstra(
 }
 
 // Priority Queue?
-export function findLowestCostKey(dist: Dist, visited: Visited): string {
+export const findLowestCostKey = (dist: Dist, visited: Visited): string => {
   const keys = dist.keys()
   let lowestCost = Infinity
   let lowestCostKey = null

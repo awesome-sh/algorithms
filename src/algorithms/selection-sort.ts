@@ -1,6 +1,6 @@
 import { swap } from '../helpers/array'
 
-export function selectionSort(array: number[]): void {
+export const selectionSort = (array: number[]): void => {
   let indexMin: number
 
   // Itere n-1 vezes

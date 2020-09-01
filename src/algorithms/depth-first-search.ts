@@ -3,11 +3,11 @@ import Graph, { Node } from '../data-structure/graph'
 import Stack from '../data-structure/stack'
 
 // Non-recursive version
-export function depthFirstSearch(
+export const depthFirstSearch = (
   graph: Graph,
   root: Node,
   callback: (nodeA: Node, nodeB: Node) => void
-): void {
+): void => {
   const visited = new HashMap()
   const nodes = graph.getNodes()
   const stack = new Stack<Node>()
@@ -35,11 +35,11 @@ export function depthFirstSearch(
 }
 
 // Recursive version
-export function depthFirstSearchRecursive(
+export const depthFirstSearchRecursive = (
   graph: Graph,
   root: Node,
   callback: (node: Node) => void
-): void {
+): void => {
   const visited = new HashMap()
   const nodes = graph.getNodes()
 
@@ -47,7 +47,7 @@ export function depthFirstSearchRecursive(
     visited.set(node.key, false)
   }
 
-  function visit(node: Node) {
+  const visit = (node: Node) => {
     const neighbors = graph.getNeighbors(node)
 
     visited.set(node.key, true)
