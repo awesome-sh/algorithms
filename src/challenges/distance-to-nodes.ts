@@ -2,10 +2,10 @@ import HashMap from '../data-structure/hashmap'
 import Graph, { Node } from '../data-structure/graph'
 import { breadthFirstSearch } from '../algorithms/breadth-first-search'
 
-export function calculateDistanceToNodes(
+export const calculateDistanceToNodes = (
   graph: Graph,
   start: Node
-): { dist: HashMap<string, number>; path: HashMap<string, string | null> } {
+): { dist: HashMap<string, number>; path: HashMap<string, string | null> } => {
   const dist = new HashMap<string, number>()
   const path = new HashMap<string, string | null>()
   const nodes = graph.getNodes()
@@ -17,7 +17,7 @@ export function calculateDistanceToNodes(
   dist.set(start.key, 0)
   path.set(start.key, null)
 
-  function visit(node: Node, origin: Node) {
+  const visit = (node: Node, origin: Node) => {
     if (node === start) {
       return
     }

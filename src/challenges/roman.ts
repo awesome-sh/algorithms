@@ -15,7 +15,7 @@ const roman = [
   'I',
 ]
 
-export function toRoman(num: number): string {
+export const toRoman = (num: number): string => {
   let result = ''
 
   for (let i = 0; i <= decimal.length; i++) {
@@ -28,7 +28,7 @@ export function toRoman(num: number): string {
   return result
 }
 
-export function fromRoman(str: string): number {
+export const fromRoman = (str: string): number => {
   let result = 0
 
   for (let i = 0; i <= decimal.length; i++) {

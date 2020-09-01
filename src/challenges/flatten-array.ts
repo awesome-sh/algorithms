@@ -1,5 +1,5 @@
 // Is this a post order DFS?
-export function flatten(array: unknown[]): unknown[] {
+export const flatten = (array: unknown[]): unknown[] => {
   // If it is a leaf
   if (!Array.isArray(array)) {
     // recursion base case
@@ -18,7 +18,7 @@ export function flatten(array: unknown[]): unknown[] {
   return memo
 }
 
-export function flattenIter<T>(stack: T[]): T[] {
+export const flattenIter = <T>(stack: T[]): T[] => {
   const result = []
   let item: T
 
