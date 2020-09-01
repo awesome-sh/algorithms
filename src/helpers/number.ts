@@ -1,18 +1,18 @@
-export function truncate(num: number): number {
+export const truncate = (num: number): number => {
   return num | 0 // Explanation: https://bit.ly/2U9J0tW
 }
 
-export function pop(num: number): [number, number] {
+export const pop = (num: number): [number, number] => {
   const digit = num % 10
   num = (num / 10) | 0
   return [num, digit]
 }
 
-export function push(num: number, digit: number): number {
+export const push = (num: number, digit: number): number => {
   return num * 10 + digit
 }
 
-export function numberOfDigits(number: number): number {
+export const numberOfDigits = (number: number): number => {
   let counter = 0
 
   do {
@@ -24,14 +24,14 @@ export function numberOfDigits(number: number): number {
   return counter
 }
 
-export function mark(number: number): number {
+export const mark = (number: number): number => {
   if (number < 0) {
     return number
   }
   return number * -1
 }
 
-export function unmark(number: number): number {
+export const unmark = (number: number): number => {
   if (number < 0) {
     return number * -1
   }
