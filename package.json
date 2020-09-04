@@ -4,8 +4,10 @@
   "description": "",
   "main": "jest.config.js",
   "scripts": {
+    "all": "npm test -- --coverage && npm run typecheck && npm run lint",
     "lint": "eslint . --ext .ts",
-    "test": "jest --coverage && tsc && npm run lint"
+    "test": "jest",
+    "typecheck": "tsc"
   },
   "husky": {
     "hooks": {
