@@ -1,22 +1,22 @@
+import ArrayList from '../data-structure/array-list'
 import Comparator from '../helpers/comparator'
-import { swap } from '../helpers/array'
 
 class Heap<T> {
-  private _container: T[]
+  private _container: ArrayList<T>
   protected _compare: Comparator<T>
 
   constructor() {
-    this._container = []
+    this._container = new ArrayList<T>()
     this._compare = new Comparator<T>()
   }
 
   add(item: T): void {
-    this._container.push(item)
+    this._container.append(item)
     this.heapifyUp()
   }
 
   elementOf(index: number): T {
-    return this._container[index]
+    return this._container.get(index)
   }
 
   parentOf(index: number): T {
@@ -36,7 +36,7 @@ class Heap<T> {
   }
 
   lastIndex(): number {
-    return this._container.length - 1
+    return this._container.length() - 1
   }
 
   leftIndexOf(index: number): number {
@@ -56,7 +56,7 @@ class Heap<T> {
   }
 
   size(): number {
-    return this._container.length
+    return this._container.length()
   }
 
   isEmpty(): boolean {
@@ -65,7 +65,7 @@ class Heap<T> {
 
   poll(): T {
     const item = this.peek()
-    this._container[0] = this._container.pop()
+    this._container.set(0, this._container.pop())
     this.heapifyDown()
     return item
   }
@@ -77,7 +77,7 @@ class Heap<T> {
       this.parentOf(index) &&
       this._compare.greaterThan(this.parentOf(index), this.elementOf(index))
     ) {
-      swap(this._container, this.parentIndexOf(index), index)
+      this._container.swap(this.parentIndexOf(index), index)
 
       // Move up
       index = this.parentIndexOf(index)
@@ -101,7 +101,7 @@ class Heap<T> {
           this.elementOf(index)
         )
       ) {
-        swap(this._container, childIndex, index)
+        this._container.swap(childIndex, index)
       } else {
         // There's no more swap to do.
         break

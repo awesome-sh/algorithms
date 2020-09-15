@@ -7,17 +7,13 @@ class ArrayList<T> {
     this._bucket = []
   }
 
-  add(index: number, item: T): boolean {
+  set(index: number, item: T): boolean {
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
 
     if (index < 0 || index >= this._bucket.length) {
       return false
-    }
-
-    for (let i = this._bucket.length; i > index; i--) {
-      this._bucket[i] = this._bucket[i - 1]
     }
 
     this._bucket[index] = item
@@ -51,11 +47,21 @@ class ArrayList<T> {
         this._bucket[j] = this._bucket[j + 1]
       }
 
-      this._bucket.length -= 1 // Remove last element
+      this._bucket.length-- // Remove last element
       return true
     }
 
     return false
+  }
+
+  swap(indexA: number, indexB: number): void {
+    const tmp = this._bucket[indexA]
+    this._bucket[indexA] = this._bucket[indexB]
+    this._bucket[indexB] = tmp
+  }
+
+  pop(): T {
+    return this._bucket.pop()
   }
 
   values(): T[] {
@@ -68,6 +74,10 @@ class ArrayList<T> {
 
   size(): number {
     return this._size
+  }
+
+  toString(): string {
+    return this._bucket.toString()
   }
 
   private _expandBucket(): void {

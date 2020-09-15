@@ -39,28 +39,28 @@ describe('ArrayList', () => {
     expect(list.size()).toEqual(4)
   })
 
-  it('adds an element in a specific index', () => {
+  it('sets an element in a specific index', () => {
     const list = new ArrayList()
     list.append('a')
     list.append('b')
 
-    expect(list.add(1, 'c')).toEqual(true)
-    expect(list.values()).toEqual(['a', 'c', 'b'])
+    expect(list.set(1, 'c')).toEqual(true)
+    expect(list.values()).toEqual(['a', 'c'])
   })
 
-  it('prevents adding element in a negative index', () => {
+  it('prevents setting element in a negative index', () => {
     const list = new ArrayList()
 
-    expect(list.add(-1, 'c')).toEqual(false)
+    expect(list.set(-1, 'c')).toEqual(false)
   })
 
-  it('prevents adding element in a higher index than allowed', () => {
+  it('prevents setting element in a higher index than allowed', () => {
     const list = new ArrayList(2)
 
-    expect(list.add(2, 'c')).toEqual(false)
+    expect(list.set(2, 'c')).toEqual(false)
   })
 
-  it('doubles the size when element is added and limit is reached', () => {
+  it('doubles the size when element is set and limit is reached', () => {
     const list = new ArrayList(2)
     expect(list.size()).toEqual(2)
 
@@ -68,7 +68,7 @@ describe('ArrayList', () => {
     list.append('b')
     expect(list.size()).toEqual(2)
 
-    expect(list.add(1, 'c')).toEqual(true)
+    expect(list.set(1, 'c')).toEqual(true)
     expect(list.size()).toEqual(4)
   })
 
