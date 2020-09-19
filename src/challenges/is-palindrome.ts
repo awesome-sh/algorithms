@@ -1,9 +1,15 @@
 export const isPalindrome = (str: string): boolean => {
-  if (str.length <= 1) {
+  if (!str) {
     return true
   }
 
-  return (
-    str[0] === str[str.length - 1] && isPalindrome(str.slice(1, str.length - 1))
-  )
+  const helper = (str: string, start: number, end: number) => {
+    if (start === end) {
+      return true
+    }
+
+    return str[start] === str[end] && helper(str, start + 1, end - 1)
+  }
+
+  return helper(str, 0, str.length - 1)
 }
