@@ -181,19 +181,18 @@ class LinkedList<T> {
   }
 
   reverse(): void {
-    const reverse = (node: Node<T>) => {
-      if (!node) {
-        return null // list does not exist.
+    const reverse = (head: Node<T>) => {
+      let current = head
+      let previous = null
+
+      while (current !== null) {
+        const next = current.next // temporarily store the next node
+        current.next = previous // reverse the current node
+        previous = current // before we move to the next node, point previous to the current node
+        current = next // move on the next node
       }
 
-      if (node.next === null) {
-        return node // list with only one node.
-      }
-
-      const rest = reverse(node.next) // recursive call on rest.
-      node.next.next = node // make first; link to the last node in the reversed rest.
-      node.next = null // since first is the new last, make its link null.
-      return rest // rest now points to the head of the reversed list.
+      return previous
     }
 
     this._tail = this._head
