@@ -2,61 +2,25 @@ import ArrayList from '../data-structure/array-list'
 import Comparator from '../helpers/comparator'
 
 class Heap<T> {
-  private _container: ArrayList<T>
+  private array: ArrayList<T>
   protected _compare: Comparator<T>
 
   constructor() {
-    this._container = new ArrayList<T>()
+    this.array = new ArrayList<T>()
     this._compare = new Comparator<T>()
   }
 
   add(item: T): void {
-    this._container.append(item)
+    this.array.append(item)
     this.heapifyUp()
-  }
-
-  elementOf(index: number): T {
-    return this._container.get(index)
-  }
-
-  parentOf(index: number): T {
-    return this.elementOf(this.parentIndexOf(index))
-  }
-
-  leftOf(index: number): T {
-    return this.elementOf(this.leftIndexOf(index))
-  }
-
-  rightOf(index: number): T {
-    return this.elementOf(this.rightIndexOf(index))
-  }
-
-  parentIndexOf(index: number): number {
-    return Math.floor((index - 1) / 2)
-  }
-
-  lastIndex(): number {
-    return this._container.length() - 1
-  }
-
-  leftIndexOf(index: number): number {
-    return 2 * index + 1
-  }
-
-  rightIndexOf(index: number): number {
-    return 2 * index + 2
   }
 
   peek(): T {
     return this.elementOf(0)
   }
 
-  last(): T {
-    return this.elementOf(this.lastIndex())
-  }
-
   size(): number {
-    return this._container.length()
+    return this.array.length()
   }
 
   isEmpty(): boolean {
@@ -65,26 +29,30 @@ class Heap<T> {
 
   poll(): T {
     const item = this.peek()
-    this._container.set(0, this._container.pop())
+    this.array.set(0, this.array.pop())
     this.heapifyDown()
     return item
   }
 
-  heapifyUp(): void {
+  toString(): string {
+    return this.array.toString()
+  }
+
+  private heapifyUp(): void {
     let index = this.lastIndex()
 
     while (
       this.parentOf(index) &&
       this._compare.greaterThan(this.parentOf(index), this.elementOf(index))
     ) {
-      this._container.swap(this.parentIndexOf(index), index)
+      this.array.swap(this.parentIndexOf(index), index)
 
       // Move up
       index = this.parentIndexOf(index)
     }
   }
 
-  heapifyDown(): void {
+  private heapifyDown(): void {
     const index = 0
     let childIndex = this.leftIndexOf(index)
 
@@ -101,7 +69,7 @@ class Heap<T> {
           this.elementOf(index)
         )
       ) {
-        this._container.swap(childIndex, index)
+        this.array.swap(childIndex, index)
       } else {
         // There's no more swap to do.
         break
@@ -112,8 +80,36 @@ class Heap<T> {
     }
   }
 
-  toString(): string {
-    return this._container.toString()
+  private elementOf(index: number): T {
+    return this.array.get(index)
+  }
+
+  private parentOf(index: number): T {
+    return this.elementOf(this.parentIndexOf(index))
+  }
+
+  private leftOf(index: number): T {
+    return this.elementOf(this.leftIndexOf(index))
+  }
+
+  private rightOf(index: number): T {
+    return this.elementOf(this.rightIndexOf(index))
+  }
+
+  private parentIndexOf(index: number): number {
+    return Math.floor((index - 1) / 2)
+  }
+
+  private lastIndex(): number {
+    return this.array.length() - 1
+  }
+
+  private leftIndexOf(index: number): number {
+    return 2 * index + 1
+  }
+
+  private rightIndexOf(index: number): number {
+    return 2 * index + 2
   }
 }
 

@@ -42,16 +42,6 @@ describe('Heap', () => {
       expect(heap.poll()).toBe(4)
     })
 
-    it('retrieves the last element of the heap', () => {
-      const heap = new MinHeap()
-
-      heap.add(3)
-      heap.add(1)
-      heap.add(2)
-
-      expect(heap.last()).toBe(2)
-    })
-
     it('stringifies the heap', () => {
       const heap = new MinHeap()
 
@@ -102,16 +92,6 @@ describe('Heap', () => {
       expect(heap.poll()).toBe(3)
       expect(heap.poll()).toBe(2)
       expect(heap.poll()).toBe(1)
-    })
-
-    it('retrieves the last element of the heap', () => {
-      const heap = new MaxHeap()
-
-      heap.add(3)
-      heap.add(1)
-      heap.add(2)
-
-      expect(heap.last()).toBe(2)
     })
 
     it('stringifies the heap', () => {
