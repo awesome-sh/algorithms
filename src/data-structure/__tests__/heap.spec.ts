@@ -42,6 +42,21 @@ describe('Heap', () => {
       expect(heap.poll()).toBe(4)
     })
 
+    it('removes an element in the middle', () => {
+      const heap = new MinHeap()
+
+      heap.add(4)
+      heap.add(1)
+      heap.add(2)
+      heap.add(3)
+
+      expect(heap.toString()).toBe('1,3,2,4')
+
+      heap.remove(3)
+
+      expect(heap.toString()).toBe('1,4,2')
+    })
+
     it('stringifies the heap', () => {
       const heap = new MinHeap()
 
@@ -92,6 +107,21 @@ describe('Heap', () => {
       expect(heap.poll()).toBe(3)
       expect(heap.poll()).toBe(2)
       expect(heap.poll()).toBe(1)
+    })
+
+    it('removes an element in the middle', () => {
+      const heap = new MaxHeap()
+
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+      heap.add(4)
+
+      expect(heap.toString()).toBe('4,3,2,1')
+
+      heap.remove(3)
+
+      expect(heap.toString()).toBe('4,1,2')
     })
 
     it('stringifies the heap', () => {

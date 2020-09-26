@@ -15,6 +15,25 @@ class Heap<T> {
     this.heapifyUp()
   }
 
+  // Inspiration: https://bit.ly/369fprr
+  remove(item: T): void {
+    let i
+
+    for (i = 0; i < this.array.size(); i++) {
+      if (this.array.get(i) === item) {
+        break
+      }
+    }
+
+    this.array.set(i, this.array.pop())
+
+    if (this._compare.greaterThan(this.parentOf(i), this.elementOf(i))) {
+      this.heapifyUp(i)
+    } else {
+      this.heapifyDown(i)
+    }
+  }
+
   peek(): T {
     return this.elementOf(0)
   }
@@ -38,8 +57,8 @@ class Heap<T> {
     return this.array.toString()
   }
 
-  private heapifyUp(): void {
-    let index = this.lastIndex()
+  private heapifyUp(index: number = this.lastIndex()): void {
+    //let index = this.lastIndex()
 
     while (
       this.parentOf(index) &&
@@ -52,8 +71,8 @@ class Heap<T> {
     }
   }
 
-  private heapifyDown(): void {
-    const index = 0
+  private heapifyDown(index = 0): void {
+    //const index = 0
     let childIndex = this.leftIndexOf(index)
 
     while (childIndex) {
