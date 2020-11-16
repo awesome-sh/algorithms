@@ -1,31 +1,34 @@
 export const subsets = (nums: number[]): number[][] => {
   const result = []
-  subsetsBacktrack(nums, 0, [], result)
+  const memo = new Set<number>()
+  subsetsBacktrack(nums, 0, result, memo)
   return result
 }
 
 const subsetsBacktrack = (
   nums: number[],
   start: number,
-  current: number[],
-  result: number[][]
+  result: number[][],
+  memo: Set<number>
 ) => {
-  result.push([...current]) // Add current list at each call
+  const curr = []
+  memo.forEach((i) => curr.push(nums[i]))
+  result.push(curr)
 
   for (let i = start; i < nums.length; i++) {
-    current.push(nums[i])
-    subsetsBacktrack(nums, i + 1, current, result)
-    current.pop()
+    memo.add(i)
+    subsetsBacktrack(nums, i + 1, result, memo)
+    memo.delete(i)
   }
 }
 
-// Como lidar com duplicates?
 export const permute = (
   nums: number[],
   k: number = nums.length
 ): number[][] => {
   const result = []
-  permuteBacktrack(nums, k, 0, [], result)
+  const memo = new Set<number>()
+  permuteBacktrack(nums, k, 0, result, memo)
   return result
 }
 
@@ -33,26 +36,28 @@ const permuteBacktrack = (
   nums: number[],
   k: number,
   start: number,
-  current: number[],
-  result: number[][]
+  result: number[][],
+  memo: Set<number>
 ) => {
-  if (current.length === k) {
-    result.push([...current]) // Add current list at the top of the callstack
+  if (memo.size === k) {
+    const curr = []
+    memo.forEach((i) => curr.push(nums[i]))
+    result.push(curr)
   } else {
     for (let i = start; i < nums.length; i++) {
-      if (!current.includes(nums[i])) {
-        current.push(nums[i])
-        permuteBacktrack(nums, k, start, current, result)
-        current.pop()
+      if (!memo.has(i)) {
+        memo.add(i)
+        permuteBacktrack(nums, k, start, result, memo)
+        memo.delete(i)
       }
     }
   }
 }
 
-const permutations = permute([1, 2, 3], 2)
-console.log('Permutations:')
-console.log(permutations)
-console.log(permutations.length)
+// const permutations = permute([1, 2, 2], 2)
+// console.log('Permutations:')
+// console.log(permutations)
+// console.log(permutations.length)
 
 // Como lidar com duplicates?
 export const combine = (
@@ -60,7 +65,8 @@ export const combine = (
   k: number = nums.length
 ): number[][] => {
   const result = []
-  combineBacktrack(nums, k, 0, [], result)
+  const memo = new Set<number>()
+  combineBacktrack(nums, k, 0, result, memo)
   return result
 }
 
@@ -68,24 +74,26 @@ const combineBacktrack = (
   nums: number[],
   k: number,
   start: number,
-  current: number[],
-  result: number[][]
+  result: number[][],
+  memo: Set<number>
 ) => {
-  if (current.length === k) {
-    result.push([...current])
+  if (memo.size === k) {
+    const curr = []
+    memo.forEach((i) => curr.push(nums[i]))
+    result.push(curr)
   } else {
     for (let i = start; i < nums.length; i++) {
-      current.push(nums[i])
-      combineBacktrack(nums, k, i + 1, current, result)
-      current.pop()
+      memo.add(i)
+      combineBacktrack(nums, k, i + 1, result, memo)
+      memo.delete(i)
     }
   }
 }
 
-const combinations = combine([1, 2, 3, 4], 2)
-console.log('combinations:')
-console.log(combinations)
-console.log(combinations.length)
+// const combinations = combine([1, 2, 3, 4], 2)
+// console.log('combinations:')
+// console.log(combinations)
+// console.log(combinations.length)
 
 // const permute = (nums) => {
 //   const res = []
