@@ -75,6 +75,16 @@ class HashMap<KeyT, ValueT> {
     return values
   }
 
+  forEach(
+    fn: (key: KeyT, value: ValueT, map: HashMap<KeyT, ValueT>) => void
+  ): void {
+    for (const list of this._bucket) {
+      for (const item of list) {
+        fn(item[0], item[1], this)
+      }
+    }
+  }
+
   size(): number {
     return this._count
   }

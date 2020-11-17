@@ -56,6 +56,26 @@ describe('HashMap', () => {
     expect(dict.values().sort()).toEqual([1, 2, 3])
   })
 
+  it('iterates through entries', () => {
+    dict.set('key1', 1)
+    dict.set('key2', 2)
+    dict.set('key3', 3)
+
+    const keys = []
+    const values = []
+    let hashMap = null
+
+    dict.forEach((key: string, val: number, map: HashMap<string, number>) => {
+      keys.push(key)
+      values.push(val)
+      hashMap = map
+    })
+
+    expect(keys).toEqual(['key2', 'key1', 'key3'])
+    expect(values).toEqual([2, 1, 3])
+    expect(hashMap).toEqual(dict)
+  })
+
   it('remove key', () => {
     dict.set('key1', true)
 
