@@ -40,6 +40,10 @@ class HashSet<T> {
     return this._items.keys()
   }
 
+  forEach(fn: (val1: T, val2: T, map: HashSet<T>) => void): void {
+    this._items.forEach((key) => fn(key, key, this))
+  }
+
   clear(): void {
     this._items = new HashMap()
   }
