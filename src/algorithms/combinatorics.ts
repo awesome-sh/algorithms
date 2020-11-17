@@ -1,6 +1,8 @@
+import HashSet from '../data-structure/hashset'
+
 export const subsets = (nums: number[]): number[][] => {
   const result = []
-  const memo = new Set<number>()
+  const memo = new HashSet<number>()
   subsetsBacktrack(nums, 0, result, memo)
   return result
 }
@@ -9,7 +11,7 @@ const subsetsBacktrack = (
   nums: number[],
   start: number,
   result: number[][],
-  memo: Set<number>
+  memo: HashSet<number>
 ) => {
   const curr = []
   memo.forEach((i) => curr.push(nums[i]))
@@ -18,7 +20,7 @@ const subsetsBacktrack = (
   for (let i = start; i < nums.length; i++) {
     memo.add(i)
     subsetsBacktrack(nums, i + 1, result, memo)
-    memo.delete(i)
+    memo.remove(i)
   }
 }
 
@@ -27,7 +29,7 @@ export const permute = (
   k: number = nums.length
 ): number[][] => {
   const result = []
-  const memo = new Set<number>()
+  const memo = new HashSet<number>()
   permuteBacktrack(nums, k, 0, result, memo)
   return result
 }
@@ -37,9 +39,9 @@ const permuteBacktrack = (
   k: number,
   start: number,
   result: number[][],
-  memo: Set<number>
+  memo: HashSet<number>
 ) => {
-  if (memo.size === k) {
+  if (memo.size() === k) {
     const curr = []
     memo.forEach((i) => curr.push(nums[i]))
     result.push(curr)
@@ -48,7 +50,7 @@ const permuteBacktrack = (
       if (!memo.has(i)) {
         memo.add(i)
         permuteBacktrack(nums, k, start, result, memo)
-        memo.delete(i)
+        memo.remove(i)
       }
     }
   }
@@ -65,7 +67,7 @@ export const combine = (
   k: number = nums.length
 ): number[][] => {
   const result = []
-  const memo = new Set<number>()
+  const memo = new HashSet<number>()
   combineBacktrack(nums, k, 0, result, memo)
   return result
 }
@@ -75,9 +77,9 @@ const combineBacktrack = (
   k: number,
   start: number,
   result: number[][],
-  memo: Set<number>
+  memo: HashSet<number>
 ) => {
-  if (memo.size === k) {
+  if (memo.size() === k) {
     const curr = []
     memo.forEach((i) => curr.push(nums[i]))
     result.push(curr)
@@ -85,15 +87,15 @@ const combineBacktrack = (
     for (let i = start; i < nums.length; i++) {
       memo.add(i)
       combineBacktrack(nums, k, i + 1, result, memo)
-      memo.delete(i)
+      memo.remove(i)
     }
   }
 }
 
-// const combinations = combine([1, 2, 3, 4], 2)
-// console.log('combinations:')
-// console.log(combinations)
-// console.log(combinations.length)
+const combinations = combine([1, 2, 2, 4], 2)
+console.log('combinations:')
+console.log(combinations)
+console.log(combinations.length)
 
 // const permute = (nums) => {
 //   const res = []
