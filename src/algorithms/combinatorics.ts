@@ -1,4 +1,5 @@
 import HashSet from '../data-structure/hashset'
+import { swap } from '../helpers/array'
 
 export const subsets = (nums: number[]): number[][] => {
   const result = []
@@ -56,10 +57,41 @@ const permuteBacktrack = (
   }
 }
 
-// const permutations = permute([1, 2, 2], 2)
-// console.log('Permutations:')
-// console.log(permutations)
-// console.log(permutations.length)
+const permutations = permute([1, 2, 2])
+console.log('Permutations:')
+console.log(permutations)
+console.log(permutations.length)
+
+export const permuteInPlace = (
+  nums: number[],
+  k: number = nums.length
+): number[][] => {
+  const result = []
+  permuteInPlaceBacktrack(nums, k, 0, result)
+  return result
+}
+
+const permuteInPlaceBacktrack = (
+  nums: number[],
+  k: number,
+  start: number,
+  result: number[][]
+) => {
+  if (start === k) {
+    result.push([...nums])
+  } else {
+    for (let i = start; i < nums.length; i++) {
+      swap(nums, start, i)
+      permuteInPlaceBacktrack(nums, k, start + 1, result)
+      swap(nums, i, start)
+    }
+  }
+}
+
+const permutations2 = permuteInPlace([1, 2, 3], 2)
+console.log('Permutations:')
+console.log(permutations2)
+console.log(permutations2.length)
 
 // Como lidar com duplicates?
 export const combine = (
@@ -96,25 +128,3 @@ const combinations = combine([1, 2, 2, 4], 2)
 console.log('combinations:')
 console.log(combinations)
 console.log(combinations.length)
-
-// const permute = (nums) => {
-//   const res = []
-
-//   backtrack(nums, 0, res)
-
-//   return res
-// };
-
-// const backtrack = (nums, pos, res) => {
-//   if (pos === nums.length) {
-//     res.push([...nums]);
-//   } else {
-//     for (let i = pos; i < nums.length; i++) {
-//       swap(nums, pos, i);
-//       backtrack(nums, pos+1, res)
-//       swap(nums, i, pos);
-//     }
-//   }
-// }
-
-// console.log(permute([1, 2, 2, 3]));
