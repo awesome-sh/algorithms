@@ -15,27 +15,6 @@ export const swap = <T>(array: T[], i: number, j: number): void => {
   array[j] = tmp
 }
 
-export const permute = <T>(array: T[]): T[][] => {
-  const res: T[][] = []
-
-  const backtrack = (array: T[], startIndex: number, res: T[][]) => {
-    const endIndex = array.length - 1
-
-    if (startIndex === endIndex) {
-      res.push(array.slice())
-    }
-
-    for (let i = startIndex; i <= endIndex; i++) {
-      swap(array, startIndex, i)
-      backtrack(array, startIndex + 1, res)
-      swap(array, i, startIndex)
-    }
-  }
-
-  backtrack(array, 0, res)
-  return res
-}
-
 // Good for reversing a string
 export const reverse = <T>(array: T[]): T[] => {
   for (let i = 0, j = array.length - 1; i < j; i++, j--) {
