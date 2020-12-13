@@ -15,26 +15,41 @@ const roman = [
   'I',
 ]
 
+// Greedy approach: take out the big number until it hits zero
 export const toRoman = (num: number): string => {
   let result = ''
 
-  for (let i = 0; i <= decimal.length; i++) {
-    while (num % decimal[i] < num) {
-      result += roman[i]
+  for (let i = 0; i < decimal.length; i++) {
+    while (decimal[i] <= num) {
       num -= decimal[i]
+      result += roman[i]
     }
   }
 
   return result
 }
 
+const values = {
+  M: 1000,
+  D: 500,
+  C: 100,
+  L: 50,
+  X: 10,
+  V: 5,
+  I: 1,
+}
+
 export const fromRoman = (str: string): number => {
   let result = 0
 
-  for (let i = 0; i <= decimal.length; i++) {
-    while (str.indexOf(roman[i]) === 0) {
-      result += decimal[i]
-      str = str.replace(roman[i], '')
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i]
+    const nextChar = str[i + 1]
+
+    if (values[char] < values[nextChar]) {
+      result -= values[char]
+    } else {
+      result += values[char]
     }
   }
 
