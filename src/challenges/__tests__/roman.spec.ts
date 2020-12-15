@@ -1,4 +1,4 @@
-import { toRoman, fromRoman } from '../roman'
+import { toRoman, fromRoman, sumRoman } from '../roman'
 
 describe('Roman', () => {
   it('converts integer to roman', () => {
@@ -7,5 +7,10 @@ describe('Roman', () => {
 
   it('converts roman to integer', () => {
     expect(fromRoman('MCMXCVIII')).toBe(1998)
+  })
+
+  it('sums two roman numerals', () => {
+    // 123 + 456 = 579
+    expect(sumRoman('CXXIII', 'CDLVI')).toBe('DLXXIX')
   })
 })

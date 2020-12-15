@@ -55,3 +55,8 @@ export const fromRoman = (str: string): number => {
 
   return result
 }
+
+export const sumRoman = (roman1: string, roman2: string): string => {
+  const sum = fromRoman(roman1) + fromRoman(roman2)
+  return toRoman(sum)
+}
