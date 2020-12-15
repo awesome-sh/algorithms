@@ -4,7 +4,7 @@ export const truncate = (num: number): number => {
 
 export const pop = (num: number): [number, number] => {
   const digit = num % 10
-  num = (num / 10) | 0
+  num = truncate(num / 10)
   return [num, digit]
 }
 
