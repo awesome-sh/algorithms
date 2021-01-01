@@ -3,7 +3,11 @@ export const binarySearch = (array: number[], x: number): number => {
   let high = array.length - 1
 
   while (low <= high) {
-    const mid = Math.floor((low + high) / 2)
+    /**
+     * This line used to be "const mid = Math.floor((low + high) / 2)" but
+     * it was changed due to a bug explained here: https://bit.ly/3aZ2zyl
+     */
+    const mid = low + Math.floor((high - low) / 2)
 
     if (array[mid] === x) {
       return mid

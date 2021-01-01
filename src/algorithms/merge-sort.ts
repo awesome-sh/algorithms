@@ -4,7 +4,12 @@ export const mergeSort = (
   high: number = array.length - 1
 ): void => {
   if (low < high) {
-    const mid = Math.floor((low + high) / 2)
+    /**
+     * This line used to be "const mid = Math.floor((low + high) / 2)" but
+     * it was changed due to a bug explained here: https://bit.ly/3aZ2zyl
+     */
+    const mid = low + Math.floor((high - low) / 2)
+
     mergeSort(array, low, mid)
     mergeSort(array, mid + 1, high)
     merge(array, low, mid, high)
