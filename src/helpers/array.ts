@@ -24,6 +24,7 @@ export const reverse = <T>(array: T[]): T[] => {
   return array
 }
 
+// TODO: use heaps
 export const ranking = (array: number[]): number[] => {
   const cloned = clone(array)
   const sorted = cloned.sort((a, b) => b - a)
@@ -35,6 +36,7 @@ export const ranking = (array: number[]): number[] => {
 export const matrix = (rows: number, cols: number): number[][] =>
   Array(rows).fill(Array(cols))
 
+// TODO: tests
 export const counter = (str: string): Record<string, number> => {
   const counter = {}
 
