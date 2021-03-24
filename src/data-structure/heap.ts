@@ -2,16 +2,16 @@ import ArrayList from '../data-structure/array-list'
 import Comparator from '../helpers/comparator'
 
 class Heap<T> {
-  private array: ArrayList<T>
+  private list: ArrayList<T>
   protected _compare: Comparator<T>
 
   constructor() {
-    this.array = new ArrayList<T>()
+    this.list = new ArrayList<T>()
     this._compare = new Comparator<T>()
   }
 
   add(item: T): void {
-    this.array.append(item)
+    this.list.append(item)
     this.heapifyUp()
   }
 
@@ -19,13 +19,13 @@ class Heap<T> {
   remove(item: T): void {
     let i
 
-    for (i = 0; i < this.array.size(); i++) {
-      if (this.array.get(i) === item) {
+    for (i = 0; i < this.list.size(); i++) {
+      if (this.list.get(i) === item) {
         break
       }
     }
 
-    this.array.set(i, this.array.pop())
+    this.list.set(i, this.list.pop())
 
     if (this._compare.greaterThan(this.parentOf(i), this.elementOf(i))) {
       this.heapifyUp(i)
@@ -39,7 +39,7 @@ class Heap<T> {
   }
 
   size(): number {
-    return this.array.length()
+    return this.list.length()
   }
 
   isEmpty(): boolean {
@@ -48,13 +48,17 @@ class Heap<T> {
 
   poll(): T {
     const item = this.peek()
-    this.array.set(0, this.array.pop())
+    this.list.set(0, this.list.pop())
     this.heapifyDown()
     return item
   }
 
   toString(): string {
-    return this.array.toString()
+    return this.list.toString()
+  }
+
+  toArray(): T[] {
+    return this.list.toArray()
   }
 
   private heapifyUp(index: number = this.lastIndex()): void {
@@ -64,7 +68,7 @@ class Heap<T> {
       this.parentOf(index) &&
       this._compare.greaterThan(this.parentOf(index), this.elementOf(index))
     ) {
-      this.array.swap(this.parentIndexOf(index), index)
+      this.list.swap(this.parentIndexOf(index), index)
 
       // Move up
       index = this.parentIndexOf(index)
@@ -88,7 +92,7 @@ class Heap<T> {
           this.elementOf(index)
         )
       ) {
-        this.array.swap(childIndex, index)
+        this.list.swap(childIndex, index)
       } else {
         // There's no more swap to do.
         break
@@ -100,7 +104,7 @@ class Heap<T> {
   }
 
   private elementOf(index: number): T {
-    return this.array.get(index)
+    return this.list.get(index)
   }
 
   private parentOf(index: number): T {
@@ -120,7 +124,7 @@ class Heap<T> {
   }
 
   private lastIndex(): number {
-    return this.array.length() - 1
+    return this.list.length() - 1
   }
 
   private leftIndexOf(index: number): number {

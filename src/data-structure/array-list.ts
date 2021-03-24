@@ -1,3 +1,4 @@
+import { clone } from '../helpers/array'
 class ArrayList<T> {
   _bucket: T[]
   _size: number
@@ -78,6 +79,10 @@ class ArrayList<T> {
 
   toString(): string {
     return this._bucket.toString()
+  }
+
+  toArray(): T[] {
+    return clone(this._bucket)
   }
 
   private _expandBucket(): void {
