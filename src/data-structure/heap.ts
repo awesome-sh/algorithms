@@ -1,13 +1,12 @@
 import ArrayList from '../data-structure/array-list'
-import Comparator from '../helpers/comparator'
 
 class Heap<T> {
   private list: ArrayList<T>
-  protected _compare: Comparator<T>
+  protected _compare: (a: T, b: T) => number
 
-  constructor(comparator: Comparator<T> = new Comparator<T>()) {
+  constructor(comparator: (a: T, b: T) => number) {
     this.list = new ArrayList<T>()
-    this._compare = comparator
+    this._compare = comparator || this.defaultFn
   }
 
   add(item: T): void {
@@ -27,7 +26,7 @@ class Heap<T> {
 
     this.list.set(i, this.list.pop())
 
-    if (this._compare.greaterThan(this.parentOf(i), this.elementOf(i))) {
+    if (this.isGreaterThanOrEqual(this.parentOf(i), this.elementOf(i))) {
       this.heapifyUp(i)
     } else {
       this.heapifyDown(i)
@@ -64,7 +63,7 @@ class Heap<T> {
   private heapifyUp(index: number = this.lastIndex()): void {
     while (
       this.parentOf(index) &&
-      this._compare.greaterThan(this.parentOf(index), this.elementOf(index))
+      this.isGreaterThanOrEqual(this.parentOf(index), this.elementOf(index))
     ) {
       this.list.swap(this.parentIndexOf(index), index)
 
@@ -78,13 +77,13 @@ class Heap<T> {
 
     while (typeof this.list.get(childIndex) !== 'undefined') {
       // Compare the values of the two childs
-      if (this._compare.lessThan(this.rightOf(index), this.leftOf(index))) {
+      if (this.isLessThanOrEqual(this.rightOf(index), this.leftOf(index))) {
         childIndex = this.rightIndexOf(index)
       }
 
       // Compare the values of the smaller child with the current element
       if (
-        this._compare.lessThan(
+        this.isLessThanOrEqual(
           this.elementOf(childIndex),
           this.elementOf(index)
         )
@@ -130,6 +129,22 @@ class Heap<T> {
 
   private rightIndexOf(index: number): number {
     return 2 * index + 2
+  }
+
+  private isGreaterThanOrEqual(a: T, b: T): boolean {
+    return this._compare(a, b) >= 0
+  }
+
+  private isLessThanOrEqual(a: T, b: T): boolean {
+    return this._compare(a, b) <= 0
+  }
+
+  private defaultFn(a: T, b: T): number {
+    if (a === b) {
+      return 0
+    }
+
+    return a < b ? -1 : 1
   }
 }
 

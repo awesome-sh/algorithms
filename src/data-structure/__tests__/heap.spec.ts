@@ -1,10 +1,9 @@
 import Heap from '../heap'
-import Comparator from '../../helpers/comparator'
 
 describe('Heap', () => {
   describe('MinHeap', () => {
     it('starts empty', () => {
-      const comparator = new Comparator<number>((a, b) => a - b)
+      const comparator = (a, b) => a - b
       const heap = new Heap<number>(comparator)
 
       expect(heap.size()).toBe(0)
@@ -12,7 +11,7 @@ describe('Heap', () => {
     })
 
     it('adds element', () => {
-      const comparator = new Comparator<number>((a, b) => a - b)
+      const comparator = (a, b) => a - b
       const heap = new Heap<number>(comparator)
 
       heap.add(5)
@@ -22,7 +21,7 @@ describe('Heap', () => {
     })
 
     it('has the minimum element on the top', () => {
-      const comparator = new Comparator<number>((a, b) => a - b)
+      const comparator = (a, b) => a - b
       const heap = new Heap<number>(comparator)
 
       heap.add(3)
@@ -33,7 +32,7 @@ describe('Heap', () => {
     })
 
     it('always remove the minimum element', () => {
-      const comparator = new Comparator<number>((a, b) => a - b)
+      const comparator = (a, b) => a - b
       const heap = new Heap<number>(comparator)
 
       heap.add(4)
@@ -48,7 +47,7 @@ describe('Heap', () => {
     })
 
     it('removes an element in the middle', () => {
-      const comparator = new Comparator<number>((a, b) => a - b)
+      const comparator = (a, b) => a - b
       const heap = new Heap<number>(comparator)
 
       heap.add(4)
@@ -64,7 +63,7 @@ describe('Heap', () => {
     })
 
     it('stringifies the heap', () => {
-      const comparator = new Comparator<number>((a, b) => a - b)
+      const comparator = (a, b) => a - b
       const heap = new Heap<number>(comparator)
 
       heap.add(3)
@@ -77,7 +76,7 @@ describe('Heap', () => {
 
   describe('MaxHeap', () => {
     it('starts empty', () => {
-      const comparator = new Comparator<number>((a, b) => b - a)
+      const comparator = (a, b) => b - a
       const heap = new Heap<number>(comparator)
 
       expect(heap.size()).toBe(0)
@@ -85,7 +84,7 @@ describe('Heap', () => {
     })
 
     it('adds element', () => {
-      const comparator = new Comparator<number>((a, b) => b - a)
+      const comparator = (a, b) => b - a
       const heap = new Heap<number>(comparator)
 
       heap.add(5)
@@ -95,7 +94,7 @@ describe('Heap', () => {
     })
 
     it('has the maximum element on the top', () => {
-      const comparator = new Comparator<number>((a, b) => b - a)
+      const comparator = (a, b) => b - a
       const heap = new Heap<number>(comparator)
 
       heap.add(3)
@@ -106,7 +105,7 @@ describe('Heap', () => {
     })
 
     it('always remove the maximum element', () => {
-      const comparator = new Comparator<number>((a, b) => b - a)
+      const comparator = (a, b) => b - a
       const heap = new Heap<number>(comparator)
 
       heap.add(3)
@@ -121,7 +120,7 @@ describe('Heap', () => {
     })
 
     it('removes an element in the middle', () => {
-      const comparator = new Comparator<number>((a, b) => b - a)
+      const comparator = (a, b) => b - a
       const heap = new Heap<number>(comparator)
 
       heap.add(3)
@@ -137,7 +136,7 @@ describe('Heap', () => {
     })
 
     it('stringifies the heap', () => {
-      const comparator = new Comparator<number>((a, b) => b - a)
+      const comparator = (a, b) => b - a
       const heap = new Heap<number>(comparator)
 
       heap.add(3)

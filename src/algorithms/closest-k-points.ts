@@ -1,6 +1,5 @@
 // Stream solution of the "closest K points" problem
 import Heap from '../data-structure/heap'
-import Comparator from '../helpers/comparator'
 
 export class ClosestKPoints {
   private k: number
@@ -8,11 +7,9 @@ export class ClosestKPoints {
   private origin: Point
 
   constructor(origin: Point, k: number) {
-    const comparator = new Comparator<HeapPoint>((a, b) => b.dist - a.dist)
-
     this.origin = origin
     this.k = k
-    this.maxHeap = new Heap<HeapPoint>(comparator)
+    this.maxHeap = new Heap<HeapPoint>((a, b) => b.dist - a.dist)
   }
 
   add(point: Point): void {
