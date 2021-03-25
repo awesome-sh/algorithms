@@ -1,11 +1,11 @@
 class Comparator<T> {
   private _compare: (a: T, b: T) => number
 
-  constructor(compareFunction?: (a: T, b: T) => number) {
-    this._compare = compareFunction || this.defaultCompareFunction
+  constructor(fn?: (a: T, b: T) => number) {
+    this._compare = fn || this.defaultFn
   }
 
-  defaultCompareFunction(a: T, b: T): number {
+  defaultFn(a: T, b: T): number {
     if (a === b) {
       return 0
     }

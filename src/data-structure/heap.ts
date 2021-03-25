@@ -5,9 +5,9 @@ class Heap<T> {
   private list: ArrayList<T>
   protected _compare: Comparator<T>
 
-  constructor() {
+  constructor(comparator: Comparator<T> = new Comparator<T>()) {
     this.list = new ArrayList<T>()
-    this._compare = new Comparator<T>()
+    this._compare = comparator
   }
 
   add(item: T): void {
@@ -62,8 +62,6 @@ class Heap<T> {
   }
 
   private heapifyUp(index: number = this.lastIndex()): void {
-    //let index = this.lastIndex()
-
     while (
       this.parentOf(index) &&
       this._compare.greaterThan(this.parentOf(index), this.elementOf(index))
@@ -76,10 +74,9 @@ class Heap<T> {
   }
 
   private heapifyDown(index = 0): void {
-    //const index = 0
     let childIndex = this.leftIndexOf(index)
 
-    while (childIndex) {
+    while (typeof this.list.get(childIndex) !== 'undefined') {
       // Compare the values of the two childs
       if (this._compare.lessThan(this.rightOf(index), this.leftOf(index))) {
         childIndex = this.rightIndexOf(index)
@@ -136,16 +133,4 @@ class Heap<T> {
   }
 }
 
-export class MinHeap<T> extends Heap<T> {
-  constructor() {
-    super()
-    this._compare = new Comparator<T>((a: unknown, b: unknown) => +a - +b)
-  }
-}
-
-export class MaxHeap<T> extends Heap<T> {
-  constructor() {
-    super()
-    this._compare = new Comparator<T>((a: T, b: T) => +b - +a)
-  }
-}
+export default Heap

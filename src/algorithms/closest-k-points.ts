@@ -1,62 +1,48 @@
 // Stream solution of the "closest K points" problem
-import { MaxHeap } from '../data-structure/heap'
+import Heap from '../data-structure/heap'
+import Comparator from '../helpers/comparator'
 
-const maxHeap = new MaxHeap<HeapPoint>()
+export class ClosestKPoints {
+  private k: number
+  private maxHeap: Heap<HeapPoint>
+  private origin: Point
 
-export const init = (points: Point[], origin: Point, k: number): void => {
-  for (let i = 0; i < k; i++) {
-    maxHeap.add({
-      point: points[i],
-      dist: computeDist(points[i], origin),
-    })
+  constructor(origin: Point, k: number) {
+    const comparator = new Comparator<HeapPoint>((a, b) => b.dist - a.dist)
+
+    this.origin = origin
+    this.k = k
+    this.maxHeap = new Heap<HeapPoint>(comparator)
+  }
+
+  add(point: Point): void {
+    const dist = this.computeDist(point, this.origin)
+    const item = { point, dist }
+
+    if (this.maxHeap.size() < this.k) {
+      this.maxHeap.add(item)
+    } else {
+      if (dist < this.maxHeap.peek().dist) {
+        this.maxHeap.poll()
+        this.maxHeap.add(item)
+      }
+    }
+  }
+
+  get(): Point[] {
+    return this.maxHeap.toArray().map((item) => item.point)
+  }
+
+  computeDist(point: Point, origin: Point): number {
+    return Math.sqrt(
+      Math.pow(point[0] - origin[0], 2) + Math.pow(point[1] - origin[1], 2)
+    )
   }
 }
 
-export const add = (point: Point, origin: Point): void => {
-  const dist = computeDist(point, origin)
-
-  if (dist < maxHeap.peek().dist) {
-    maxHeap.poll()
-    maxHeap.add({
-      point: point,
-      dist: dist,
-    })
-  }
-}
-
-export const closestKPoints = (): Point[] => {
-  return maxHeap.toArray().map((item) => item.point)
-}
-
-const computeDist = (point: Point, origin: Point): number => {
-  return Math.sqrt(
-    Math.pow(point[0] - origin[0], 2) + Math.pow(point[1] - origin[1], 2)
-  )
-}
-
-type Point = [number, number]
+export type Point = [number, number]
 
 type HeapPoint = {
   point: Point
   dist: number
 }
-
-/* Consolidated in one function */
-// export const closestKPoints2 = (point: Point, origin: Point, k: number): void => {
-//   if (maxHeap.size() < k) {
-//     maxHeap.add({
-//       point: point,
-//       dist: computeDist(point, origin),
-//     })
-//   } else {
-//     const dist = computeDist(point, origin)
-
-//     if (dist < maxHeap.peek().dist) {
-//       maxHeap.poll()
-//       maxHeap.add({
-//         point: point,
-//         dist: dist,
-//       })
-//     }
-//   }
-// }
