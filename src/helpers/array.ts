@@ -9,6 +9,7 @@ export const leftRotation = <T>(array: T[], n: number): T[] => {
   return array.slice(n, array.length).concat(array.slice(0, n))
 }
 
+// One liner: [array[i], array[j]] = [array[j], array[i]];
 export const swap = <T>(array: T[], i: number, j: number): void => {
   const tmp = array[i]
   array[i] = array[j]
