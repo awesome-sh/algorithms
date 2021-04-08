@@ -36,14 +36,3 @@ export const ranking = (array: number[]): number[] => {
 
 export const matrix = (rows: number, cols: number): number[][] =>
   Array(rows).fill(Array(cols))
-
-// TODO: tests
-export const counter = (str: string): Record<string, number> => {
-  const counter = {}
-
-  for (let i = 0; i < str.length; i++) {
-    counter[str[i]] = 0
-  }
-
-  return counter
-}
