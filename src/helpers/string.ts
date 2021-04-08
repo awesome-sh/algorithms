@@ -16,5 +16,7 @@ export const convertCharToDigit = (char: string): number => {
 }
 
 export const convertStrToDigit = (str: string): number => {
-  return str - '0'
+  const digit: unknown = str
+  const firstDigit: unknown = '0'
+  return (digit as number) - (firstDigit as number)
 }
