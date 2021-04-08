@@ -1,4 +1,9 @@
-import { isOverlap, isOverlap2, mergeOverlappingIntervals } from '../intervals'
+import {
+  getOverlap,
+  isOverlap,
+  isOverlap2,
+  mergeOverlappingIntervals,
+} from '../intervals'
 
 describe('Intervals', () => {
   describe('isOverlap', () => {
@@ -34,6 +39,16 @@ describe('Intervals', () => {
 
     it('detects a touching overlap', () => {
       expect(isOverlap2([1, 3], [3, 7])).toEqual(true)
+    })
+  })
+
+  describe('getOverlap', () => {
+    it('gets an overlap', () => {
+      expect(getOverlap([1, 5], [4, 7])).toEqual([4, 5])
+    })
+
+    it('does not get an overlap', () => {
+      expect(getOverlap([1, 3], [4, 7])).toEqual(null)
     })
   })
 

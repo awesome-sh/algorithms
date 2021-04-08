@@ -38,6 +38,16 @@ export const isOverlap2 = (
   return a[0] <= b[1] && b[0] <= a[1]
 }
 
+export const getOverlap = (
+  a: [number, number],
+  b: [number, number]
+): [number, number] | null => {
+  if (isOverlap(a, b)) {
+    return [Math.max(a[0], b[0]), Math.min(a[1], b[1])]
+  }
+  return null
+}
+
 export const mergeOverlappingIntervals = (
   a: [number, number],
   b: [number, number]
