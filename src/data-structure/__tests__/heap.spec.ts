@@ -61,14 +61,20 @@ describe('Heap', () => {
 
       expect(heap.toString()).toBe('1,3,2')
     })
+
+    it('initializes from an existing array', () => {
+      const heap = new Heap<number>([3, 1, 2])
+      expect(heap.toString()).toBe('1,3,2')
+    })
   })
 
   describe('MaxHeap', () => {
     let heap: Heap<number>
+    let comparator: (a: number, b: number) => number
 
     beforeEach(() => {
-      const comparator = (a, b) => b - a
-      heap = new Heap<number>(comparator)
+      comparator = (a: number, b: number) => b - a
+      heap = new Heap<number>(null, comparator)
     })
 
     it('starts empty', () => {
@@ -121,6 +127,11 @@ describe('Heap', () => {
       heap.add(1)
       heap.add(2)
 
+      expect(heap.toString()).toBe('3,1,2')
+    })
+
+    it('initializes from an existing array', () => {
+      const heap = new Heap<number>([3, 1, 2], comparator)
       expect(heap.toString()).toBe('3,1,2')
     })
   })

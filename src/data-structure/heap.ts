@@ -4,9 +4,14 @@ class Heap<T> {
   private list: ArrayList<T>
   protected _compare: (a: T, b: T) => number
 
-  constructor(comparator?: (a: T, b: T) => number) {
+  constructor(values?: T[] | null, comparator?: (a: T, b: T) => number) {
     this.list = new ArrayList<T>()
     this._compare = comparator || this.defaultFn
+
+    values = values || []
+    for (let i = 0; i < values.length; i++) {
+      this.add(values[i])
+    }
   }
 
   add(item: T): void {

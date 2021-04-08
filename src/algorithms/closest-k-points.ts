@@ -9,7 +9,7 @@ export class ClosestKPoints {
   constructor(origin: Point, k: number) {
     this.origin = origin
     this.k = k
-    this.maxHeap = new Heap<HeapPoint>((a, b) => b.dist - a.dist)
+    this.maxHeap = new Heap<HeapPoint>(null, (a, b) => b.dist - a.dist)
   }
 
   add(point: Point): void {
