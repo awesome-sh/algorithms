@@ -16,6 +16,10 @@ const hash = (str: string, wordLength: number) => {
     hash += getCode(str[i]) * Math.pow(26, wordLength - 1 - i)
   }
 
+  // For instance, the hash for string "ace" would be 759
+  // -> hash = getCode('a')*26^2 + getCode('c')*26^1 + getCode('e')*26^0
+  // -> hash = 1*26^2 + 3*26^1 + 5*26^0
+  // -> hash = 759
   return hash
 }
 
@@ -28,10 +32,24 @@ export const rabinKarp = (text: string, word: string): number => {
       // Compute hash and cache it on a variable
       windowHash = hash(text, word.length)
     } else {
+      // For instance, text "racecar" looking for "car". Word length 3, current window "ace".
+      // current window hash = getCode('a')*26^2 + getCode('c')*26^1 + getCode('e')*26^0
+
       // Roll hash
+      // 1. Let's remove factor "a" from the front
+      // -> windowHash = ( getCode('a')*26^2 + getCode('c')*26^1 + getCode('e')*26^0 ) - getCode('a')*26^2
       windowHash -= getCode(text[i - 1]) * Math.pow(26, word.length - 1)
+
+      // 2. Let's upgrade factors in the middle "c" and "e"
+      // -> windowHash = ( getCode('c')*26^1 + getCode('e')*26^0 ) * 26
       windowHash *= 26
-      windowHash += getCode(text[i - 1 + word.length])
+
+      // 3. Let's add factors "c" in the end
+      // -> windowHash = ( getCode('c')*26^2 + getCode('e')*26^1 ) + getCode('c')*26^0
+      windowHash += getCode(text[i - 1 + word.length]) * Math.pow(26, 0)
+
+      // Result:
+      // -> new window hash: getCode('c')*26^2 + getCode('e')*26^1 + getCode('c')*26^0
     }
 
     if (windowHash === wordHash) {

@@ -48,6 +48,7 @@ export const getOverlap = (
   return null
 }
 
+// Copied from https://yangshun.github.io/tech-interview-handbook/algorithms/interval/
 export const mergeOverlappingIntervals = (
   a: [number, number],
   b: [number, number]
