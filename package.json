@@ -4,7 +4,7 @@
   "description": "",
   "main": "jest.config.js",
   "scripts": {
-    "all": "npm test -- --coverage && npm run typecheck && npm run lint",
+    "all": "jest --coverage && tsc && eslint . --ext .ts",
     "lint": "eslint . --ext .ts",
     "test": "jest",
     "typecheck": "tsc"
