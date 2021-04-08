@@ -21,8 +21,7 @@ export const isOverlap = (
   a: [number, number],
   b: [number, number]
 ): boolean => {
-  return a[0] <= b[1] && b[0] <= a[1]
-  // return !(b[1] < a[0] || a[1] < b[0]);
+  return !(b[1] < a[0] || a[1] < b[0])
 }
 
 /**

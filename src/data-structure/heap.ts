@@ -4,7 +4,7 @@ class Heap<T> {
   private list: ArrayList<T>
   protected _compare: (a: T, b: T) => number
 
-  constructor(comparator: (a: T, b: T) => number) {
+  constructor(comparator?: (a: T, b: T) => number) {
     this.list = new ArrayList<T>()
     this._compare = comparator || this.defaultFn
   }
