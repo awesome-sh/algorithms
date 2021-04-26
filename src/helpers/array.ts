@@ -1,6 +1,7 @@
 export const fill = <T>(size: number, value: T): T[] =>
   new Array(size).fill(value)
 
+// Complexity: O(n)
 export const clone = <T>(array: T[]): T[] => array.slice()
 
 export const leftRotation = <T>(array: T[], n: number): T[] => {
@@ -10,6 +11,7 @@ export const leftRotation = <T>(array: T[], n: number): T[] => {
 }
 
 // One liner: [array[i], array[j]] = [array[j], array[i]];
+// Complexity: O(1)
 export const swap = <T>(array: T[], i: number, j: number): void => {
   const tmp = array[i]
   array[i] = array[j]
@@ -17,6 +19,7 @@ export const swap = <T>(array: T[], i: number, j: number): void => {
 }
 
 // Good for reversing a string
+// Complexity: O(n)
 export const reverse = <T>(array: T[]): T[] => {
   for (let i = 0, j = array.length - 1; i < j; i++, j--) {
     swap(array, i, j)
