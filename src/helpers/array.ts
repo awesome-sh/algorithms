@@ -18,8 +18,13 @@ export const swap = <T>(array: T[], i: number, j: number): void => {
 // Good for reversing a string
 // Complexity: O(n)
 export const reverse = <T>(array: T[]): T[] => {
-  for (let i = 0, j = array.length - 1; i < j; i++, j--) {
+  let i = 0
+  let j = array.length - 1
+
+  while (i < j) {
     swap(array, i, j)
+    i++
+    j--
   }
 
   return array
