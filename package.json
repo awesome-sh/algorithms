@@ -25,7 +25,7 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coverageDirectory": "<rootDir>/.coverage",
     "coverageThreshold": {
       "global": {
