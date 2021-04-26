@@ -1,12 +1,4 @@
-import {
-  clone,
-  fill,
-  leftRotation,
-  matrix,
-  ranking,
-  reverse,
-  swap,
-} from '../array'
+import { clone, leftRotation, matrix, ranking, reverse, swap } from '../array'
 
 describe('Array', () => {
   it('clones an array', () => {
@@ -14,10 +6,6 @@ describe('Array', () => {
     const cloned = clone(array)
 
     expect(cloned).not.toBe(array)
-  })
-
-  it('created a filled array', () => {
-    expect(fill(3, 4)).toEqual([4, 4, 4])
   })
 
   it('reverses an array', () => {

@@ -1,6 +1,3 @@
-export const fill = <T>(size: number, value: T): T[] =>
-  new Array(size).fill(value)
-
 // Complexity: O(n)
 export const clone = <T>(array: T[]): T[] => array.slice()
 
