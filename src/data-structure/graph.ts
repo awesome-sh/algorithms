@@ -3,30 +3,30 @@ import LinkedList from './linked-list'
 import { calculateDistanceToNodes } from '../challenges/distance-to-nodes'
 
 class Graph {
-  _edges: HashMap<string, LinkedList<Edge>>
-  _nodes: HashMap<string, Node>
+  private edges: HashMap<string, LinkedList<Edge>>
+  private nodes: HashMap<string, Node>
 
   constructor() {
-    this._edges = new HashMap<string, LinkedList<Edge>>()
-    this._nodes = new HashMap<string, Node>()
+    this.edges = new HashMap<string, LinkedList<Edge>>()
+    this.nodes = new HashMap<string, Node>()
   }
 
   createNode(key: string, data?: unknown): Node {
     const node: Node = { key, data }
 
-    this._nodes.set(key, node)
-    this._edges.set(key, new LinkedList())
+    this.nodes.set(key, node)
+    this.edges.set(key, new LinkedList())
 
     return node
   }
 
   addEdge(startNode: Node, endNode: Node, weight = 1): void {
     // Adjacency List
-    this._edges.get(startNode.key).append({ node: endNode, weight })
+    this.edges.get(startNode.key).append({ node: endNode, weight })
   }
 
   getEdgeWeight(nodeA: Node, nodeB: Node): number {
-    const edges = this._getEdges(nodeA)
+    const edges = this.getEdges(nodeA)
 
     for (const edge of edges) {
       if (edge.node === nodeB) {
@@ -39,7 +39,7 @@ class Graph {
 
   getNeighbors(node: Node): Node[] {
     const neighbors = []
-    const edges = this._getEdges(node)
+    const edges = this.getEdges(node)
 
     for (const edge of edges) {
       neighbors.push(edge.node)
@@ -49,11 +49,11 @@ class Graph {
   }
 
   getNode(key: string): Node {
-    return this._nodes.get(key)
+    return this.nodes.get(key)
   }
 
   getNodes(): Node[] {
-    return this._nodes.values()
+    return this.nodes.values()
   }
 
   toString(): string {
@@ -61,7 +61,7 @@ class Graph {
     const result = []
 
     for (const node of nodes) {
-      result.push(`${node.key}: ${this._getEdges(node).toString()}`)
+      result.push(`${node.key}: ${this.getEdges(node).toString()}`)
     }
 
     return result.join('\n')
@@ -90,8 +90,8 @@ class Graph {
     return result
   }
 
-  private _getEdges(node: Node): LinkedList<Edge> {
-    return this._edges.get(node.key)
+  private getEdges(node: Node): LinkedList<Edge> {
+    return this.edges.get(node.key)
   }
 }
 
