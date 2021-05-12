@@ -30,16 +30,6 @@ describe('Shortest Path', () => {
     graph.addEdge(C, D, 5)
   })
 
-  it('finds shortest path between two nodes using dijkstras algorithm', () => {
-    const path = graph.findShortestPath(A, D, dijkstra)
-    expect(path).toEqual(['A', 'C', 'B', 'D'])
-  })
-
-  it('finds shortest path between two nodes', () => {
-    const path = graph.findShortestPath(A, D)
-    expect(path).toEqual(['A', 'B', 'D'])
-  })
-
   it('gets edge weight between two nodes', () => {
     expect(graph.getEdgeWeight(A, B)).toEqual(6)
   })

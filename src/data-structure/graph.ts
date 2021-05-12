@@ -1,6 +1,5 @@
 import HashMap from './hashmap'
 import LinkedList from './linked-list'
-import { calculateDistanceToNodes } from '../challenges/distance-to-nodes'
 
 class Graph {
   private edges: HashMap<string, LinkedList<Edge>>
@@ -65,29 +64,6 @@ class Graph {
     }
 
     return result.join('\n')
-  }
-
-  findShortestPath(
-    start: Node,
-    end: Node,
-    algorithm: (
-      graph: Graph,
-      node: Node
-    ) => {
-      dist: HashMap<string, number>
-      path: HashMap<string, string | null>
-    } = calculateDistanceToNodes
-  ): string[] {
-    const { path } = algorithm(this, start)
-    const result = []
-    let { key } = end
-
-    while (key) {
-      result.unshift(key)
-      key = path.get(key)
-    }
-
-    return result
   }
 
   private getEdges(node: Node): LinkedList<Edge> {
