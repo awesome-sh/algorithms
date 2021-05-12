@@ -11,7 +11,7 @@ class Graph {
   }
 
   createNode(key: string, data?: unknown): Node {
-    const node: Node = { key, data }
+    const node = new Node(key, data)
 
     this.nodes.set(key, node)
     this.edges.set(key, new LinkedList())
@@ -71,14 +71,19 @@ class Graph {
   }
 }
 
+export class Node {
+  public key: string
+  public data: unknown
+
+  constructor(key, data) {
+    this.key = key
+    this.data = data
+  }
+}
+
 export type Edge = {
   node: Node
   weight: number
-}
-
-export type Node = {
-  key: string
-  data: unknown
 }
 
 export default Graph
