@@ -39,5 +39,9 @@ export const ranking = (array: number[]): number[] => {
   return array.map((v) => sorted.indexOf(v) + 1)
 }
 
+// Note: if we do Array(rows).fill(Array(cols)), rows are going to be filled
+// with the same array instance.
 export const matrix = (rows: number, cols: number): number[][] =>
-  Array(rows).fill(Array(cols))
+  Array(rows)
+    .fill(0)
+    .map(() => Array(cols).fill(0))
