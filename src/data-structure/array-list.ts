@@ -1,35 +1,35 @@
 import { clone } from '../helpers/array'
 class ArrayList<T> {
-  _bucket: T[]
-  _size: number
+  private bucket: T[]
+  private capacity: number
 
-  constructor(size?: number) {
-    this._size = size || 10
-    this._bucket = []
+  constructor(capacity?: number) {
+    this.capacity = capacity || 10
+    this.bucket = []
   }
 
   set(index: number, item: T): boolean {
-    if (index < 0 || index >= this._bucket.length) {
+    if (index < 0 || index >= this.bucket.length) {
       return false
     }
 
-    this._bucket[index] = item
+    this.bucket[index] = item
 
     return true
   }
 
   append(item: T): void {
-    const len = this._bucket.length
+    const len = this.bucket.length
 
-    if (this._bucket.length === this._size) {
-      this._expandBucket()
+    if (this.bucket.length === this.capacity) {
+      this.expandBucket()
     }
 
-    this._bucket[len] = item
+    this.bucket[len] = item
   }
 
   get(index: number): T {
-    return this._bucket[index]
+    return this.bucket[index]
   }
 
   remove(item: T): boolean {
@@ -39,12 +39,12 @@ class ArrayList<T> {
       return false
     }
 
-    if (i < this._bucket.length) {
-      for (let j = i; j < this._bucket.length - 1; j++) {
-        this._bucket[j] = this._bucket[j + 1]
+    if (i < this.bucket.length) {
+      for (let j = i; j < this.bucket.length - 1; j++) {
+        this.bucket[j] = this.bucket[j + 1]
       }
 
-      this._bucket.length-- // Remove last element
+      this.bucket.length-- // Remove last element
       return true
     }
 
@@ -62,45 +62,45 @@ class ArrayList<T> {
   }
 
   swap(indexA: number, indexB: number): void {
-    const tmp = this._bucket[indexA]
-    this._bucket[indexA] = this._bucket[indexB]
-    this._bucket[indexB] = tmp
+    const tmp = this.bucket[indexA]
+    this.bucket[indexA] = this.bucket[indexB]
+    this.bucket[indexB] = tmp
   }
 
   pop(): T {
-    return this._bucket.pop()
+    return this.bucket.pop()
   }
 
   values(): T[] {
-    return this._bucket
+    return this.bucket
   }
 
   length(): number {
-    return this._bucket.length
+    return this.bucket.length
   }
 
   size(): number {
-    return this._size
+    return this.capacity
   }
 
   toString(): string {
-    return this._bucket.toString()
+    return this.bucket.toString()
   }
 
   toArray(): T[] {
-    return clone(this._bucket)
+    return clone(this.bucket)
   }
 
-  private _expandBucket(): void {
-    const newSize = this._size * 2
+  private expandBucket(): void {
+    const newSize = this.capacity * 2
     const newBucket = [] // Pretend the new bucket is twice the size of the old bucket
 
-    for (let i = 0; i < this._bucket.length; i++) {
-      newBucket[i] = this._bucket[i]
+    for (let i = 0; i < this.bucket.length; i++) {
+      newBucket[i] = this.bucket[i]
     }
 
-    this._size = newSize
-    this._bucket = newBucket
+    this.capacity = newSize
+    this.bucket = newBucket
   }
 
   [Symbol.iterator](): {
