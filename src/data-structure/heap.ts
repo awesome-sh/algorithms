@@ -19,6 +19,11 @@ class Heap<T> {
     this.heapifyUp()
   }
 
+  update(item: T): void {
+    const index = this.list.findIndex(listItem => listItem === item)
+    this.heapifyUp(index)
+  }
+
   // Inspiration: https://bit.ly/369fprr
   remove(item: T): void {
     let i
@@ -77,30 +82,51 @@ class Heap<T> {
     }
   }
 
-  private heapifyDown(index = 0): void {
-    let childIndex = this.leftIndexOf(index)
+  private heapifyDown(parentIndex = 0): void {
+    let childIndex
 
-    while (typeof this.list.get(childIndex) !== 'undefined') {
-      // Compare the values of the two childs
-      if (this.isLessThanOrEqual(this.rightOf(index), this.leftOf(index))) {
-        childIndex = this.rightIndexOf(index)
+    while (typeof this.list.get(parentIndex) !== 'undefined') {
+      // STEP 1: CHOOSE SMALLER CHILD
+      const rightChild = this.rightElementOf(parentIndex)
+      const leftChild = this.leftElementOf(parentIndex)
+
+      // If there are no children, finish execution
+      if (!rightChild && !leftChild) {
+        break
       }
 
-      // Compare the values of the smaller child with the current element
+      // If only right child is present, choose it
+      if (rightChild && !leftChild) {
+        childIndex = this.rightIndexOf(parentIndex)
+      }
+      
+      // If only left child is present, choose it
+      else if (!rightChild && leftChild) {
+        childIndex = this.leftIndexOf(parentIndex)
+      }
+
+      // If both are preseent, choose the smaller to be compared later on against its parent
+      else if (this.isLessThanOrEqual(rightChild, leftChild)) {
+        childIndex = this.rightIndexOf(parentIndex)
+      } else {
+        childIndex = this.leftIndexOf(parentIndex)
+      }
+
+      // STEP 2: DECIDE SWAP WITH PARENT
+      // Compare the values of the smaller child against its parent
       if (
         this.isLessThanOrEqual(
           this.elementOf(childIndex),
-          this.elementOf(index)
+          this.elementOf(parentIndex)
         )
       ) {
-        this.list.swap(childIndex, index)
+        this.list.swap(childIndex, parentIndex)
+        // Move down
+        parentIndex = childIndex
       } else {
         // There's no more swap to do.
         break
       }
-
-      // Move down
-      childIndex = this.leftIndexOf(index)
     }
   }
 
@@ -112,11 +138,11 @@ class Heap<T> {
     return this.elementOf(this.parentIndexOf(index))
   }
 
-  private leftOf(index: number): T {
+  private leftElementOf(index: number): T {
     return this.elementOf(this.leftIndexOf(index))
   }
 
-  private rightOf(index: number): T {
+  private rightElementOf(index: number): T {
     return this.elementOf(this.rightIndexOf(index))
   }
 
@@ -144,12 +170,26 @@ class Heap<T> {
     return this._compare(a, b) <= 0
   }
 
-  private defaultFn(a: T, b: T): number {
+  protected defaultFn(a: T, b: T): number {
     if (a === b) {
       return 0
     }
 
     return a < b ? -1 : 1
+  }
+}
+
+type HeapItem = {
+  value: number;
+}
+
+export class MinHeap extends Heap<HeapItem> {
+  protected defaultFn(a: HeapItem, b: HeapItem): number {
+    if (a.value === b.value) {
+      return 0
+    }
+
+    return a.value < b.value ? -1 : 1
   }
 }
 
