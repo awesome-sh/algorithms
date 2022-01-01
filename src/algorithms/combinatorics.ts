@@ -57,10 +57,10 @@ const permuteBacktrack = (
   }
 }
 
-const permutations = permute([1, 2, 2])
-console.log('Permutations:')
-console.log(permutations)
-console.log(permutations.length)
+// const permutations = permute([1, 2, 2])
+// console.log('Permutations:')
+// console.log(permutations)
+// console.log(permutations.length)
 
 export const permuteInPlace = (
   nums: number[],
@@ -88,10 +88,10 @@ const permuteInPlaceBacktrack = (
   }
 }
 
-const permutations2 = permuteInPlace([1, 2, 3], 2)
-console.log('Permutations:')
-console.log(permutations2)
-console.log(permutations2.length)
+// const permutations2 = permuteInPlace([1, 2, 3], 2)
+// console.log('Permutations:')
+// console.log(permutations2)
+// console.log(permutations2.length)
 
 // Como lidar com duplicates?
 export const combine = (
@@ -124,7 +124,7 @@ const combineBacktrack = (
   }
 }
 
-const combinations = combine([1, 2, 2, 4], 2)
-console.log('combinations:')
-console.log(combinations)
-console.log(combinations.length)
+// const combinations = combine([1, 2, 2, 4], 2)
+// console.log('combinations:')
+// console.log(combinations)
+// console.log(combinations.length)
