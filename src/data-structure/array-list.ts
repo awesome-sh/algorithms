@@ -9,10 +9,6 @@ class ArrayList<T> {
   }
 
   set(index: number, item: T): boolean {
-    if (this._bucket.length === this._size) {
-      this._expandBucket()
-    }
-
     if (index < 0 || index >= this._bucket.length) {
       return false
     }
@@ -23,11 +19,13 @@ class ArrayList<T> {
   }
 
   append(item: T): void {
+    const len = this._bucket.length
+
     if (this._bucket.length === this._size) {
       this._expandBucket()
     }
 
-    this._bucket[this._bucket.length] = item
+    this._bucket[len] = item
   }
 
   get(index: number): T {
@@ -35,12 +33,10 @@ class ArrayList<T> {
   }
 
   remove(item: T): boolean {
-    let i: number
+    const i: number = this.findIndex((listItem) => listItem === item)
 
-    for (i = 0; i < this._bucket.length; i++) {
-      if (this._bucket[i] === item) {
-        break
-      }
+    if (i === -1) {
+      return false
     }
 
     if (i < this._bucket.length) {
@@ -56,13 +52,13 @@ class ArrayList<T> {
   }
   
   findIndex(fn: (T) => boolean): number {
-    for (let i = 0; i < this._bucket.length; i++) {
-      if (fn(this._bucket[i])) {
-        return i;
+    for (let i = 0; i < this.length(); i++) {
+      if (fn(this.get(i))) {
+        return i
       }
     }
 
-    return -1;
+    return -1
   }
 
   swap(indexA: number, indexB: number): void {
@@ -97,7 +93,7 @@ class ArrayList<T> {
 
   private _expandBucket(): void {
     const newSize = this._size * 2
-    const newBucket = new Array(newSize)
+    const newBucket = [] // Pretend the new bucket is twice the size of the old bucket
 
     for (let i = 0; i < this._bucket.length; i++) {
       newBucket[i] = this._bucket[i]

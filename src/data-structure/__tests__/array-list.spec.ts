@@ -10,12 +10,14 @@ describe('ArrayList', () => {
   it('starts with size 10', () => {
     const list = new ArrayList()
 
+    expect(list.length()).toEqual(0)
     expect(list.size()).toEqual(10)
   })
 
   it('starts with a custom size', () => {
     const list = new ArrayList(12)
 
+    expect(list.length()).toEqual(0)
     expect(list.size()).toEqual(12)
   })
 
@@ -29,13 +31,20 @@ describe('ArrayList', () => {
 
   it('doubles the size when element is appended and limit is reached', () => {
     const list = new ArrayList(2)
+
+    expect(list.length()).toEqual(0)
     expect(list.size()).toEqual(2)
 
     list.append('a')
+    expect(list.length()).toEqual(1)
+    expect(list.size()).toEqual(2)
+
     list.append('b')
+    expect(list.length()).toEqual(2)
     expect(list.size()).toEqual(2)
 
     list.append('c')
+    expect(list.length()).toEqual(3)
     expect(list.size()).toEqual(4)
   })
 
@@ -60,7 +69,7 @@ describe('ArrayList', () => {
     expect(list.set(2, 'c')).toEqual(false)
   })
 
-  it('doubles the size when element is set and limit is reached', () => {
+  it('ignores if element is set out of list bounds', () => {
     const list = new ArrayList(2)
     expect(list.size()).toEqual(2)
 
@@ -68,8 +77,8 @@ describe('ArrayList', () => {
     list.append('b')
     expect(list.size()).toEqual(2)
 
-    expect(list.set(1, 'c')).toEqual(true)
-    expect(list.size()).toEqual(4)
+    expect(list.set(3, 'c')).toEqual(false)
+    expect(list.size()).toEqual(2)
   })
 
   it('removes element by value', () => {
