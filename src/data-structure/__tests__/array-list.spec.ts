@@ -81,4 +81,16 @@ describe('ArrayList', () => {
     expect(list.remove('c')).toBe(false)
     expect(list.values()).toEqual(['b'])
   })
+
+  it('finds index of an element', () => {
+    const list = new ArrayList()
+    list.append('a')
+    list.append('b')
+    list.append('c')
+
+    expect(list.findIndex((item) => item === 'a')).toBe(0)
+    expect(list.findIndex((item) => item === 'b')).toBe(1)
+    expect(list.findIndex((item) => item === 'c')).toBe(2)
+    expect(list.findIndex((item) => item === 'd')).toBe(-1)
+  })
 })

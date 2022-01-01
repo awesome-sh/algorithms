@@ -54,6 +54,16 @@ class ArrayList<T> {
 
     return false
   }
+  
+  findIndex(fn: (T) => boolean): number {
+    for (let i = 0; i < this._bucket.length; i++) {
+      if (fn(this._bucket[i])) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
 
   swap(indexA: number, indexB: number): void {
     const tmp = this._bucket[indexA]
