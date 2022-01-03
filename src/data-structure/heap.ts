@@ -179,28 +179,4 @@ class Heap<T> {
   }
 }
 
-type HeapItem = {
-  value: number;
-}
-
-export class MinHeap extends Heap<HeapItem> {
-  protected defaultFn(a: HeapItem, b: HeapItem): number {
-    if (a.value === b.value) {
-      return 0
-    }
-
-    return a.value < b.value ? -1 : 1
-  }
-}
-
-export class MaxHeap extends Heap<HeapItem> {
-  protected defaultFn(a: HeapItem, b: HeapItem): number {
-    if (a.value === b.value) {
-      return 0
-    }
-
-    return a.value > b.value ? -1 : 1
-  }
-}
-
 export default Heap
