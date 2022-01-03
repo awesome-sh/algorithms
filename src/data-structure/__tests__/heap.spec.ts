@@ -1,4 +1,4 @@
-import Heap, { MinHeap } from '../heap'
+import Heap, { MinHeap, MaxHeap } from '../heap'
 
 describe('Heap', () => {
   describe('Simple MinHeap', () => {
@@ -210,6 +210,82 @@ describe('Heap', () => {
     it('initializes from an existing array', () => {
       const heap = new MinHeap([item3, item1, item2])
       expect(heap.toArray()).toEqual([{"value": 1}, {"value": 3}, {"value": 2}])
+    })
+  })
+
+  describe('MaxHeap', () => {
+    let heap: MaxHeap
+    let item1
+    let item2
+    let item3
+    let item4
+    let item5
+
+    beforeEach(() => {
+      heap = new MaxHeap()
+      item1 = { value: 1 }
+      item2 = { value: 2 }
+      item3 = { value: 3 }
+      item4 = { value: 4 }
+      item5 = { value: 5 }
+    })
+
+    it('starts empty', () => {
+      expect(heap.size()).toBe(0)
+      expect(heap.isEmpty()).toBe(true)
+    })
+
+    it('adds element', () => {
+      heap.add(item5)
+
+      expect(heap.size()).toBe(1)
+      expect(heap.isEmpty()).toBe(false)
+    })
+
+    it('has the maximum element on the top', () => {
+      heap.add(item3)
+      heap.add(item1)
+      heap.add(item2)
+
+      expect(heap.peek()).toBe(item3)
+    })
+
+    it('always remove the maximum element', () => {
+      heap.add(item3)
+      heap.add(item1)
+      heap.add(item2)
+      heap.add(item4)
+
+      expect(heap.poll()).toBe(item4)
+      expect(heap.poll()).toBe(item3)
+      expect(heap.poll()).toBe(item2)
+      expect(heap.poll()).toBe(item1)
+    })
+
+    it('removes an element in the middle', () => {
+      heap.add(item3)
+      heap.add(item1)
+      heap.add(item2)
+      heap.add(item4)
+
+      expect(heap.toArray()).toEqual([item4, item3, item2, item1])
+
+      heap.remove(item3)
+
+      expect(heap.toArray()).toEqual([item4, item1, item2])
+    })
+
+    it('stringifies the heap', () => {
+      heap.add(item3)
+      heap.add(item1)
+      heap.add(item2)
+
+      expect(heap.toArray()).toEqual([item3, item1, item2])
+    })
+
+    it('initializes from an existing array', () => {
+      const heap = new MaxHeap([item3, item1, item2])
+      expect(heap.toArray()).toEqual([item3, item1, item2])
     })
   })
 })
