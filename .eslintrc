@@ -9,6 +9,7 @@
     "prettier"
   ],
   "rules": {
+    "quotes": [2, "single"],
     "@typescript-eslint/no-this-alias": [
       "error",
       {
