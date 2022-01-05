@@ -1,18 +1,24 @@
 import { MinPriorityQueue, MaxPriorityQueue } from '../priority-queue'
 
 describe('Priority Queue', () => {
+  let item0
   let item1
   let item2
   let item3
   let item4
   let item5
+  let item8
+  let item9
 
   beforeEach(() => {
+    item0 = { priority: 0 }
     item1 = { priority: 1 }
     item2 = { priority: 2 }
     item3 = { priority: 3 }
     item4 = { priority: 4 }
     item5 = { priority: 5 }
+    item8 = { priority: 8 }
+    item9 = { priority: 9 }
   })
 
   describe('MinPriorityQueue', () => {
@@ -66,6 +72,32 @@ describe('Priority Queue', () => {
       heap.remove(item3)
 
       expect(heap.toArray()).toEqual([item1, item4, item2])
+    })
+
+    it('updates an element by increasing its priority', () => {
+      heap.add(item3)
+      heap.add(item1)
+      heap.add(item2)
+      heap.add(item8)
+
+      expect(heap.toArray()).toEqual([item1, item3, item2, item8])
+
+      heap.update(item3, item9)
+
+      expect(heap.toArray()).toEqual([item1, item8, item2, item9])
+    })
+
+    it('updates an element by decreasing its priority', () => {
+      heap.add(item3)
+      heap.add(item1)
+      heap.add(item2)
+      heap.add(item8)
+
+      expect(heap.toArray()).toEqual([item1, item3, item2, item8])
+
+      heap.update(item3, item0)
+
+      expect(heap.toArray()).toEqual([item0, item1, item2, item8])
     })
 
     it('stringifies the heap', () => {

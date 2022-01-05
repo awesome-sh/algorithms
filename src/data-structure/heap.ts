@@ -1,8 +1,8 @@
 import ArrayList from '../data-structure/array-list'
 
 class Heap<T> {
-  private list: ArrayList<T>
-  protected _compare: (a: T, b: T) => number
+  protected list: ArrayList<T>
+  private _compare: (a: T, b: T) => number
 
   constructor(values?: T[] | null, comparator?: (a: T, b: T) => number) {
     this.list = new ArrayList<T>()
@@ -19,8 +19,11 @@ class Heap<T> {
     this.heapifyUp()
   }
 
-  update(item: T): void {
+  update(item: T, newItem: T): void {
     const index = this.list.findIndex(listItem => listItem === item)
+    this.list.set(index, newItem)
+
+    this.heapifyDown(index)
     this.heapifyUp(index)
   }
 
@@ -70,7 +73,7 @@ class Heap<T> {
     return this.list.toArray()
   }
 
-  private heapifyUp(index: number = this.lastIndex()): void {
+  protected heapifyUp(index: number = this.lastIndex()): void {
     while (
       this.parentOf(index) &&
       this.isGreaterThanOrEqual(this.parentOf(index), this.elementOf(index))
@@ -82,7 +85,7 @@ class Heap<T> {
     }
   }
 
-  private heapifyDown(parentIndex = 0): void {
+  protected heapifyDown(parentIndex = 0): void {
     let childIndex
 
     while (typeof this.list.get(parentIndex) !== 'undefined') {

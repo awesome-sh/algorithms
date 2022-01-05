@@ -54,6 +54,32 @@ describe('Heap', () => {
       expect(heap.toString()).toBe('1,4,2')
     })
 
+    it('updates an element by increasing its value', () => {
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+      heap.add(8)
+
+      expect(heap.toString()).toBe('1,3,2,8')
+
+      heap.update(3, 9)
+
+      expect(heap.toString()).toBe('1,8,2,9')
+    })
+
+    it('updates an element by decreasing its value', () => {
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+      heap.add(8)
+
+      expect(heap.toString()).toBe('1,3,2,8')
+
+      heap.update(3, 0)
+
+      expect(heap.toString()).toBe('0,1,2,8')
+    })
+
     it('stringifies the heap', () => {
       heap.add(3)
       heap.add(1)
@@ -120,6 +146,32 @@ describe('Heap', () => {
       heap.remove(3)
 
       expect(heap.toString()).toBe('4,1,2')
+    })
+
+    it('updates an element by increasing its value', () => {
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+      heap.add(8)
+
+      expect(heap.toString()).toBe('8,3,2,1')
+
+      heap.update(3, 9);
+
+      expect(heap.toString()).toBe('9,8,2,1')
+    })
+
+    it('updates an element by decreasing its value', () => {
+      heap.add(3)
+      heap.add(1)
+      heap.add(2)
+      heap.add(8)
+
+      expect(heap.toString()).toBe('8,3,2,1')
+
+      heap.update(3, 0)
+
+      expect(heap.toString()).toBe('8,1,2,0')
     })
 
     it('stringifies the heap', () => {
